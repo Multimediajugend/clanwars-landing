@@ -1,0 +1,369 @@
+/*-- General --*/
+body {
+    overflow-x: hidden;
+    font-family: "Roboto Slab", "Helvetica Neue", Helvetica, Arial, sans-serif
+}
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    font-family: Montserrat, "Helvetica Neue", Helvetica, Arial, sans-serif;
+    text-transform: uppercase;
+    font-weight: 700
+}
+.bg-light-gray {
+    background-color: #f7f7f7
+}
+.bg-darkest-gray {
+    background-color: #222
+}
+
+/*-- Buttons --*/
+.btn {
+    font-family: Montserrat, "Helvetica Neue", Helvetica, Arial, sans-serif;
+    text-transform: uppercase
+}
+.btn:focus,
+.btn:active,
+.btn.active {
+    outline: 0!important
+}
+.btn-facebook {
+    color:#fff;
+    background-color:#3b5998;
+    border-color:rgba(0,0,0,0.2)
+}
+.btn-facebook:focus,
+.btn-facebook.focus,
+.btn-facebook:hover,
+.btn-facebook.hover,
+.btn-facebook:active,
+.btn-facebook.active {
+    color: #fff;
+    background-color:#2d4373;
+    border-color:rgba(0,0,0,0.2)
+}
+
+/*-- Links --*/
+a,
+a:hover,
+a:focus,
+a:active,
+a.active {
+    outline: 0
+}
+
+/*-- NavBar --*/
+.navbar-default {
+    background-color: #222;
+    border-color: transparent
+}
+.navbar-default .navbar-brand {
+    color: #FA7C20;
+    font-family: Montserrat, "Helvetica Neue", Helvetica, Arial, cursive;
+    padding-right: 0px;
+}
+.navbar-default .navbar-brand:hover,
+.navbar-default .navbar-brand:focus,
+.navbar-default .navbar-brand:active,
+.navbar-default .navbar-brand.active {
+    color: #FA4920
+}
+.navbar-default .navbar-collapse {
+    border-color: rgba(255, 255, 255, .02)
+}
+.navbar-default .navbar-toggle {
+    background-color: #FA7C20;
+    border-color: #FA7C20
+}
+.navbar-default .navbar-toggle .icon-bar {
+    background-color: #fff
+}
+.navbar-default .navbar-toggle:hover,
+.navbar-default .navbar-toggle:focus {
+    background-color: #FA7C20
+}
+.navbar-default .nav li a {
+    font-family: Montserrat, "Helvetica Neue", Helvetica, Arial, sans-serif;
+    text-transform: uppercase;
+    font-weight: 400;
+    letter-spacing: 1px;
+    color: #fff
+}
+.navbar-default .nav li a:hover,
+.navbar-default .nav li a:focus {
+    color: #FA7C20;
+    outline: 0
+}
+.navbar-default .navbar-nav>.active>a {
+    border-radius: 0;
+    color: #fff;
+    background-color: #FA7C20
+}
+.navbar-default .navbar-nav>.active>a:hover,
+.navbar-default .navbar-nav>.active>a:focus {
+    color: #fff;
+    background-color: #FA4920
+}
+@media (min-width: 768px) {
+    .navbar-default {
+        background-color: transparent;
+        padding: 25px 0;
+        -webkit-transition: padding .3s;
+        -moz-transition: padding .3s;
+        transition: padding .3s;
+        border: 0
+    }
+    .navbar-default .navbar-brand {
+        font-size: 1.5em;
+        -webkit-transition: all .3s;
+        -moz-transition: all .3s;
+        transition: all .3s
+    }
+    .navbar-default .navbar-nav>.active>a {
+        border-radius: 3px
+    }
+    .navbar-default.navbar-shrink {
+        background-color: #222;
+        padding: 10px 0
+    }
+    .navbar-default.navbar-shrink .navbar-brand {
+        font-size: 1.5em
+    }
+}
+@media (min-width: 992px) {
+    .navbar-default .navbar-brand {
+        font-size: 3.5em
+    }    
+}
+@media (min-width: 1200px) {
+    .navbar-default .navbar-brand {
+        font-size: 4em
+    }    
+}
+
+/*-- Header --*/
+header {
+    background-image: url(../img/header-bg.jpg);
+    background-repeat: none;
+    background-attachment: scroll;
+    background-position: center center;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    background-size: cover;
+    -o-background-size: cover;
+    text-align: center;
+    color: #fff
+}
+header .intro-text {
+    padding-top: 100px;
+    padding-bottom: 50px;
+}
+header .intro-text .intro-lead-in {
+    font-family: "Droid Serif", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-style: italic;
+    font-size: 22px;
+    line-height: 22px;
+    margin-bottom: 25px;
+    text-shadow: 1px 1px 1px #000
+}
+header .intro-text .intro-heading {
+    font-family: Montserrat, "Helvetica Neue", Helvetica, Arial, sans-serif;
+    text-transform: uppercase;
+    font-weight: 700;
+    font-size: 50px;
+    line-height: 50px;
+    margin-bottom: 25px;
+    text-shadow: 3px 3px 1px #000
+}
+@media (min-width: 768px) {
+    header .intro-text {
+        padding-top: 300px;
+        padding-bottom: 200px
+    }
+    header .intro-text .intro-lead-in {
+        font-family: "Droid Serif", "Helvetica Neue", Helvetica, Arial, sans-serif;
+        font-style: italic;
+        font-size: 40px;
+        line-height: 40px;
+        margin-bottom: 25px
+    }
+    header .intro-text .intro-heading {
+        font-family: Montserrat, "Helvetica Neue", Helvetica, Arial, sans-serif;
+        text-transform: uppercase;
+        font-weight: 700;
+        font-size: 75px;
+        line-height: 75px;
+        margin-bottom: 50px
+    }
+}
+
+/*-- Sections --*/
+section {
+    padding: 50px 0
+}
+section h2.section-heading {
+    font-size: 40px;
+    margin-top: 0;
+    margin-bottom: 15px
+}
+section h3.section-subheading {
+    font-size: 16px;
+    font-family: "Droid Serif", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    text-transform: none;
+    font-style: italic;
+    font-weight: 400;
+    margin-bottom: 75px
+}
+@media (min-width: 768px) {
+    section {
+        padding: 100px 0
+    }
+}
+
+/*-- Info-Section --*/
+section#Info .info-heading {
+    margin: 15px 0
+}
+
+/*-- Spiele-Section --*/
+section#Spiele .spiele-image {
+    max-width: 400px;
+    margin: 0 auto
+}
+section#Spiele .spiele-image img {
+    width: 100%
+}
+section#Spiele .spiele-item {
+    margin: 0 0 15px;
+    right: 0
+}
+section#Spiele .spiele-item .spiele-caption {
+    max-width: 400px;
+    margin: 0 auto;
+    background-color: #fff;
+    text-align: center;
+    padding: 25px
+}
+section#Spiele .spiele-item .spiele-caption h4 {
+    text-transform: none;
+    margin: 0
+}
+section#Spiele .spiele-item .spiele-caption p {
+    font-family: "Droid Serif", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-style: italic;
+    font-size: 16px;
+    margin: 0
+}
+@media (min-width: 768px) {
+    section#Spiele .spiele-item {
+        margin: 0 0 30px
+    }
+}
+
+/*-- Gallerie-Section --*/
+section#Galerie .gallery-item {
+    text-align: center;
+    margin-bottom: 50px
+}
+section#Galerie .gallery-item img {
+    margin: 0 auto;
+    border: 7px solid #fff
+}
+section#Galerie .gallery-item p {
+    margin-top: 0
+}
+section#Galerie .modal-footer ul.pagination {
+    float:left;
+    margin: 0;
+}
+
+/*-- Preise-Section --*/
+
+/*-- Karte-Section --*/
+section#Karte .overlay {
+   background:transparent;
+   opacity: 0.2;
+   position:relative; 
+   width:100%;
+   height:500px; /* your iframe height */
+   top:500px;  /* your iframe height */
+   margin-top:-500px;  /* your iframe height */
+}
+
+/*-- Anmeldung-Section --*/
+section#Anmeldung {
+    color: #ddd;
+    background-color: #222;
+    background-image: url(../img/map-image.png);
+    background-position: center;
+    background-repeat: no-repeat;
+    min-height: 850px;
+}
+section#Anmeldung .section-heading {
+    color: #fff
+}
+section#Anmeldung fieldset legend {
+    color: #ddd;
+}
+
+
+
+/*-- AGB --*/
+.agb ol.paragraphs {
+    counter-reset: para;
+    list-style-type: none;
+    padding-left: 10px;
+    font-family: Montserrat, "Helvetica Neue", Helvetica, Arial, sans-serif;
+    text-transform: uppercase;
+    font-weight: 700;
+}
+.agb ol.paragraphs>li {
+    display: table-row;
+}
+.agb ol.paragraphs>li:before { 
+    content: "§" counter(para) " "; 
+    counter-increment: para;
+    display: table-cell;
+    width: 21px;
+}
+.agb ol.paragraphs>li ol {
+    counter-reset: item;
+    list-style-type: none;
+    padding-left: 0px;
+    font-family: "Roboto Slab", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    text-transform: none;
+    font-weight: normal;
+}
+.agb ol.paragraphs>li ol>li {
+    display: table-row;
+}
+.agb ol.paragraphs>li ol>li:before {
+    content: counter(item, lower-alpha) ") ";
+    counter-increment: item;
+    display: table-cell;
+    padding: 5px 0px;
+    width: 17px;
+}
+
+/*-- Footer --*/
+footer {
+    padding: 25px 0;
+    text-align: center
+}
+footer span.copyright {
+    line-height: 40px;
+    font-family: Montserrat, "Helvetica Neue", Helvetica, Arial, sans-serif;
+    text-transform: uppercase;
+    text-transform: none
+}
+footer ul.quicklinks {
+    margin-bottom: 0;
+    line-height: 34px;
+    font-family: Montserrat, "Helvetica Neue", Helvetica, Arial, sans-serif;
+    text-transform: uppercase;
+    text-transform: none;
+    list-style: none
+}
