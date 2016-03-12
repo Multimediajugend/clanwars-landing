@@ -64,13 +64,11 @@
             <div class="row">
                 <div class="col-md-6 col-md-push-3 form-group">
                     <div class="input-group">
-                        <input type="text" ng-model="clan" class="form-control" disabled id="clan" placeholder="Kein Clan">
+                        <input type="text" ng-model="clan.Name" class="form-control" disabled id="clan" placeholder="Kein Clan">
                         <span class="input-group-btn">
-                            <button class="btn btn-default" tabindex="{{persons.length*4+2}}" type="button" data-toggle="modal" data-target="#clanModal">Clan auswählen</button>
+                            <button class="btn btn-default" tabindex="{{persons.length*4+2}}" type="button" data-toggle="modal" data-target="#clanModal" ng-click="loadClans()">Clan auswählen</button>
                         </span>
                     </div>
-                    <input type="hidden" id="clanid" name="clanid">
-                    <input type="hidden" id="clanpw" name="clanpw">
                 </div>
             </div>
             <div class="col-lg-12 text-center">
@@ -108,4 +106,43 @@
             </div>
         </div>
     </form>
+    <div class="modal fade" id="clanModal" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content" role="document">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal"><span class="fa fa-close"></span></button>
+                    <h4 class="modal-title">Clan auswählen</h4>
+                </div>
+                <div class="modal-body">
+                    <form>
+                        <div class="addClan">
+                        </div>
+                        <div class="chooseClan">
+                            <div class="form-group">
+                                <label for="clanDropDown">Clan:</label>
+                                <div class="dropdown">
+                                    <button class="btn btn-default dropdown-toggle" type="button" id="clanDropDown" data-toggle="dropdown">
+                                        {{clan.Name}}
+                                        <span class="caret"></span>
+                                    </button>
+                                    <ul class="dropdown-menu">
+                                        <li><a href="" ng-click="selectClan(noClan)">{{noClan.Name}}</a></li>
+                                        <li ng-repeat="clanItem in clans"><a href="" ng-click="selectClan(clanItem)">{{clanItem.Name}}</a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="clanPassword">Passwort:</label>
+                                <input class="form-control" type="password" />
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Zurück</button>
+                    <button type="button" class="btn btn-primary" data-dismiss="modal">Auswählen</button>
+                </div>
+            </div>
+        </div>
+    </div>
 </section>

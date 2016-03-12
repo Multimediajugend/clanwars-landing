@@ -67,11 +67,16 @@ clanwarsApp.controller('GalleryCtrl', ['$scope', function($scope) {
     }
 }]);
 
-clanwarsApp.controller('RegisterCtrl', ['$scope', function($scope) {
+clanwarsApp.controller('RegisterCtrl', ['$scope', '$http', function($scope, $http) {
     $scope.persons = [{'id' : 0}];
     $scope.isRegister = true;
-    $scope.noClan = "Kein Clan"
-    $scope.clan = $scope.noClan;
+    $scope.noClan = {ID: 0, Name: 'Kein Clan'};
+    $scope.clan = angular.copy($scope.noClan);
+    $scope.clans = [];
+    
+    $scope.selectClan = function(clan) {
+        $scope.clan = angular.copy(clan);
+    }
     
     $scope.addPerson = function() {
         var newPersonNo = $scope.persons.length;
@@ -91,6 +96,16 @@ clanwarsApp.controller('RegisterCtrl', ['$scope', function($scope) {
     $scope.goBack = function() {
         $scope.isRegister = true;
         document.getElementById('Anmeldung').scrollIntoView();
+    }
+
+    $scope.loadClans = function() {
+        console.log("load clans");
+        $http.get("/backend/clans.php?method=list").then(
+            function(response) {
+                $scope.clans = response.data;
+                console.log("clans loaded");
+            }
+        );
     }
     
     $scope.fbLogin = function() {
@@ -114,4 +129,6 @@ clanwarsApp.controller('RegisterCtrl', ['$scope', function($scope) {
         // Später hinzufügen
         //}, {scope: 'user_birthday'});
     }
+    
+    $scope.loadClans();
 }]);

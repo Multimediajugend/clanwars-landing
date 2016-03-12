@@ -169,9 +169,6 @@ require_once('/config/config.php');
     
     <!-- Kontakt Modal -->
     <?php include("./modals/contact.php"); ?>
-
-    <!-- Clan Modal -->
-    <?php include("./modals/clans.php"); ?>
     
     <!-- jQuery -->
     <script src="scripts/jquery-2.2.1.min.js"></script>
