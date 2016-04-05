@@ -143,7 +143,7 @@
                             </div>
                             <div class="form-group">
                                 <label for="clanPassword">Passwort:</label>
-                                <input class="form-control" type="password" ng-model="clanPassword" />
+                                <input class="form-control" type="password" ng-model="clanPassword" id="clanPassword" />
                             </div>
                         </div>
                     </form>
