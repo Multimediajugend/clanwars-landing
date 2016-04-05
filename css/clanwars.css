@@ -360,6 +360,7 @@ footer span.copyright {
     text-transform: none
 }
 footer ul.quicklinks {
+    padding: 0;
     margin-bottom: 0;
     line-height: 34px;
     font-family: Montserrat, "Helvetica Neue", Helvetica, Arial, sans-serif;

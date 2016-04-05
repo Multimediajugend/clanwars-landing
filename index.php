@@ -136,7 +136,7 @@ require_once('./config/config.php');
             <div class="row">
                 <div class="col-md-3">
                     <a href="https://www.multimediajugend.de/">
-                        <img src="img/mjslogo.png">
+                        <img src="img/mjslogo.png"><br>
                         <span class="small">www.multimediajugend.de</span>    
                     </a>                    
                 </div>
