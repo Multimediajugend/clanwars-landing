@@ -27,8 +27,8 @@ switch($method) {
         
         echo json_encode($result);
         break;
-    case 'select':
-        // Params: ID, Password
+    case 'checkPW':
+        // Params: clanId, clanPassword
         // return: true|false
         $payload = json_decode(file_get_contents('php://input'));
         if(!isset($payload) || !isset($payload->clanId) || !isset($payload->clanPassword)) {
@@ -46,5 +46,22 @@ switch($method) {
         $result = $stmt->fetch();
     
         echo json_encode($result->count > 0);
+        break;
+    case 'checkName':
+        // Params: clanName
+        // return: true|false
+        $payload = json_decode(file_get_contents('php://input'));
+        if(!isset($payload) || !isset($payload->clanName)) {
+            die('falseasd');
+        }
+        $clanName = filter_var($payload->clanName);
+    
+        $query = "SELECT COUNT(*) AS count FROM clans WHERE Name = :name";
+        $stmt = $db->prepare($query);
+        $stmt->execute([':name' => $clanName]);
+        
+        $result = $stmt->fetch();
+        
+        echo json_encode($result->count == 0);
         break;
 }

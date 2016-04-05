@@ -72,10 +72,68 @@ clanwarsApp.controller('RegisterCtrl', ['$scope', '$http', function($scope, $htt
     $scope.isRegister = true;
     $scope.noClan = {ID: 0, Name: 'Kein Clan'};
     $scope.clan = angular.copy($scope.noClan);
+    $scope.clanPassword;
+    $scope.modalClan = angular.copy($scope.noClan);
     $scope.clans = [];
     
+    $scope.addClan = function() {
+        $scope.modalClan.ID = -1;
+        $scope.modalClan.Name = '';
+    }
+    
     $scope.selectClan = function(clan) {
-        $scope.clan = angular.copy(clan);
+        $scope.modalClan = angular.copy(clan);
+    }
+    
+    $scope.test = function() {
+        $scope.modalClan = angular.copy($scope.noClan);
+    }
+    
+    $scope.checkClan = function() {
+        if($scope.modalClan.ID == 0) {
+            $scope.clan = angular.copy($scope.noClan);
+            $('#clanModal').modal('toggle');
+        } else if($scope.modalClan.ID < 0) {
+            if($scope.clanPassword === undefined || $scope.clanPassword.length <= 0) {
+                $scope.modalInfo = 'Bitte ein Passwort eingeben';
+            } else {
+                $scope.modalInfo = 'Prüfe, ob Name bereits existiert';
+                $http({
+                    method: 'POST',
+                    url: '/backend/clans.php?method=checkName',
+                    data : {
+                        clanName: $scope.modalClan.Name
+                    }
+                }).then(function(response) {
+                if(response.data == 'true') {
+                    $scope.clan = angular.copy($scope.modalClan);
+                    $scope.modalInfo = '';
+                    $('#clanModal').modal('toggle');
+                } else {
+                    $scope.modalInfo = 'Der Name existiert bereits';
+                }
+                });
+            }
+        } else {
+            $scope.modalInfo = 'Bitte warte einen Moment';
+
+            $http({
+                method: 'POST',
+                url: '/backend/clans.php?method=checkPW',
+                data: {
+                    clanId: $scope.modalClan.ID,
+                    clanPassword: $scope.clanPassword
+                }
+            }).then(function(response) {
+                if(response.data == 'true') {
+                    $scope.clan = angular.copy($scope.modalClan);
+                    $scope.modalInfo = '';
+                    $('#clanModal').modal('toggle');
+                } else {
+                    $scope.modalInfo = 'Das Passwort ist nicht korrekt';
+                }
+            });
+        }
     }
     
     $scope.addPerson = function() {
@@ -99,11 +157,9 @@ clanwarsApp.controller('RegisterCtrl', ['$scope', '$http', function($scope, $htt
     }
 
     $scope.loadClans = function() {
-        console.log("load clans");
         $http.get("/backend/clans.php?method=list").then(
             function(response) {
                 $scope.clans = response.data;
-                console.log("clans loaded");
             }
         );
     }
