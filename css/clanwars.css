@@ -45,6 +45,16 @@ h6 {
     background-color:#2d4373;
     border-color:rgba(0,0,0,0.2)
 }
+/*
+.ng-invalid {
+  border-color: #f00 !important;
+  outline: 0;
+  -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,.075), 0 0 8px rgba(255, 0, 32, 0.6);
+  box-shadow: inset 0 1px 1px rgba(0,0,0,.075), 0 0 8px rgba(255, 0, 32, 0.6);
+}*/
+.has-error {
+    color: #ce8382;
+}
 
 /*-- Links --*/
 a,

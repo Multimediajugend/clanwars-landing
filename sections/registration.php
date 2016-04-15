@@ -1,6 +1,6 @@
 <div ng-controller="RegisterCtrl">
     <section id="Anmeldung">
-        <form name="register" id="registerForm" action="" method="post">
+        <form name="register" id="registerForm" action="" method="post" novalidate>
             <div ng-show="isRegister" class="container">
                 <div class="row">
                     <div class="col-lg-12 text-center">
@@ -15,49 +15,49 @@
                 </div>
                 <br />
                 <div class="row">
-                    <div class="col-md-6 form-group">
+                    <div class="col-md-6 form-group" ng-class="{ 'has-error' : register.firstname.$invalid && !register.firstname.$pristine && register.firstname.$touched }">
                         <label for="firstname">Vorname *</label>
-                        <input type="text" ng-model="persons[0].firstname" tabindex="1" class="form-control" placeholder="Max" id="firstname" name="firstname" required>
+                        <input type="text" ng-model="persons[0].firstname" class="form-control" placeholder="Max" id="firstname" name="firstname" required>
                     </div>
-                    <div class="col-md-6 form-group">
+                    <div class="col-md-6 form-group" ng-class="{ 'has-error' : register.lastname.$invalid && !register.lastname.$pristine && register.lastname.$touched }">
                         <label for="lastname">Nachname *</label>
-                        <input type="text" ng-model="persons[0].lastname" tabindex="2" class="form-control" placeholder="Mustermann" id="lastname" name="lastname" required>
+                        <input type="text" ng-model="persons[0].lastname" class="form-control" placeholder="Mustermann" id="lastname" name="lastname" required>
                     </div>
                 </div>
                 <div class="row">
-                    <div class="col-md-6 form-group">
+                    <div class="col-md-6 form-group" ng-class="{ 'has-error' : register.email.$invalid && !register.email.$pristine && register.email.$touched }">
                         <label for="email">E-Mail-Adresse *</label>
-                        <input type="email" ng-model="persons[0].email" tabindex="3" class="form-control" placeholder="max@muster.mail" id="email" name="email" required>
+                        <input type="email" ng-model="persons[0].email" class="form-control" placeholder="max@muster.mail" id="email" name="email" required>
                     </div>
-                    <div class="col-md-6 form-group">
+                    <div class="col-md-6 form-group" ng-class="{ 'has-error' : register.birthday.$invalid && !register.birthday.$pristine && register.birthday.$touched }">
                         <label for="birthday">Geburtsdatum *<span class="small">Die Veranstaltung ist ab 16.</span></label>
-                        <input type="date" ng-model="persons[0].birthday" tabindex="4" class="form-control" placeholder="1988-05-27" id="birthday" name="birthday" required>
+                        <input type="date" ng-model="persons[0].birthday" class="form-control" placeholder="1970-01-31" id="birthday" name="birthday" required>
                     </div>
                 </div>
                 <h5 class="section-subheading text-center">Falls du deinen ganzen Clan anmelden willst, kannst du hier weitere Personen hinzufügen.</h5>
-                <fieldset ng-repeat="person in persons" ng-if="$index > 0">
+                <fieldset ng-repeat="person in persons" ng-if="$index > 0" ng-form="personForm">
                     <legend>Person{{$index+1}} <small ng-show="$last"> - <a href="" ng-click="removePerson()">löschen</a></small></legend>
                     <div class="row">
-                        <div class="col-md-3 col-xs-6 form-group">
+                        <div class="col-md-3 col-xs-6 form-group" ng-class="{ 'has-error' : personForm.firstname.$invalid && !personForm.firstname.$pristine && personForm.firstname.$touched }">
                             <label for="personfirstname">Vorname</label>
-                            <input type="text" ng-model="person.firstname" tabindex="{{$index*4+2}}" class="form-control" placeholder="Max" name="personfirstname">
+                            <input type="text" ng-model="person.firstname" class="form-control" placeholder="Max" name="firstname" required>
                         </div>
-                        <div class="col-md-3 col-xs-6 form-group">
+                        <div class="col-md-3 col-xs-6 form-group" ng-class="{ 'has-error' : personForm.lastname.$invalid && !personForm.lastname.$pristine && personForm.lastname.$touched }">
                             <label for="personlastname">Nachname</label>
-                            <input type="text" ng-model="person.lastname" tabindex="{{$index*4+3}}" class="form-control" placeholder="Mustermann" name="personlastname">
+                            <input type="text" ng-model="person.lastname" class="form-control" placeholder="Mustermann" name="lastname" required>
                         </div>
-                        <div class="col-md-3 col-xs-6 form-group">
+                        <div class="col-md-3 col-xs-6 form-group" ng-class="{ 'has-error' : personForm.email.$invalid && !personForm.email.$pristine && personForm.email.$touched }">
                             <label for="personemail">E-Mail</label>
-                            <input type="email" ng-model="person.email" tabindex="{{$index*4+4}}" class="form-control" placeholder="max@muster.mail" name="personemail">
+                            <input type="email" ng-model="person.email" class="form-control" placeholder="max@muster.mail" name="email" required>
                         </div>
-                        <div class="col-md-3 col-xs-6 form-group">
+                        <div class="col-md-3 col-xs-6 form-group" ng-class="{ 'has-error' : personForm.birthday.$invalid && !personForm.birthday.$pristine && personForm.birthday.$touched }">
                             <label for="personbirthday">Geburtsdatum</label>
-                            <input type="date" ng-model="person.birthday" tabindex="{{$index*4+5}}" class="form-control" placeholder="1970-01-01" name="personbirthday">
+                            <input type="date" ng-model="person.birthday" class="form-control" placeholder="1970-01-01" name="birthday" required>
                         </div>
                     </div>
                 </fieldset>
                 <div class="row text-center">
-                    <button type="button" tabindex="5" class="btn btn-sm btn-default" ng-click="addPerson()"><span class="fa fa-plus"></span> Hinzufügen</button>
+                    <button type="button" class="btn btn-sm btn-default" ng-click="addPerson()"><span class="fa fa-plus"></span> Hinzufügen</button>
                 </div>
                 <br />
                 <h4 class="text-center">Hier kannst du einen Clan auswählen</h4>
@@ -67,14 +67,14 @@
                         <div class="input-group">
                             <input type="text" ng-model="clan.Name" class="form-control" disabled id="clan" placeholder="Kein Clan">
                             <span class="input-group-btn">
-                                <button class="btn btn-default" tabindex="{{persons.length*4+2}}" type="button" data-toggle="modal" data-target="#clanModal" ng-click="loadClans()">Clan auswählen</button>
+                                <button class="btn btn-default" type="button" data-toggle="modal" data-target="#clanModal" ng-click="loadClans()">Clan auswählen</button>
                             </span>
                         </div>
                     </div>
                 </div>
                 <div class="col-lg-12 text-center">
                     <div id="registerError" class="alert alert-danger" style="display:none;">Da ist etwas schief gelaufen</div>
-                    <button type="button" tabindex="{{persons.length*4+3}}" class="btn btn-lg btn-primary" ng-click="validate()">Weiter zum Bezahlen</button>
+                    <button type="button" class="btn btn-lg btn-primary" ng-click="validate()" ng-disabled="register.$invalid">Weiter zum Bezahlen</button>
                 </div>
             </div>
             <div ng-hide="isRegister" class="container">    
