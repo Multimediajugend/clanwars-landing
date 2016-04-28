@@ -31,7 +31,12 @@
                     </div>
                     <div class="col-md-6 form-group" ng-class="{ 'has-error' : register.birthday.$invalid && !register.birthday.$pristine && register.birthday.$touched }">
                         <label for="birthday">Geburtsdatum *<span class="small">Die Veranstaltung ist ab 16.</span></label>
-                        <input type="date" ng-model="persons[0].birthday" class="form-control" placeholder="1970-01-31" id="birthday" name="birthday" required>
+                        <div class="input-group">
+                            <p class="input-group-btn">
+                                <button type="button" class="btn btn-default" ng-click="birthdayOpen(0)"><span class="fa fa-calendar"></span></button>
+                            </p>
+                            <input type="text" class="form-control" uib-datepicker-popup="{{dateFormat}}" false ng-model="persons[0].birthday" is-open="persons[0].birthdayPopup.opened" datepicker-options="dateOptions" datepicker-popup-template-url="template/datepicker.html" ng-click="birthdayOpen(0)" placeholder="28.10.2000" required>
+                        </div>
                     </div>
                 </div>
                 <h5 class="section-subheading text-center">Falls du deinen ganzen Clan anmelden willst, kannst du hier weitere Personen hinzufügen.</h5>
@@ -52,7 +57,12 @@
                         </div>
                         <div class="col-md-3 col-xs-6 form-group" ng-class="{ 'has-error' : personForm.birthday.$invalid && !personForm.birthday.$pristine && personForm.birthday.$touched }">
                             <label for="personbirthday">Geburtsdatum</label>
-                            <input type="date" ng-model="person.birthday" class="form-control" placeholder="1970-01-01" name="birthday" required>
+                            <div class="input-group">
+                                <p class="input-group-btn">
+                                    <button type="button" class="btn btn-default" ng-click="birthdayOpen($index)"><span class="fa fa-calendar"></span></button>
+                                </p>
+                                <input type="text" class="form-control" uib-datepicker-popup="{{dateFormat}}" false ng-model="person.birthday" is-open="person.birthdayPopup.opened" datepicker-options="dateOptions" datepicker-popup-template-url="template/datepicker.html" ng-click="birthdayOpen($index)" placeholder="28.10.2000" required>
+                            </div>
                         </div>
                     </div>
                 </fieldset>
@@ -88,14 +98,14 @@
                     </thead>
                     <tbody>
                         <tr ng-repeat="person in persons">
-                            <td>Ticket für: {{person.firstname}} {{person.lastname}}<small ng-hide="clan==noClan"> (Gruppenkarte)</small></td>
-                            <td><span ng-show="clan==noClan">20,00 €</span><span ng-hide="clan==noClan">15,00 €</span></td>
+                            <td>Ticket für: {{person.firstname}} {{person.lastname}}<small ng-hide="clan.ID==noClan.ID"> (Gruppenkarte)</small></td>
+                            <td><span ng-show="clan.ID==noClan.ID">20,00 €</span><span ng-hide="clan.ID==noClan.ID">15,00 €</span></td>
                         </tr>
                     </tbody>
                     <tbody>
                         <tr>
                             <td>Gesamt</td>
-                            <td><span ng-show="clan==noClan">{{persons.length*20}},00 €</span><span ng-hide="clan==noClan">{{persons.length*15}},00 €</span></td>
+                            <td><span ng-show="clan.ID==noClan.ID">{{persons.length*20}},00 €</span><span ng-hide="clan.ID==noClan.ID">{{persons.length*15}},00 €</span></td>
                         </tr>
                     </tbody>
                 </table>

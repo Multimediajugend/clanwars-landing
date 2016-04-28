@@ -39,7 +39,7 @@ $(function() {
 
 
 
-var clanwarsApp = angular.module('clanwarsApp', []);
+var clanwarsApp = angular.module('clanwarsApp', ['ui.bootstrap']);
 
 clanwarsApp.controller('GalleryCtrl', ['$scope', function($scope) {
     $scope.images = [
@@ -68,13 +68,27 @@ clanwarsApp.controller('GalleryCtrl', ['$scope', function($scope) {
 }]);
 
 clanwarsApp.controller('RegisterCtrl', ['$scope', '$http', function($scope, $http) {
-    $scope.persons = [{'id' : 0}];
+    $scope.persons = [{'id' : 0, 'birthday': null, 'birthdayPopup': { opened: false}}];
     $scope.isRegister = true;
     $scope.noClan = {ID: 0, Name: 'Kein Clan'};
     $scope.clan = angular.copy($scope.noClan);
     $scope.clanPassword;
     $scope.modalClan = angular.copy($scope.noClan);
     $scope.clans = [];
+    
+    $scope.dateFormat = 'dd.MM.yyyy';
+            
+    $scope.dateOptions = {
+        showWeeks: false,
+        datepickerMode: 'year',
+        maxDate: new Date(2000, 10, 28),
+        yearRange: "c-50:c-10"
+    }
+
+    $scope.birthdayOpen = function(idx) {
+        console.log('open popup ' + idx);
+        $scope.persons[idx].birthdayPopup.opened = true;
+    }
     
     $scope.addClan = function() {
         $scope.modalClan.ID = -1;
@@ -138,7 +152,7 @@ clanwarsApp.controller('RegisterCtrl', ['$scope', '$http', function($scope, $htt
     
     $scope.addPerson = function() {
         var newPersonNo = $scope.persons.length;
-        $scope.persons.push({'id': newPersonNo});
+        $scope.persons.push({'id': newPersonNo, 'birthday': null, 'birthdayPopup': { opened: false}});
     };
     
     $scope.removePerson = function() {

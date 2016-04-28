@@ -174,7 +174,11 @@ require_once('./config/config.php');
     <script src="scripts/jquery-2.2.1.min.js"></script>
     <!-- Bootstrap Core Javascript -->
     <script src="scripts/bootstrap.min.js"></script>
-        <!-- Plugin JavaScript -->
+    <!-- UI Bootstrap -->
+    <script src="scripts/ui-bootstrap-custom-1.3.2.js"></script>    
+    <script src="scripts/ui-bootstrap-custom-tpls-1.3.2.js"></script>    
+
+    <!-- Plugin JavaScript -->
     <script src="http://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.3/jquery.easing.min.js"></script>
     <script src="scripts/classie.js"></script>
     <script src="scripts/cbpAnimatedHeader.js"></script>

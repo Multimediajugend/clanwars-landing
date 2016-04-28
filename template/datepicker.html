@@ -3,9 +3,9 @@
     <li ng-transclude></li>
     <li ng-if="showButtonBar" class="uib-button-bar">
       <span class="btn-group pull-left">
-        <button type="button" class="btn btn-sm btn-danger uib-clear" ng-click="select(null, $event)">{{ getText('clear') }}</button>
+        <button type="button" class="btn btn-sm btn-default uib-clear" ng-click="select(null, $event)">Löschen</button>
       </span>
-      <button type="button" class="btn btn-sm btn-success pull-right uib-close" ng-click="close($event)">{{ getText('close') }}</button>
+      <button type="button" class="btn btn-sm btn-primary pull-right uib-close" ng-click="close($event)">Fertig</button>
     </li>
   </ul>
 </div>
