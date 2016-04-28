@@ -17,6 +17,12 @@ $(function() {
     $('.navbar-collapse ul li a').click(function() {
         $('.navbar-toggle:visible').click();
     });
+    
+    var hash = window.location.hash.substr(1);
+    
+    if(hash.toLowerCase() == 'impressum') {
+        $('#impressumModal').modal('show');
+    }
 });
 
 
