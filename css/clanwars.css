@@ -260,7 +260,9 @@ section#Spiele .spiele-image img {
 }
 section#Spiele .spiele-item {
     margin: 0 0 15px;
-    right: 0
+    right: 0;
+    height: 298px;
+    overflow: hidden
 }
 section#Spiele .spiele-item .spiele-caption {
     max-width: 400px;
