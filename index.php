@@ -56,7 +56,7 @@ require_once('./config/config.php');
         }(document, 'script', 'facebook-jssdk'));
     </script>
     <!-- Navigation -->
-    <nav class="navbar navbar-default navbar-fixed-top">
+    <nav class="navbar navbar-default navbar-fixed-top navbar-shrink">
         <div class="container">
             <div class="navbar-header page-scroll">
                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-collapse">
@@ -75,19 +75,19 @@ require_once('./config/config.php');
                         <a class="page-scroll" href="#Info">Infos</a>
                     </li>
                     <li>
-                        <a class="page-scroll" href="#Spiele">Spiele</a>
+                        <a class="page-scroll not-active" href="#Spiele">Spiele</a>
                     </li>
                     <li>
-                        <a class="page-scroll" href="#Galerie">Galerie</a>
+                        <a class="page-scroll not-active" href="#Galerie">Galerie</a>
                     </li>
                     <li>
-                        <a class="page-scroll" href="#Preise">Preise</a>
+                        <a class="page-scroll not-active" href="#Preise">Preise</a>
                     </li>
                     <li>
-                        <a class="page-scroll" href="#Karte">Karte</a>
+                        <a class="page-scroll not-active" href="#Karte">Karte</a>
                     </li>
                     <li>
-                        <a class="page-scroll" href="#Anmeldung">Anmeldung</a>
+                        <a class="page-scroll not-active" href="#Anmeldung">Anmeldung</a>
                     </li>
                 </ul>
             </div>
@@ -98,38 +98,39 @@ require_once('./config/config.php');
     <header>
         <div class="container">
             <div class="intro-text">
-                <div class="intro-heading">Clanwars 2016</div>
+                <div class="intro-heading">&nbsp;</div>
                 <div class="intro-lead-in">
-                    <p>Die Community-Party in Sachsen</p>
-                    <p><small>vom 28.10. bis 30.10.2016</small></p>
+                    <p>&nbsp;</p>
+                    <p><small>&nbsp;</small></p>
                 </div>
-                <a href="#Info" class="page-scroll btn btn-primary btn-lg">Mehr Infos</a>
             </div>
         </div>
     </header>
     
-    
-    <!-- Info Section -->
-    <?php include "./sections/info.php" ?>
-
-    <!-- Games Grid Section -->
-    <?php include "./sections/games.php" ?>
-
-    <!-- Gallery Section -->
-    <?php include "./sections/gallery.php" ?>
-
-    <!-- Price Section -->
-    <?php include "./sections/price.php" ?>
-    
-    <!-- Map Section -->
-    <?php include "./sections/map.php" ?>
-    
-    <!-- Registration Section -->
-    <?php include "./sections/registration.php" ?>
-    
-    <!--<fb:login-button scope="public_profile,email" onlogin="checkLoginState();" class="hidden">
-    </fb:login-button>-->
-    
+    <section id="Info">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12 text-center">
+                <h2 class="section-heading">Clanwars 2016</h2>
+                <h3 class="section-subheading text-muted">Save the date: 28.10. bis 30.10.2016</h3>
+            </div>
+        </div>
+        <div class="row text-center">
+            <div class="col-md-6 col-md-push-3">
+                <span class="fa-stack fa-4x">
+                    <i class="fa fa-circle fa-stack-2x text-primary"></i>
+                    <i class="fa fa-warning fa-stack-1x fa-inverse"></i>
+                </span>
+                <h4 class="info-heading">Bitte habt noch ein paar Tage Geduld.</h4>
+                <p class="text-muted">
+                    In wenigen Tagen beginnt hier der Vorverkauf für die Clanwars 2016.<br >
+                    Folgt unserer Seite auf <a href="https://www.facebook.com/multimediajugend/" class="btn btn-xs btn-facebook"><i class="fa fa-facebook"></i> Facebook</a> und Ihr erhaltet sofort Informationen, wenn es losgeht.
+                </p>
+            </div>
+        </div>
+    </div>
+</section>
+        
     <!-- Footer -->
     <footer>
         <div class="container">
@@ -181,7 +182,7 @@ require_once('./config/config.php');
     <!-- Plugin JavaScript -->
     <script src="http://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.3/jquery.easing.min.js"></script>
     <script src="scripts/classie.js"></script>
-    <script src="scripts/cbpAnimatedHeader.js"></script>
+    
     <!-- Custom JavaScript -->
     <script src="scripts/clanwars.js"></script>
 </body>

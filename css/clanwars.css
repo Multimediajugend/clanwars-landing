@@ -68,7 +68,8 @@ a.active {
 /*-- NavBar --*/
 .navbar-default {
     background-color: #222;
-    border-color: transparent
+    border-color: transparent;
+    height: 50px;
 }
 .navbar-default .navbar-brand {
     color: #FA7C20;
@@ -117,6 +118,11 @@ a.active {
     color: #fff;
     background-color: #FA4920
 }
+.not-active {
+    pointer-events: none;
+    cursor: default;
+    text-decoration: line-through;
+}
 @media (min-width: 768px) {
     .navbar-default {
         background-color: transparent;
@@ -124,7 +130,8 @@ a.active {
         -webkit-transition: padding .3s;
         -moz-transition: padding .3s;
         transition: padding .3s;
-        border: 0
+        border: 0;
+        height: 70px;
     }
     .navbar-default .navbar-brand {
         font-size: 1.5em;
@@ -141,6 +148,9 @@ a.active {
     }
     .navbar-default.navbar-shrink .navbar-brand {
         font-size: 1.5em
+    }
+    header {
+        margin-top: 70px;
     }
 }
 @media (min-width: 992px) {
@@ -165,7 +175,8 @@ header {
     background-size: cover;
     -o-background-size: cover;
     text-align: center;
-    color: #fff
+    color: #fff;
+    margin-top: 50px;
 }
 header .intro-text {
     padding-top: 100px;
@@ -241,6 +252,7 @@ section#Info .info-heading {
 /*-- Spiele-Section --*/
 section#Spiele .spiele-image {
     max-width: 400px;
+    height: 203px;
     margin: 0 auto
 }
 section#Spiele .spiele-image img {

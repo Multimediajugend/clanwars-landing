@@ -2,7 +2,7 @@
     <div class="container">
         <div class="row">
             <div class="col-lg-12 text-center">
-                <h2 class="section-heading">Clanwars</h2>
+                <h2 class="section-heading">Clanwars 2016</h2>
                 <h3 class="section-subheading text-muted">Die wichtigsten Infos auf einen Blick.</h3>
             </div>
         </div>
