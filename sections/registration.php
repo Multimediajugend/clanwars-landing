@@ -99,13 +99,13 @@
                     <tbody>
                         <tr ng-repeat="person in persons">
                             <td>Ticket für: {{person.firstname}} {{person.lastname}}<small ng-hide="clan.ID==noClan.ID"> (Gruppenkarte)</small></td>
-                            <td><span ng-show="clan.ID==noClan.ID">20,00 €</span><span ng-hide="clan.ID==noClan.ID">15,00 €</span></td>
+                            <td><span ng-show="clan.ID==noClan.ID">25,00 €</span><span ng-hide="clan.ID==noClan.ID">20,00 €</span></td>
                         </tr>
                     </tbody>
                     <tbody>
                         <tr>
                             <td>Gesamt</td>
-                            <td><span ng-show="clan.ID==noClan.ID">{{persons.length*20}},00 €</span><span ng-hide="clan.ID==noClan.ID">{{persons.length*15}},00 €</span></td>
+                            <td><span ng-show="clan.ID==noClan.ID">{{persons.length*25}},00 €</span><span ng-hide="clan.ID==noClan.ID">{{persons.length*20}},00 €</span></td>
                         </tr>
                     </tbody>
                 </table>
