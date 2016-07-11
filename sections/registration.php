@@ -70,7 +70,7 @@
                     <button type="button" class="btn btn-sm btn-default" ng-click="addPerson()"><span class="fa fa-plus"></span> Hinzufügen</button>
                 </div>
                 <br />
-                <h4 class="text-center">Hier kannst du einen Clan auswählen / anlegen</h4>
+                <h4 class="text-center">Hier kannst du einen Clan auswählen</h4>
                 <h6 class="text-center" ng-show="persons.length>1">Alle oben aufgeführten Personen werden dem Clan hinzugefügt.</h6>
                 <div class="row">
                     <div class="col-md-6 col-md-push-3 form-group">
@@ -99,13 +99,13 @@
                     <tbody>
                         <tr ng-repeat="person in persons">
                             <td>Ticket für: {{person.firstname}} {{person.lastname}}<small ng-hide="clan.ID==noClan.ID"> (Gruppenkarte)</small></td>
-                            <td><span ng-show="clan.ID==noClan.ID">25,00 €</span><span ng-hide="clan.ID==noClan.ID">20,00 €</span></td>
+                            <td><span ng-show="clan.ID==noClan.ID">20,00 €</span><span ng-hide="clan.ID==noClan.ID">15,00 €</span></td>
                         </tr>
                     </tbody>
                     <tbody>
                         <tr>
                             <td>Gesamt</td>
-                            <td><span ng-show="clan.ID==noClan.ID">{{persons.length*25}},00 €</span><span ng-hide="clan.ID==noClan.ID">{{persons.length*20}},00 €</span></td>
+                            <td><span ng-show="clan.ID==noClan.ID">{{persons.length*20}},00 €</span><span ng-hide="clan.ID==noClan.ID">{{persons.length*15}},00 €</span></td>
                         </tr>
                     </tbody>
                 </table>

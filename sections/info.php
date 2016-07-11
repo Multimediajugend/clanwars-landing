@@ -24,7 +24,7 @@
                 </span>
                 <h4 class="info-heading">Community</h4>
                 <p class="text-muted">
-                    Kein Bock auf Turniere? Dann trefft alte Freunde und schließt bei unseren Side-Events neue Bekanntschaften.<br />Der Spaß steht im Mittelpunkt!
+                    Kein Bock auf Turniere? Dann trefft alte Freunde und schließt neue Bekanntschaften.<br />Bei uns steht der Spaß im Mittelpunkt.
                 </p>
             </div>
             <div class="col-md-4">
@@ -34,7 +34,7 @@
                 </span>
                 <h4 class="info-heading">Gaming</h4>
                 <p class="text-muted">
-                    Spiele dürfen auf einer LAN-Party logischerweise nicht fehlen.<br />Was unter anderem gespielt wird, findet ihr weiter unten, unter <a class="page-scroll" href="#Spiele">Spiele</a>.
+                    Spiele dürfen auf einer LAN-Party logischerweise nicht fehlen.<br />Was genau gespielt wird, findet ihr weiter unten, unter <a class="page-scroll" href="#Spiele">Spiele</a>
                 </p>
             </div>
             <div class="col-md-4">
@@ -64,7 +64,7 @@
                 </span>
                 <h4 class="info-heading">Preise</h4>
                 <p class="text-muted">
-                    Der Eintritt ist ebenfalls gewohnt günstig, als Clan/Gruppe könnt ihr extra sparen.<br />Genauere Infos findet ihr unter <a class="page-scroll" href="#Preise">Preise</a>.
+                    Der Eintritt ist ebenfalls gewohnt günstig, als Clan/Gruppe könnt ihr extra sparen.<br />Genauere Infos findet ihr unter <a class="page-scroll" href="#Preise">Preise</a>
                 </p>
             </div>
         </div>
