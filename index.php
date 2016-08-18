@@ -121,9 +121,9 @@ require_once('./config/config.php');
                     <i class="fa fa-circle fa-stack-2x text-primary"></i>
                     <i class="fa fa-warning fa-stack-1x fa-inverse"></i>
                 </span>
-                <h4 class="info-heading">Bitte habt noch ein paar Tage Geduld.</h4>
+                <h4 class="info-heading">Bitte habt noch ein bisschen Geduld.</h4>
                 <p class="text-muted">
-                    In wenigen Tagen beginnt hier der Vorverkauf für die Clanwars 2016.<br >
+                    Nicht mehr lang, dann beginnt hier der Vorverkauf für die Clanwars 2016.<br >
                     Folgt unserer Seite auf <a href="https://www.facebook.com/multimediajugend/" class="btn btn-xs btn-facebook"><i class="fa fa-facebook"></i> Facebook</a> und Ihr erhaltet sofort Informationen, wenn es losgeht.
                 </p>
             </div>
