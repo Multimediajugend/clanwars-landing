@@ -12,7 +12,7 @@ try
 }
 catch(PDOException $e)
 {
-    die("Database down.");
+    die("error: Database down.");
 }
 
 $method = filter_input(INPUT_GET, 'method');

@@ -45,7 +45,7 @@ $(function() {
 
 
 
-var clanwarsApp = angular.module('clanwarsApp', ['ui.bootstrap']);
+var clanwarsApp = angular.module('clanwarsApp', ['ngAnimate']);
 
 clanwarsApp.controller('GalleryCtrl', ['$scope', function($scope) {
     $scope.images = [
@@ -71,6 +71,63 @@ clanwarsApp.controller('GalleryCtrl', ['$scope', function($scope) {
         }
         $scope.currentPage = pageNo;
     }
+}]);
+
+clanwarsApp.controller('ContactCtrl', ['$scope', '$timeout', function($scope, $timeout) {
+    $scope.name = '';
+    $scope.mail = '';
+    $scope.message = '';
+    $scope.alert = {type: 'danger', message: '', show: false};
+    var promise;
+
+    $scope.send = function() {
+        if($scope.name === undefined || $scope.name.length == 0) {
+            showAlert('danger', 'Bitte gib deinen Namen an.');
+            return;
+        }
+        if($scope.mail === undefined || $scope.mail.length == 0) {
+            showAlert('danger', 'Bitte gib deine E-Mail-Adresse an.');
+            return;
+        }
+        if($scope.message === undefined || $scope.message.length == 0) {
+            showAlert('danger', 'Bitte gib eine Nachricht ein.');
+            return;
+        }
+
+        // TODO: implement server-side
+        
+        sendMailSuccess();
+    }
+
+    $scope.close = function() {
+        clearForm();
+
+        $timeout.cancel(promise);
+        $scope.alert.show = false;
+    }
+
+    var clearForm = function() {
+        $scope.name = '';
+        $scope.mail = '';
+        $scope.message = '';
+    }
+
+    var sendMailSuccess = function() {
+        showAlert('info', 'Vielen Dank, Deine Nachricht wurde gesendet.');
+    }
+
+    var showAlert = function(type, message) {
+        $scope.alert.type = type;
+        $scope.alert.message = message;
+        $scope.alert.show = true;
+        
+        $timeout.cancel(promise);
+
+        promise = $timeout(function() {
+            $scope.alert.show = false;
+        }, 5000);
+    }
+
 }]);
 
 clanwarsApp.controller('RegisterCtrl', ['$scope', '$http', function($scope, $http) {
@@ -179,7 +236,9 @@ clanwarsApp.controller('RegisterCtrl', ['$scope', '$http', function($scope, $htt
     $scope.loadClans = function() {
         $http.get("/backend/clans.php?method=list").then(
             function(response) {
-                $scope.clans = response.data;
+                if(response.status == 200 && !response.data.startsWith('error')) {
+                    $scope.clans = response.data;
+                }
             }
         );
     }

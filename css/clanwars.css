@@ -390,3 +390,15 @@ footer ul.quicklinks {
     text-transform: none;
     list-style: none
 }
+
+.modal-footer .alert {
+    float:left;
+    padding: 5px 15px;
+    margin-bottom: 0;
+}
+.alert {
+    transition: all linear 0.5s;
+}
+.alert.ng-hide {
+    opacity: 0;
+}
