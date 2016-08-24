@@ -26,7 +26,7 @@
                     <div class="row">
                         <div class="col-md-push-3 col-md-3 captchaContainer">
                             <img src="../securimage/securimage_show.php" height="59px" width="153px" id="contactCaptchaImage"></img>
-                            <button class="btn btn-default" onclick="reloadCaptcha()"><span class="fa fa-refresh"></span></button>
+                            <button class="btn btn-default" onclick="reloadCaptcha()" ng-disabled="sending"><span class="fa fa-refresh"></span></button>
                         </div>
                         <div class="col-md-push-3 col-md-3">
                             <label for="contactCaptcha">Captcha *</label><br>
