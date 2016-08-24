@@ -1,14 +1,17 @@
 <?php
+session_start();
 require_once("../util/sendmail.php");
+include_once("../securimage/securimage.php");
 
 $method = filter_input(INPUT_GET, 'method');
+$result = (object)array('status' => 'error', 'message' => 'Beim Senden der Nachricht ist leider ein Fehler aufgetreten.');
 
 switch($method) {
     case 'contact':
-        //Params: name, email, message
+        //Params: name, email, message, captcha
         $payload = json_decode(file_get_contents('php://input'));
-        if(!isset($payload) || !isset($payload->name) || !isset($payload->mail) || !isset($payload->message)) {
-            die('false');
+        if(!isset($payload) || !isset($payload->name) || !isset($payload->mail) || !isset($payload->message) || !isset($payload->captcha)) {
+            die(json_encode($result));
         }
 
         $to = CONTACT_MAIL;
@@ -18,6 +21,14 @@ switch($method) {
         $name = filter_var($payload->name);
         $mail = filter_var($payload->mail);
         $message = nl2br(filter_var($payload->message));
+        $captcha = filter_var($payload->captcha);
+
+        $securimage = new Securimage();
+
+        if(!$securimage->check($captcha)) {
+            $result->message = 'Das Captcha war nicht korrekt.';
+            die(json_encode($result));
+        }
 
         $subject = "Clanwars 2016 - Kontakformular";
 
@@ -33,7 +44,8 @@ switch($method) {
         if(!$Sendmail->Send($to, $fromName, $subject, $body))
         {
             // E-Mail was not send.
-            die('false');
+            $result->message = 'Die E-Mail konnte leider nicht gesendet werden.';
+            die(json_encode($result));
         }
         // Send confirmation to user
 
@@ -48,7 +60,9 @@ switch($method) {
 
         $ConfirmMail->Send($mail, $name, $confirmSubject, $confirmBody);
 
-        die('true');
+        $result->status = 'ok';
+        $result->message = 'Vielen Dank, Deine Nachricht wurde gesendet.';
+        die(json_encode($result));
         break;
 }
 

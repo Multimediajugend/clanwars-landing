@@ -43,7 +43,10 @@ $(function() {
 //     //}, {scope: 'user_birthday'});
 // }
 
-
+var reloadCaptcha = function() {
+    document.getElementById('contactCaptchaImage').src = '/securimage/securimage_show.php?' + Math.random();
+    return false;
+}
 
 var clanwarsApp = angular.module('clanwarsApp', ['ngAnimate']);
 
@@ -77,6 +80,7 @@ clanwarsApp.controller('ContactCtrl', ['$scope', '$timeout', '$http', function($
     $scope.name = '';
     $scope.mail = '';
     $scope.message = '';
+    $scope.captcha = '';
     $scope.alert = {type: 'danger', message: '', show: false};
     $scope.sending = false;
     var promise;
@@ -94,6 +98,10 @@ clanwarsApp.controller('ContactCtrl', ['$scope', '$timeout', '$http', function($
             showAlert('danger', 'Bitte gib eine Nachricht ein.');
             return;
         }
+        if($scope.captcha === undefined || $scope.captcha.length == 0) {
+            showAlert('danger', 'Bitte gib das Captcha ein.');
+            return;
+        }
 
         if($scope.sending) {
             return;
@@ -108,18 +116,25 @@ clanwarsApp.controller('ContactCtrl', ['$scope', '$timeout', '$http', function($
             data: {
                 name: $scope.name,
                 mail: $scope.mail,
-                message : $scope.message
+                message : $scope.message,
+                captcha : $scope.captcha
             }
         }).then(function(response) {
-            if(response.data == 'true') {
-                $scope.name = '';
-                $scope.mail = '';
-                $scope.message = '';
-                showAlert('success', 'Vielen Dank, Deine Nachricht wurde gesendet.');
+            $scope.sending = false;
+            if(response.status == 200) {
+                if(response.data.status == 'ok') {
+                    $scope.name = '';
+                    $scope.mail = '';
+                    $scope.message = '';
+                    showAlert('success', response.data.message);    
+                } else {
+                    showAlert('danger', response.data.message);    
+                }
             } else {
                 showAlert('danger', 'Leider ist ein Problem beim Sender der Nachricht aufgetreten.');
             }
-            $scope.sending = false;
+            $scope.captcha = '';
+            reloadCaptcha();
         });
     }
 
@@ -142,8 +157,6 @@ clanwarsApp.controller('ContactCtrl', ['$scope', '$timeout', '$http', function($
         $scope.alert.show = true;
         
         $timeout.cancel(promise);
-
-        console.log(permanent);
 
         if(!permanent) {
             promise = $timeout(function() {
