@@ -3,31 +3,31 @@
         <div class="modal-content" role="document" ng-controller="ContactCtrl">
             <form name="form" novalidate>
                 <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal"><span class="fa fa-close"></span></button>
+                    <button type="button" class="close" data-dismiss="modal" ng-disabled="sending"><span class="fa fa-close"></span></button>
                     <h4 class="modal-title">Kontakt</h4>
                 </div>
                 <div class="modal-body">
                     <div class="row">
                         <div class="col-md-6 form-group">
                             <label for="contactName">Name *</label>
-                            <input type="text" class="form-control" ng-model="name" placeholder="Max Muster" id="contactName" name="contactName" required>
+                            <input type="text" class="form-control" ng-model="name" ng-disabled="sending" placeholder="Max Muster" id="contactName" name="contactName" required>
                         </div>
                         <div class="col-md-6 form-group">
                             <label for="contactMail">E-Mail *</label>
-                            <input type="email" class="form-control" ng-model="mail" placeholder="max@muster.mail" id="contactMail" name="contactMail" required>
+                            <input type="email" class="form-control" ng-model="mail" ng-disabled="sending" placeholder="max@muster.mail" id="contactMail" name="contactMail" required>
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-xs-12 form-group">
                             <label for="contactMessage">Nachricht *</label>
-                            <textarea type="text" rows="10" ng-model="message" class="form-control" placeholder="Nachricht" id="contactMessage" name="contactMessage" required></textarea>
+                            <textarea type="text" rows="10" ng-model="message" ng-disabled="sending" class="form-control" placeholder="Nachricht" id="contactMessage" name="contactMessage" required></textarea>
                         </div>
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <div class="alert" ng-class="'alert-'+alert.type" role="alert" ng-show="alert.show">{{alert.message}}</div>
-                    <button type="button" class="btn btn-default" ng-click="close()" data-dismiss="modal"><span class="fa fa-arrow-left"></span> Zurück</button>
-                    <submit type="submit" class="btn btn-primary" ng-click="send()"><span class="fa fa-send"></span> Senden</button>
+                    <div class="alert" ng-class="'alert-'+alert.type" role="alert" ng-show="alert.show"><span class="fa fa-spin fa-refresh" ng-show="sending"></span> {{alert.message}}</div>
+                    <button type="button" class="btn btn-default" ng-click="close()" ng-disabled="sending" data-dismiss="modal"><span class="fa fa-arrow-left"></span> Zurück</button>
+                    <submit type="submit" class="btn btn-primary" ng-click="send()" ng-disabled="sending"><span class="fa fa-send"></span> Senden</button>
                 </div>
             </form>
         </div>

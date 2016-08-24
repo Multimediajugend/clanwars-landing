@@ -27,6 +27,7 @@ require_once('./config/config.php');
     <link href='https://fonts.googleapis.com/css?family=Roboto+Slab:400,100,300,700' rel='stylesheet' type='text/css'>
     <!-- Angular.js -->
     <script src="scripts/angular.min.js"></script>
+    <script src="scripts/angular-animate.min.js"></script>
     
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -155,7 +156,7 @@ require_once('./config/config.php');
                     <ul class="quicklinks">
                         <li><a href="#" data-toggle="modal" data-target="#impressumModal">Impressum</a></li>
                         <li><a href="#" data-toggle="modal" data-target="#agbModal">AGB</a></li>
-                        <li><a href="#" data-toggle="modal" data-target="#contactModal">Kontakt</a></li>
+                        <li><a href="#" data-toggle="modal" data-target="#contactModal" data-backdrop="static" data-keyboard="false">Kontakt</a></li>
                     </ul>
                 </div>
             </div>

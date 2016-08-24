@@ -73,11 +73,12 @@ clanwarsApp.controller('GalleryCtrl', ['$scope', function($scope) {
     }
 }]);
 
-clanwarsApp.controller('ContactCtrl', ['$scope', '$timeout', function($scope, $timeout) {
+clanwarsApp.controller('ContactCtrl', ['$scope', '$timeout', '$http', function($scope, $timeout, $http) {
     $scope.name = '';
     $scope.mail = '';
     $scope.message = '';
     $scope.alert = {type: 'danger', message: '', show: false};
+    $scope.sending = false;
     var promise;
 
     $scope.send = function() {
@@ -94,9 +95,32 @@ clanwarsApp.controller('ContactCtrl', ['$scope', '$timeout', function($scope, $t
             return;
         }
 
-        // TODO: implement server-side
+        if($scope.sending) {
+            return;
+        }
         
-        sendMailSuccess();
+        $scope.sending = true;
+        showAlert('info', 'Deine Nachricht wird gesendet.', true);
+
+        $http({
+            method: 'POST',
+            url: '/backend/mail.php?method=contact',
+            data: {
+                name: $scope.name,
+                mail: $scope.mail,
+                message : $scope.message
+            }
+        }).then(function(response) {
+            if(response.data == 'true') {
+                $scope.name = '';
+                $scope.mail = '';
+                $scope.message = '';
+                showAlert('success', 'Vielen Dank, Deine Nachricht wurde gesendet.');
+            } else {
+                showAlert('danger', 'Leider ist ein Problem beim Sender der Nachricht aufgetreten.');
+            }
+            $scope.sending = false;
+        });
     }
 
     $scope.close = function() {
@@ -112,20 +136,20 @@ clanwarsApp.controller('ContactCtrl', ['$scope', '$timeout', function($scope, $t
         $scope.message = '';
     }
 
-    var sendMailSuccess = function() {
-        showAlert('info', 'Vielen Dank, Deine Nachricht wurde gesendet.');
-    }
-
-    var showAlert = function(type, message) {
+    var showAlert = function(type, message, permanent = false) {
         $scope.alert.type = type;
         $scope.alert.message = message;
         $scope.alert.show = true;
         
         $timeout.cancel(promise);
 
-        promise = $timeout(function() {
-            $scope.alert.show = false;
-        }, 5000);
+        console.log(permanent);
+
+        if(!permanent) {
+            promise = $timeout(function() {
+                $scope.alert.show = false;
+            }, 5000);
+        }
     }
 
 }]);

@@ -1,6 +1,6 @@
 <?php
-require_once("./config/config.php");
-require_once("./vendor/autoload.php");
+require_once("../config/config.php");
+require_once("../vendor/autoload.php");
 
 class SendMail {
     private $mail;
@@ -26,6 +26,10 @@ class SendMail {
             $this->mail->setFrom(MAIL_FROM);
         }
         $this->mail->isHTML(true);                                  // Set email format to HTML
+    }
+
+    public function SetFrom($Mail, $Name) {
+        $this->mail->setFrom($Mail, $Name);
     } 
 
     public function Send($Address, $Name, $Subject, $Body) {
@@ -39,8 +43,10 @@ class SendMail {
             } else {
                 $this->logger->info('Message with subject "' . $Subject . '" has been sent to: ' . $Name . '(' . $Address . ')');
             }
+            return true;
         } catch(Exception $e) {
             $this->logger->alert('Send mail failed! '.$e->getMessage());
         }
+        return false;
     }
 }

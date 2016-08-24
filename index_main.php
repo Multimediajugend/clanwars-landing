@@ -154,7 +154,7 @@ require_once('./config/config.php');
                     <ul class="quicklinks">
                         <li><a href="#" data-toggle="modal" data-target="#impressumModal">Impressum</a></li>
                         <li><a href="#" data-toggle="modal" data-target="#agbModal">AGB</a></li>
-                        <li><a href="#" data-toggle="modal" data-target="#contactModal">Kontakt</a></li>
+                        <li><a href="#" data-toggle="modal" data-target="#contactModal" data-backdrop="static" data-keyboard="false">Kontakt</a></li>
                     </ul>
                 </div>
             </div>

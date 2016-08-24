@@ -12,4 +12,8 @@ define("MAIL_HOST", "smtp.office365.com");
 define("MAIL_USER", "domain.com\user@domain.com"); // In case of using Office365 it should look like: 
 define("MAIL_PASS", "password");
 define("MAIL_FROM", "register@domain.com");
-define("MAIL_FROM_NAME", "Name");
+define("MAIL_FROM_NAME", "Domain Name");
+// Contact-Settings:
+define("CONTACT_MAIL", "info@comain.com");
+define("CONTACT_FROM", "no_reply@domain.com");
+define("CONTACT_FROM_NAME", "Domain Name");
