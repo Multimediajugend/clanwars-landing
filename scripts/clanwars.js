@@ -151,7 +151,11 @@ clanwarsApp.controller('ContactCtrl', ['$scope', '$timeout', '$http', function($
         $scope.message = '';
     }
 
-    var showAlert = function(type, message, permanent = false) {
+    var showAlert = function(type, message, permanent) {
+        if(typeof permanent === "undefined") {
+            permanent = false;
+        }
+
         $scope.alert.type = type;
         $scope.alert.message = message;
         $scope.alert.show = true;
