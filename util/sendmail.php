@@ -7,7 +7,7 @@ class SendMail {
     private $logger;
 
     public function __construct() {
-        $this->logger = new Katzgrau\KLogger\Logger('./logs');
+        $this->logger = new Katzgrau\KLogger\Logger('../logs');
 
         $this->mail = new PHPMailer;
         $this->mail->SMTPDebug = 0;
