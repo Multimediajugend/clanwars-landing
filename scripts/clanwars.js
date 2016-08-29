@@ -81,9 +81,32 @@ clanwarsApp.controller('ContactCtrl', ['$scope', '$timeout', '$http', function($
     $scope.mail = '';
     $scope.message = '';
     $scope.captcha = '';
+    $scope.hidden = null;
     $scope.alert = {type: 'danger', message: '', show: false};
     $scope.sending = false;
     var promise;
+
+    $scope.$on('registerContact', function (event, arg) {
+        var persons = arg.persons;
+        var clan = arg.clan;
+
+        console.log(clan);
+
+        $scope.name = persons[0].firstname + ' ' + persons[0].lastname;
+        $scope.mail = persons[0].email;
+
+        $scope.hidden = JSON.stringify(arg);
+
+        var message = 'Füge hier noch eine Nachricht ein:\r\n\r\n\r\n-----Für eine schnellere Bearbeitung das Nachfolgende bitte stehen lassen-----\r\n';
+
+        for(var i=0; i<persons.length; i++) {
+            message += "[Person" + (i+1) + "] Vorname: " + persons[i].firstname + " - Nachname: " + persons[i].lastname + " - E-Mail: " + persons[i].email + " - Geburtstag: " + persons[i].birthday + "\r\n";
+        }
+        if(clan.ID > 0) {
+            message += "Clan: " + clan.Name + "\r\n";
+        }
+        $scope.message = message;
+    });
 
     $scope.send = function() {
         if($scope.name === undefined || $scope.name.length == 0) {
@@ -117,6 +140,7 @@ clanwarsApp.controller('ContactCtrl', ['$scope', '$timeout', '$http', function($
                 name: $scope.name,
                 mail: $scope.mail,
                 message : $scope.message,
+                hidden: $scope.hidden,
                 captcha : $scope.captcha
             }
         }).then(function(response) {
@@ -171,7 +195,7 @@ clanwarsApp.controller('ContactCtrl', ['$scope', '$timeout', '$http', function($
 
 }]);
 
-clanwarsApp.controller('RegisterCtrl', ['$scope', '$http', function($scope, $http) {
+clanwarsApp.controller('RegisterCtrl', ['$rootScope', '$scope', '$http', function($rootScope, $scope, $http) {
     $scope.persons = [{'id' : 0, 'birthday': null, 'birthdayPopup': { opened: false}}];
     $scope.isRegister = true;
     $scope.noClan = {ID: 0, Name: 'Kein Clan'};
@@ -205,6 +229,10 @@ clanwarsApp.controller('RegisterCtrl', ['$scope', '$http', function($scope, $htt
     
     $scope.test = function() {
         $scope.modalClan = angular.copy($scope.noClan);
+    }
+
+    $scope.showContact = function() {
+        $rootScope.$broadcast('registerContact', {persons: $scope.persons, clan: $scope.clan});
     }
     
     $scope.checkClan = function() {

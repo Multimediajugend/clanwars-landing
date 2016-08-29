@@ -14,6 +14,13 @@ switch($method) {
             die(json_encode($result));
         }
 
+        $hidden = '';
+
+        if(isset($payload->hidden) && filter_var($payload->hidden) != null) {
+            $hidden += '<br><br>Hidden Data:<br>';
+            $hidden += filter_var($payload->hidden);
+        }
+
         $to = CONTACT_MAIL;
         $from = CONTACT_FROM;
         $fromName = CONTACT_FROM_NAME;
@@ -21,6 +28,7 @@ switch($method) {
         $name = filter_var($payload->name);
         $mail = filter_var($payload->mail);
         $message = nl2br(filter_var($payload->message));
+        $message += $hidden;
         $captcha = filter_var($payload->captcha);
 
         $securimage = new Securimage();

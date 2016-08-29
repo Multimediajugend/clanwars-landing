@@ -87,7 +87,7 @@
                     <button type="button" class="btn btn-lg btn-primary" ng-click="validate()" ng-disabled="register.$invalid">Weiter zum Bezahlen</button>
                 </div>
             </div>
-            <div ng-hide="isRegister" class="container">    
+            <div ng-hide="!isRegister" class="container">    
                 <h2 class="text-center">Deine Anmeldedaten noch einmal zusammengefasst:</h2>
                 <table class="table table-sm">
                     <thead>
@@ -113,6 +113,11 @@
                     <div class="col-lg-12">
                         <button class="btn btn-lg btn-default" ng-click="goBack()" type="button"><span class="fa fa-arrow-left"></span> Zurück</button>
                         <button class="btn btn-lg btn-primary" type="button"><span class="fa fa-paypal"></span> Weiter zu PayPal</button>
+                    </div>
+                    <br /><br /><br /><br /><br />
+                    <div class="col-lg-12">
+                        Du hast keinen PayPal-Account?<br />Dann schreibe uns direkt über das <a href="#">Kontaktformular</a> an und wir finden einen Weg, wie du <span ng-hide="persons.length>1">dich</span><span ng-hide="persons.length<=1">euch</span> zur Clanwars 2016 anmelden kannst.<br>
+                        <a href="#" data-toggle="modal" ng-click="showContact()" data-target="#contactModal" data-backdrop="static" data-keyboard="false">Kontakt</a>
                     </div>
                 </div>
             </div>
