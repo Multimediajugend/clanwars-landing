@@ -17,3 +17,8 @@ define("MAIL_FROM_NAME", "Domain Name");
 define("CONTACT_MAIL", "info@comain.com");
 define("CONTACT_FROM", "no_reply@domain.com");
 define("CONTACT_FROM_NAME", "Domain Name");
+//PayPal
+define("PAYPAL_CLIENT_ID", "YourPayPalClientID");
+define("PAYPAL_CLIENT_SECRET", "YourPayPalClientSecret");
+define("PAYPAL_RETURN_URL", "http://www.domain.de/RegisterSuccess.php");
+define("PAYPAL_CANCEL_URL", "http://www.domain.de/RegisterCancel.php");
