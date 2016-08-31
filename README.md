@@ -6,6 +6,8 @@ Links
 -----
 *   [PHPMailer][phpmailer]
 *   [KLogger][klogger]
+*   [Securimage][phpcaptcha]
+*   [PHP SDK for PayPal RESTful APIs][paypalsdk]
 
 [phpmailer]: <https://github.com/PHPMailer/PHPMailer> "PHPMailer"
 [klogger]: <https://github.com/katzgrau/KLogger> "KLogger"
