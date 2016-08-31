@@ -111,6 +111,9 @@
                 </table>
                 <div class="row text-center">
                     <div class="col-lg-12">
+                        Bitte beachte unsere <a href="#" data-toggle="modal" data-target="#agbModal">AGB</a>.
+                    </div>
+                    <div class="col-lg-12">
                         <button class="btn btn-lg btn-default" ng-click="goBack()" type="button"><span class="fa fa-arrow-left"></span> Zurück</button>
                         <button class="btn btn-lg btn-primary" type="button"><span class="fa fa-paypal"></span> Weiter zu PayPal</button>
                     </div>
