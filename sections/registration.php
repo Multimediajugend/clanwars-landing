@@ -75,7 +75,7 @@
                 <div class="row">
                     <div class="col-md-6 col-md-push-3 form-group">
                         <div class="input-group">
-                            <input type="text" ng-model="clan.Name" class="form-control" disabled id="clan" placeholder="Kein Clan">
+                            <input type="text" ng-model="clan.name" class="form-control" disabled id="clan" placeholder="Kein Clan">
                             <span class="input-group-btn">
                                 <button class="btn btn-default" type="button" data-toggle="modal" data-target="#clanModal" ng-click="loadClans()">Clan auswählen</button>
                             </span>
@@ -87,6 +87,9 @@
                     <button type="button" class="btn btn-lg btn-primary" ng-click="validate()" ng-disabled="register.$invalid">Weiter zum Bezahlen</button>
                 </div>
             </div>
+            {{clan}}<br>
+            {{modalClan}}<br>
+            {{clans}}
             <div ng-hide="!isRegister" class="container">    
                 <h2 class="text-center">Deine Anmeldedaten noch einmal zusammengefasst:</h2>
                 <table class="table table-sm">
@@ -98,14 +101,14 @@
                     </thead>
                     <tbody>
                         <tr ng-repeat="person in persons">
-                            <td>Ticket für: {{person.firstname}} {{person.lastname}} <small>- inkl. PayPal-Gebühren</small> <small ng-hide="clan.ID==noClan.ID"> (Gruppenkarte)</small></td>
-                            <td><span ng-show="clan.ID==noClan.ID">{{singleTicket.toString().replace('.',',')}} €</span><span ng-hide="clan.ID==noClan.ID">{{groupTicket.toString().replace('.',',')}} €</span></td>
+                            <td>Ticket für: {{person.firstname}} {{person.lastname}} <small>- inkl. PayPal-Gebühren</small> <small ng-hide="clan.id==noclan.id"> (Gruppenkarte)</small></td>
+                            <td><span ng-show="clan.id==noclan.id">{{singleTicket.toString().replace('.',',')}} €</span><span ng-hide="clan.id==noclan.id">{{groupTicket.toString().replace('.',',')}} €</span></td>
                         </tr>
                     </tbody>
                     <tbody>
                         <tr>
                             <td><label>Gesamt</label></td>
-                            <td><label><span ng-show="clan.ID==noClan.ID">{{(persons.length*singleTicket).toString().replace('.',',')}} €</span><span ng-hide="clan.ID==noClan.ID">{{(persons.length*groupTicket).toString().replace('.',',')}} €</span></label></td>
+                            <td><label><span ng-show="clan.id==noclan.id">{{(persons.length*singleTicket).toString().replace('.',',')}} €</span><span ng-hide="clan.id==noclan.id">{{(persons.length*groupTicket).toString().replace('.',',')}} €</span></label></td>
                         </tr>
                     </tbody>
                 </table>
@@ -141,28 +144,28 @@
                         <div class="chooseClan">
                             <div class="form-group">
                                 <label for="clanDropDown">Clan:</label>
-                                <div class="input-group" ng-hide="modalClan.ID >= 0">
-                                    <input class="form-control" ng-model="modalClan.Name" id="newClanName"/>
+                                <div class="input-group" ng-hide="modalClan.id >= 0">
+                                    <input class="form-control" ng-model="modalClan.name" id="newClanName"/>
                                     <span class="input-group-btn">
                                         <button class="btn btn-default" type="button" ng-click="test()">Zurück</button>
                                     </span>
                                 </div>                                
-                                <div class="dropdown" ng-show="modalClan.ID >= 0">
+                                <div class="dropdown" ng-show="modalClan.id >= 0">
                                     <button class="btn btn-default dropdown-toggle" type="button" id="clanDropDown" data-toggle="dropdown">
-                                        {{modalClan.Name}}
+                                        {{modalClan.name}}
                                         <span class="caret"></span>
                                     </button>
                                     <ul class="dropdown-menu">
-                                        <li><a href="" ng-click="selectClan(noClan)">{{noClan.Name}}</a></li>
+                                        <li><a href="" ng-click="selectClan(noClan)">{{noclan.name}}</a></li>
                                         <li><a href="" ng-click="addClan()">Neuen Clan hinzufügen</a></li>
                                         <li class="divider"></li>
-                                        <li ng-repeat="clanItem in clans"><a href="" ng-click="selectClan(clanItem)">{{clanItem.Name}}</a></li>
+                                        <li ng-repeat="clanItem in clans"><a href="" ng-click="selectClan(clanItem)">{{clanItem.name}}</a></li>
                                     </ul>
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label for="clanPassword">Passwort:</label>
-                                <input class="form-control" type="password" ng-model="clanPassword" id="clanPassword" />
+                                <input class="form-control" type="password" ng-model="modalClan.password" id="clanPassword" />
                             </div>
                         </div>
                     </form>

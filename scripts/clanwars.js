@@ -128,8 +128,8 @@ clanwarsApp.controller('ContactCtrl', ['$scope', '$timeout', '$http', function($
         for(var i=0; i<persons.length; i++) {
             message += "[Person" + (i+1) + "] Vorname: " + persons[i].firstname + " - Nachname: " + persons[i].lastname + " - E-Mail: " + persons[i].email + " - Geburtstag: " + persons[i].birthday + "\r\n";
         }
-        if(clan.ID > 0) {
-            message += "Clan: " + clan.Name + "\r\n";
+        if(clan.id > 0) {
+            message += "Clan: " + clan.name + "\r\n";
         }
         $scope.message = message;
     });
@@ -226,9 +226,8 @@ clanwarsApp.controller('RegisterCtrl', ['$rootScope', '$scope', '$timeout', '$ht
     $scope.groupTicket = 20.74;
     $scope.persons = [{'id' : 0, 'birthday': null}];
     $scope.isRegister = true;
-    $scope.noClan = {ID: 0, Name: 'Kein Clan'};
+    $scope.noClan = {id: 0, name: 'Kein Clan', password: ''};
     $scope.clan = angular.copy($scope.noClan);
-    $scope.clanPassword;
     $scope.modalClan = angular.copy($scope.noClan);
     $scope.clans = [];
     
@@ -241,13 +240,20 @@ clanwarsApp.controller('RegisterCtrl', ['$rootScope', '$scope', '$timeout', '$ht
         yearRange: "c-50:c-10"
     }
 
+    $scope.resetModalClan = function() {
+        $scope.modalClan = angular.copy($scope.noClan);
+    }
+
     $scope.addClan = function() {
-        $scope.modalClan.ID = -1;
-        $scope.modalClan.Name = '';
+        $scope.modalClan.id = -1;
+        $scope.modalClan.name = '';
+        $scope.modalClan.password = '';
     }
     
     $scope.selectClan = function(clan) {
-        $scope.modalClan = angular.copy(clan);
+        $scope.modalClan.id = clan.id;
+        $scope.modalClan.name = clan.name;
+        $scope.modalClan.password = '';
     }
     
     $scope.test = function() {
@@ -259,11 +265,11 @@ clanwarsApp.controller('RegisterCtrl', ['$rootScope', '$scope', '$timeout', '$ht
     }
     
     $scope.checkClan = function() {
-        if($scope.modalClan.ID == 0) {
+        if($scope.modalClan.id == 0) {
             $scope.clan = angular.copy($scope.noClan);
             $('#clanModal').modal('toggle');
-        } else if($scope.modalClan.ID < 0) {
-            if($scope.clanPassword === undefined || $scope.clanPassword.length <= 0) {
+        } else if($scope.modalClan.id < 0) {
+            if($scope.modalClan.password === undefined || $scope.modalClan.password.length <= 0) {
                 $scope.modalInfo = 'Bitte ein Passwort eingeben';
             } else {
                 $scope.modalInfo = 'Prüfe, ob Name bereits existiert';
@@ -271,7 +277,7 @@ clanwarsApp.controller('RegisterCtrl', ['$rootScope', '$scope', '$timeout', '$ht
                     method: 'POST',
                     url: '/backend/clans.php?method=checkName',
                     data : {
-                        clanName: $scope.modalClan.Name
+                        clanName: $scope.modalClan.name
                     }
                 }).then(function(response) {
                     if(response.data == 'true') {
@@ -290,13 +296,14 @@ clanwarsApp.controller('RegisterCtrl', ['$rootScope', '$scope', '$timeout', '$ht
                 method: 'POST',
                 url: '/backend/clans.php?method=checkPW',
                 data: {
-                    clanId: $scope.modalClan.ID,
-                    clanPassword: $scope.clanPassword
+                    clanId: $scope.modalClan.id,
+                    clanPassword: $scope.modalClan.password
                 }
             }).then(function(response) {
                 if(response.data == 'true') {
                     $scope.clan = angular.copy($scope.modalClan);
                     $scope.modalInfo = '';
+                    $scope.resetModalClan();
                     $('#clanModal').modal('toggle');
                 } else {
                     $scope.modalInfo = 'Das Passwort ist nicht korrekt';
@@ -330,6 +337,8 @@ clanwarsApp.controller('RegisterCtrl', ['$rootScope', '$scope', '$timeout', '$ht
     }
 
     $scope.loadClans = function() {
+        $scope.resetModalClan();
+         
         $http.get("/backend/clans.php?method=list").then(
             function(response) {
                 if(response.status == 200) {

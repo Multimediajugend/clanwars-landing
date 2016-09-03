@@ -13,7 +13,7 @@ class Clan
     }
 
     public function listClans() {
-        $query = "SELECT ID, Name FROM clans ORDER BY Name";
+        $query = "SELECT ID AS id, Name AS name FROM clans ORDER BY Name";
         $stmt = $this->db->prepare($query);
         
         $stmt->execute();

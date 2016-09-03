@@ -40,10 +40,10 @@ class PayPal
         foreach($persons as $person)
         {
             $item = new Item();
-            $item->setName($person->Prename . ' ' . $person->Name)
+            $item->setName($person->firstname . ' ' . $person->lastname)
                 ->setCurrency('EUR')
                 ->setQuantity(1)
-                ->setSku($person->Mail)
+                ->setSku($person->email)
                 ->setPrice($price);
 
             $itemList->additem($item);
