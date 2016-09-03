@@ -11,8 +11,8 @@ use PayPal\Api\Transaction;
 use PayPal\Auth\OAuthTokenCredential;
 use PayPal\Rest\ApiContext;
 
-define("SINGLE_TICKET", 25.74);
-define("GROUP_TICKET", 20.65);
+define("SINGLE_TICKET", 25.84);
+define("GROUP_TICKET", 20.74);
 
 class PayPal
 {

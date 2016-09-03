@@ -194,6 +194,8 @@ clanwarsApp.controller('ContactCtrl', ['$scope', '$timeout', '$http', function($
 }]);
 
 clanwarsApp.controller('RegisterCtrl', ['$rootScope', '$scope', '$http', function($rootScope, $scope, $http) {
+    $scope.singleTicket = 25.84;
+    $scope.groupTicket = 20.74;
     $scope.persons = [{'id' : 0, 'birthday': null, 'birthdayPopup': { opened: false}}];
     $scope.isRegister = true;
     $scope.noClan = {ID: 0, Name: 'Kein Clan'};

@@ -35,8 +35,8 @@
         <br /><br />
         <div class="row text-center text-muted" >
             <p>Der Nachlass für Gruppenkarten wird gewährt, sobald bei der Bezahlung ein Clan im Profil hinterlegt ist. Am Einlass wird geprüft, ob mehr als 4 Personen innerhalb des Clans bezahlt haben. Ist dies nicht der Fall, muss der Differenzbetrag von 5€ p.P. an der Abendkasse nachträglich gezahlt werden.</p>
-            <p style="font-size: 0.75em;"><sup>1</sup> zzgl. 0,74€ PayPal-Gebühren</p>
-            <p style="font-size: 0.75em;"><sup>2</sup> zzgl. 0,65€ PayPal-Gebühren</p>
+            <p style="font-size: 0.75em;"><sup>1</sup> zzgl. 0,84€ PayPal-Gebühren</p>
+            <p style="font-size: 0.75em;"><sup>2</sup> zzgl. 0,74€ PayPal-Gebühren</p>
         </div>
     </div>
 </section>

@@ -98,21 +98,25 @@
                     </thead>
                     <tbody>
                         <tr ng-repeat="person in persons">
-                            <td>Ticket für: {{person.firstname}} {{person.lastname}}<small ng-hide="clan.ID==noClan.ID"> (Gruppenkarte)</small></td>
-                            <td><span ng-show="clan.ID==noClan.ID">25,00 €</span><span ng-hide="clan.ID==noClan.ID">20,00 €</span></td>
+                            <td>Ticket für: {{person.firstname}} {{person.lastname}} <small>- inkl. PayPal-Gebühren</small> <small ng-hide="clan.ID==noClan.ID"> (Gruppenkarte)</small></td>
+                            <td><span ng-show="clan.ID==noClan.ID">{{singleTicket.toString().replace('.',',')}} €</span><span ng-hide="clan.ID==noClan.ID">{{groupTicket.toString().replace('.',',')}} €</span></td>
                         </tr>
                     </tbody>
                     <tbody>
                         <tr>
-                            <td>Gesamt</td>
-                            <td><span ng-show="clan.ID==noClan.ID">{{persons.length*25}},00 €</span><span ng-hide="clan.ID==noClan.ID">{{persons.length*20}},00 €</span></td>
+                            <td><label>Gesamt</label></td>
+                            <td><label><span ng-show="clan.ID==noClan.ID">{{(persons.length*singleTicket).toString().replace('.',',')}} €</span><span ng-hide="clan.ID==noClan.ID">{{(persons.length*groupTicket).toString().replace('.',',')}} €</span></label></td>
                         </tr>
                     </tbody>
                 </table>
                 <div class="row text-center">
                     <div class="col-lg-12">
+                        Bitte beachte die <a href="#" data-toggle="modal" data-target="#agbModal">AGB</a> der Clanwars 2016.
+                    </div>
+                    <br /><br />
+                    <div class="col-lg-12">
                         <button class="btn btn-lg btn-default" ng-click="goBack()" type="button"><span class="fa fa-arrow-left"></span> Zurück</button>
-                        <button class="btn btn-lg btn-primary" type="button"><span class="fa fa-paypal"></span> Weiter zu PayPal</button>
+                        <button class="btn btn-lg btn-primary" type="button" ng-disabled="true"><span class="fa fa-paypal"></span> Weiter zu PayPal</button>
                     </div>
                     <br /><br /><br /><br /><br />
                     <div class="col-lg-12">
