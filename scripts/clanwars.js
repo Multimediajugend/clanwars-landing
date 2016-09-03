@@ -90,8 +90,6 @@ clanwarsApp.controller('ContactCtrl', ['$scope', '$timeout', '$http', function($
         var persons = arg.persons;
         var clan = arg.clan;
 
-        console.log(clan);
-
         $scope.name = persons[0].firstname + ' ' + persons[0].lastname;
         $scope.mail = persons[0].email;
 
@@ -214,7 +212,6 @@ clanwarsApp.controller('RegisterCtrl', ['$rootScope', '$scope', '$http', functio
     }
 
     $scope.birthdayOpen = function(idx) {
-        console.log('open popup ' + idx);
         $scope.persons[idx].birthdayPopup.opened = true;
     }
     
@@ -251,13 +248,13 @@ clanwarsApp.controller('RegisterCtrl', ['$rootScope', '$scope', '$http', functio
                         clanName: $scope.modalClan.Name
                     }
                 }).then(function(response) {
-                if(response.data == 'true') {
-                    $scope.clan = angular.copy($scope.modalClan);
-                    $scope.modalInfo = '';
-                    $('#clanModal').modal('toggle');
-                } else {
-                    $scope.modalInfo = 'Der Name existiert bereits';
-                }
+                    if(response.data == 'true') {
+                        $scope.clan = angular.copy($scope.modalClan);
+                        $scope.modalInfo = '';
+                        $('#clanModal').modal('toggle');
+                    } else {
+                        $scope.modalInfo = 'Der Name existiert bereits';
+                    }
                 });
             }
         } else {
@@ -277,6 +274,7 @@ clanwarsApp.controller('RegisterCtrl', ['$rootScope', '$scope', '$http', functio
                     $('#clanModal').modal('toggle');
                 } else {
                     $scope.modalInfo = 'Das Passwort ist nicht korrekt';
+                    $scope.clan = angular.copy($scope.noClan);
                 }
             });
         }
@@ -305,9 +303,10 @@ clanwarsApp.controller('RegisterCtrl', ['$rootScope', '$scope', '$http', functio
     $scope.loadClans = function() {
         $http.get("/backend/clans.php?method=list").then(
             function(response) {
-                if(response.status == 200 && !response.data.startsWith('error')) {
+                if(response.status == 200) {
                     $scope.clans = response.data;
                 }
+
             }
         );
     }
