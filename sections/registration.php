@@ -87,9 +87,6 @@
                     <button type="button" class="btn btn-lg btn-primary" ng-click="validate()" ng-disabled="register.$invalid">Weiter zum Bezahlen</button>
                 </div>
             </div>
-            {{clan}}<br>
-            {{modalClan}}<br>
-            {{clans}}
             <div ng-hide="!isRegister" class="container">    
                 <h2 class="text-center">Deine Anmeldedaten noch einmal zusammengefasst:</h2>
                 <table class="table table-sm">
