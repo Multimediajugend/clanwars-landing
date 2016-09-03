@@ -29,8 +29,25 @@ class PayPal
     }
 
     public function getApprovalUrl($persons, $clan) {
-        //TODO: check the clan
-        $price = SINGLE_TICKET;
+        $_clan = new Clan();
+
+        $price = GROUP_TICKET;
+
+        if($clan->id < 0) {
+            // Add clan
+            if($_clan->clanExists($clan->name)) {
+                return null;
+            }
+            $_clan->addClan($clan->name, $clan->password);
+        } else if($clan->id > 0) {
+            // check Password
+            if(!$_clan->checkPasswordByName($clan->name, $clan->password)) {
+                return null;
+            }
+        } else {
+            // Use single Price;
+            $price = SINGLE_TICKET;
+        }        
 
         $payer = new Payer();
         $payer->setPaymentMethod('paypal');

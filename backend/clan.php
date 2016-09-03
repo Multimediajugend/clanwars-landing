@@ -30,11 +30,25 @@ class Clan
         return ($result->count != 0);
     }
 
-    public function checkPassword($clanID, $password) {
+    public function checkPasswordById($clanID, $password) {
         $query = "SELECT Hash FROM clans WHERE ID = :id";
 
         $stmt = $this->db->prepare($query);
         $stmt->execute([':id' => $clanID]);
+
+        $result = $stmt->fetch();
+
+        if(!$result) {
+            return false;
+        }
+        return password_verify($password, $result->Hash);
+    }
+
+    public function checkPasswordByName($clanName, $password) {
+        $query = "SELECT Hash FROM clans WHERE Name = :name";
+
+        $stmt = $this->db->prepare($query);
+        $stmt->execute([':name' => $clanName]);
 
         $result = $stmt->fetch();
 

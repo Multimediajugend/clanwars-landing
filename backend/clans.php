@@ -22,7 +22,7 @@ switch($method) {
         $clanId = filter_var($payload->clanId, FILTER_SANITIZE_NUMBER_INT);
         $password = filter_var($payload->clanPassword);
 
-        echo json_encode($clan->checkPassword($clanId, $password));
+        echo json_encode($clan->checkPasswordById($clanId, $password));
         exit(0);
         break;
     case 'checkName':
