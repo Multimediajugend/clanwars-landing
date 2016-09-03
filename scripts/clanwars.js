@@ -1,3 +1,31 @@
+var picker = [];
+
+var createDatePicker = function() {
+    var eleGroup = document.querySelectorAll('.date-picker');
+
+    for(var i=0; i<picker.length; i++) {
+        picker[i].destroy();
+    }
+    
+    for(var i=0; i<eleGroup.length; i++) {
+        var x = eleGroup[i];
+        
+        picker[i] = new Pikaday({
+            field: eleGroup[i],
+            format: 'DD.MM.YYYY',
+            firstDay: 1,
+            onSelect: function() {
+                console.log(this.getMoment().format('Do MMMM YYYY'));
+            },
+            minDate: new Date(1900, 01, 01),
+            maxDate: new Date(2000, 09, 28),
+            defaultDate: new Date(1989, 12, 01)
+        });
+    }
+}
+
+createDatePicker();
+
 $(function() {
     // jQuery for page scrolling feature - requires jQuery Easing plugin
     $('a.page-scroll').bind('click', function(event) {
@@ -193,10 +221,10 @@ clanwarsApp.controller('ContactCtrl', ['$scope', '$timeout', '$http', function($
 
 }]);
 
-clanwarsApp.controller('RegisterCtrl', ['$rootScope', '$scope', '$http', function($rootScope, $scope, $http) {
+clanwarsApp.controller('RegisterCtrl', ['$rootScope', '$scope', '$timeout', '$http', function($rootScope, $scope, $timeout, $http) {
     $scope.singleTicket = 25.84;
     $scope.groupTicket = 20.74;
-    $scope.persons = [{'id' : 0, 'birthday': null, 'birthdayPopup': { opened: false}}];
+    $scope.persons = [{'id' : 0, 'birthday': null}];
     $scope.isRegister = true;
     $scope.noClan = {ID: 0, Name: 'Kein Clan'};
     $scope.clan = angular.copy($scope.noClan);
@@ -213,10 +241,6 @@ clanwarsApp.controller('RegisterCtrl', ['$rootScope', '$scope', '$http', functio
         yearRange: "c-50:c-10"
     }
 
-    $scope.birthdayOpen = function(idx) {
-        $scope.persons[idx].birthdayPopup.opened = true;
-    }
-    
     $scope.addClan = function() {
         $scope.modalClan.ID = -1;
         $scope.modalClan.Name = '';
@@ -284,7 +308,10 @@ clanwarsApp.controller('RegisterCtrl', ['$rootScope', '$scope', '$http', functio
     
     $scope.addPerson = function() {
         var newPersonNo = $scope.persons.length;
-        $scope.persons.push({'id': newPersonNo, 'birthday': null, 'birthdayPopup': { opened: false}});
+        $scope.persons.push({'id': newPersonNo, 'birthday': null});
+        $timeout(function() {
+            createDatePicker();
+        }, 1);
     };
     
     $scope.removePerson = function() {

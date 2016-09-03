@@ -35,7 +35,7 @@
                             <p class="input-group-btn">
                                 <button type="button" class="btn btn-default" ng-click="birthdayOpen(0)"><span class="fa fa-calendar"></span></button>
                             </p>
-                            <input type="text" class="form-control" uib-datepicker-popup="{{dateFormat}}" false ng-model="persons[0].birthday" is-open="persons[0].birthdayPopup.opened" datepicker-options="dateOptions" datepicker-popup-template-url="template/datepicker.html" ng-click="birthdayOpen(0)" placeholder="28.10.2000" required>
+                            <input type="text" class="form-control date-picker" placeholder="01.01.1990" ng-model="persons[0].birthday" required>
                         </div>
                     </div>
                 </div>
@@ -61,7 +61,7 @@
                                 <p class="input-group-btn">
                                     <button type="button" class="btn btn-default" ng-click="birthdayOpen($index)"><span class="fa fa-calendar"></span></button>
                                 </p>
-                                <input type="text" class="form-control" uib-datepicker-popup="{{dateFormat}}" false ng-model="person.birthday" is-open="person.birthdayPopup.opened" datepicker-options="dateOptions" datepicker-popup-template-url="template/datepicker.html" ng-click="birthdayOpen($index)" placeholder="28.10.2000" required>
+                                <input type="text" class="form-control date-picker" ng-model="person.birthday" required>
                             </div>
                         </div>
                     </div>
