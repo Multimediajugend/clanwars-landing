@@ -87,10 +87,7 @@
                     <button type="button" class="btn btn-lg btn-primary" ng-click="validate()" ng-disabled="register.$invalid">Weiter zum Bezahlen</button>
                 </div>
             </div>
-            {{clan}}<br>
-            {{modalClan}}<br>
-            {{clans}}
-            <div ng-hide="!isRegister" class="container">    
+            <div ng-hide="isRegister" class="container">    
                 <h2 class="text-center">Deine Anmeldedaten noch einmal zusammengefasst:</h2>
                 <table class="table table-sm">
                     <thead>
@@ -101,14 +98,14 @@
                     </thead>
                     <tbody>
                         <tr ng-repeat="person in persons">
-                            <td>Ticket für: {{person.firstname}} {{person.lastname}} <small>- inkl. PayPal-Gebühren</small> <small ng-hide="clan.id==noclan.id"> (Gruppenkarte)</small></td>
-                            <td><span ng-show="clan.id==noclan.id">{{singleTicket.toString().replace('.',',')}} €</span><span ng-hide="clan.id==noclan.id">{{groupTicket.toString().replace('.',',')}} €</span></td>
+                            <td>Ticket für: {{person.firstname}} {{person.lastname}} <small>- inkl. PayPal-Gebühren</small> <small ng-hide="clan.id==noClan.id"> (Gruppenkarte)</small></td>
+                            <td><span ng-show="clan.id==noClan.id">{{singleTicket.toString().replace('.',',')}} €</span><span ng-hide="clan.id==noClan.id">{{groupTicket.toString().replace('.',',')}} €</span></td>
                         </tr>
                     </tbody>
                     <tbody>
                         <tr>
                             <td><label>Gesamt</label></td>
-                            <td><label><span ng-show="clan.id==noclan.id">{{(persons.length*singleTicket).toString().replace('.',',')}} €</span><span ng-hide="clan.id==noclan.id">{{(persons.length*groupTicket).toString().replace('.',',')}} €</span></label></td>
+                            <td><label><span ng-show="clan.id==noClan.id">{{(persons.length*singleTicket).toString().replace('.',',')}} €</span><span ng-hide="clan.id==noClan.id">{{(persons.length*groupTicket).toString().replace('.',',')}} €</span></label></td>
                         </tr>
                     </tbody>
                 </table>
@@ -117,9 +114,14 @@
                         Bitte beachte die <a href="#" data-toggle="modal" data-target="#agbModal">AGB</a> der Clanwars 2016.
                     </div>
                     <br /><br />
+                    <div class="col-lg-12" ng-show="paypalerror.length!=0">
+                        <div class="alert alert-danger">
+                            {{paypalerror}}
+                        </div>
+                    </div>
                     <div class="col-lg-12">
                         <button class="btn btn-lg btn-default" ng-click="goBack()" type="button"><span class="fa fa-arrow-left"></span> Zurück</button>
-                        <button class="btn btn-lg btn-primary" type="button" ng-disabled="true"><span class="fa fa-paypal"></span> Weiter zu PayPal</button>
+                        <a class="btn btn-lg btn-primary" type="button" ng-disabled="paypallink.length==0" href="{{paypallink}}"><span class="fa fa-paypal"></span> Weiter zu PayPal</a>
                     </div>
                     <br /><br /><br /><br /><br />
                     <div class="col-lg-12">
@@ -156,7 +158,7 @@
                                         <span class="caret"></span>
                                     </button>
                                     <ul class="dropdown-menu">
-                                        <li><a href="" ng-click="selectClan(noClan)">{{noclan.name}}</a></li>
+                                        <li><a href="" ng-click="selectClan(noClan)">{{noClan.name}}</a></li>
                                         <li><a href="" ng-click="addClan()">Neuen Clan hinzufügen</a></li>
                                         <li class="divider"></li>
                                         <li ng-repeat="clanItem in clans"><a href="" ng-click="selectClan(clanItem)">{{clanItem.name}}</a></li>

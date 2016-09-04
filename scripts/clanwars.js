@@ -14,9 +14,6 @@ var createDatePicker = function() {
             field: eleGroup[i],
             format: 'DD.MM.YYYY',
             firstDay: 1,
-            onSelect: function() {
-                console.log(this.getMoment().format('Do MMMM YYYY'));
-            },
             minDate: new Date(1900, 01, 01),
             maxDate: new Date(2000, 09, 28),
             defaultDate: new Date(1989, 12, 01)
@@ -230,16 +227,9 @@ clanwarsApp.controller('RegisterCtrl', ['$rootScope', '$scope', '$timeout', '$ht
     $scope.clan = angular.copy($scope.noClan);
     $scope.modalClan = angular.copy($scope.noClan);
     $scope.clans = [];
+    $scope.paypallink = '';
+    $scope.paypalerror = '';
     
-    $scope.dateFormat = 'dd.MM.yyyy';
-            
-    $scope.dateOptions = {
-        showWeeks: false,
-        datepickerMode: 'year',
-        maxDate: new Date(2000, 10, 28),
-        yearRange: "c-50:c-10"
-    }
-
     $scope.resetModalClan = function() {
         $scope.modalClan = angular.copy($scope.noClan);
     }
@@ -329,6 +319,27 @@ clanwarsApp.controller('RegisterCtrl', ['$rootScope', '$scope', '$timeout', '$ht
     $scope.validate = function() {
         $scope.isRegister = false;
         document.getElementById('Anmeldung').scrollIntoView();
+
+        $http({
+                method: 'POST',
+                url: '/ajax/paypal.php?method=prepare',
+                data: {
+                    persons: JSON.stringify($scope.persons),
+                    clan: JSON.stringify($scope.clan)
+                }
+            }).then(function(response) {
+                $scope.paypallink = '';
+                if(response.status == 200) {
+                    if(response.data.status == 'ok') {
+                        $scope.paypallink = response.data.message;
+                    } else {
+                        $scope.paypalerror = response.data.message;
+                    }
+                } else {
+                    $scope.paypalerror('Es scheint ein Problem mit dem Server zu geben, bitte versuche es später noch einmal.');
+                }
+            });
+
     }
     
     $scope.goBack = function() {

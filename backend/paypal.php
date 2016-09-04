@@ -31,36 +31,38 @@ class PayPal
     public function getApprovalUrl($persons, $clan) {
         $_clan = new Clan();
 
-        $price = GROUP_TICKET;
+        $price = SINGLE_TICKET;
 
-        if($clan->id < 0) {
-            // Add clan
-            if($_clan->clanExists($clan->name)) {
-                return null;
+        if($clan != null) {
+            if($clan->id < 0) {
+                // Add clan
+                if($_clan->clanExists($clan->name)) {
+                    return null;
+                }
+                $_clan->addClan($clan->name, $clan->password);
+                $price = GROUP_TICKET;
+            } else if($clan != null && $clan->id > 0) {
+                // check Password
+                if(!$_clan->checkPasswordByName($clan->name, $clan->password)) {
+                    return null;
+                }
+                $price = GROUP_TICKET;
             }
-            $_clan->addClan($clan->name, $clan->password);
-        } else if($clan->id > 0) {
-            // check Password
-            if(!$_clan->checkPasswordByName($clan->name, $clan->password)) {
-                return null;
-            }
-        } else {
-            // Use single Price;
-            $price = SINGLE_TICKET;
-        }        
+        }
+        
 
         $payer = new Payer();
         $payer->setPaymentMethod('paypal');
 
         $itemList = new ItemList();
 
-        foreach($persons as $person)
+        for($i = 0; $i < count($persons); $i++)
         {
             $item = new Item();
-            $item->setName($person->firstname . ' ' . $person->lastname)
+            $item->setName($persons[$i]->firstname . ' ' . $persons[$i]->lastname)
                 ->setCurrency('EUR')
                 ->setQuantity(1)
-                ->setSku($person->email)
+                ->setSku($persons[$i]->email)
                 ->setPrice($price);
 
             $itemList->additem($item);
