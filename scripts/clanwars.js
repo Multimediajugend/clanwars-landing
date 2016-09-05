@@ -16,7 +16,14 @@ var createDatePicker = function() {
             firstDay: 1,
             minDate: new Date(1900, 01, 01),
             maxDate: new Date(2000, 09, 28),
-            defaultDate: new Date(1989, 12, 01)
+            defaultDate: new Date(1989, 12, 01),
+            i18n: {
+                previousMonth : 'Vorheriger Monat',
+                nextMonth     : 'Nächster Monat',
+                months        : ['Januar','Februar','März','April','Mai','Juni','Juli','August','September','Oktober','November','Dezember'],
+                weekdays      : ['Sonntag','Montag','Dienstag','Mittwoch','Donnerstag','Freitag','Samstag'],
+                weekdaysShort : ['So','Mo','Di','Mi','Do','Fr','Sa']
+            }
         });
     }
 }

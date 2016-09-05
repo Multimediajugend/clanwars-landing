@@ -31,12 +31,7 @@
                     </div>
                     <div class="col-md-6 form-group" ng-class="{ 'has-error' : register.birthday.$invalid && !register.birthday.$pristine && register.birthday.$touched }">
                         <label for="birthday">Geburtsdatum *<span class="small">Die Veranstaltung ist ab 16.</span></label>
-                        <div class="input-group">
-                            <p class="input-group-btn">
-                                <button type="button" class="btn btn-default" ng-click="birthdayOpen(0)"><span class="fa fa-calendar"></span></button>
-                            </p>
-                            <input type="text" class="form-control date-picker" placeholder="01.01.1990" ng-model="persons[0].birthday" required>
-                        </div>
+                        <input type="text" class="form-control date-picker" placeholder="01.01.1990" ng-model="persons[0].birthday" required>
                     </div>
                 </div>
                 <h5 class="section-subheading text-center">Falls du deinen ganzen Clan anmelden willst, kannst du hier weitere Personen hinzufügen.</h5>
@@ -57,12 +52,7 @@
                         </div>
                         <div class="col-md-3 col-xs-6 form-group" ng-class="{ 'has-error' : personForm.birthday.$invalid && !personForm.birthday.$pristine && personForm.birthday.$touched }">
                             <label for="personbirthday">Geburtsdatum</label>
-                            <div class="input-group">
-                                <p class="input-group-btn">
-                                    <button type="button" class="btn btn-default" ng-click="birthdayOpen($index)"><span class="fa fa-calendar"></span></button>
-                                </p>
-                                <input type="text" class="form-control date-picker" ng-model="person.birthday" required>
-                            </div>
+                            <input type="text" class="form-control date-picker" ng-model="person.birthday" required>
                         </div>
                     </div>
                 </fieldset>
