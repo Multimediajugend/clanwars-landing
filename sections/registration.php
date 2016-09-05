@@ -1,5 +1,8 @@
 <div ng-controller="RegisterCtrl">
     <section id="Anmeldung">
+        <?php
+        if(new DateTime() < new DateTime("2016-10-28 00:00:00")) {
+        ?>
         <form name="register" id="registerForm" action="" method="post" novalidate>
             <div ng-show="isRegister" class="container">
                 <div class="row">
@@ -104,24 +107,46 @@
                         Bitte beachte die <a href="#" data-toggle="modal" data-target="#agbModal">AGB</a> der Clanwars 2016.
                     </div>
                     <br /><br />
-                    <div class="col-lg-12" ng-show="paypalerror.length!=0">
+                    <div class="col-lg-12" ng-show="paypalerror.trim().length!=0">
                         <div class="alert alert-danger">
                             {{paypalerror}}
                         </div>
                     </div>
                     <div class="col-lg-12">
                         <button class="btn btn-lg btn-default" ng-click="goBack()" type="button"><span class="fa fa-arrow-left"></span> Zurück</button>
-                        <a class="btn btn-lg btn-primary" type="button" ng-disabled="paypallink.length==0" href="{{paypallink}}"><span class="fa fa-paypal"></span> Weiter zu PayPal</a>
+                        <a class="btn btn-lg btn-primary" style="width:235px;" type="button" ng-disabled="paypallink.length==0" href="{{paypallink}}">
+                            <span ng-show="paypallink.length!=0"><span class="fa fa-paypal"></span> Weiter zu PayPal</span>
+                            <span ng-show="paypallink.length==0"><span class="fa fa-spin fa-spinner"></span> Bearbeite Daten</span>
+                        </a>
                     </div>
                     <br /><br /><br /><br /><br />
                     <div class="col-lg-12">
-                        Du hast keinen PayPal-Account?<br />Dann schreibe uns direkt über das <a href="#">Kontaktformular</a> an und wir finden einen Weg, wie du <span ng-hide="persons.length>1">dich</span><span ng-hide="persons.length<=1">euch</span> zur Clanwars 2016 anmelden kannst.<br>
-                        <a href="#" data-toggle="modal" ng-click="showContact()" data-target="#contactModal" data-backdrop="static" data-keyboard="false">Kontakt</a>
+                        Du hast keinen PayPal-Account?<br />
+                        Dann schreibe uns direkt über das
+                        <a href="#" data-toggle="modal" ng-click="showContact()" data-target="#contactModal" data-backdrop="static" data-keyboard="false">Kontaktformular</a>
+                        an und wir finden einen Weg, wie du <span ng-hide="persons.length>1">dich</span><span ng-hide="persons.length<=1">euch</span> zur Clanwars 2016 anmelden kannst.<br>                        
                     </div>
                 </div>
             </div>
         </form>
+        <?php
+        } else {
+            ?>
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-12 text-center">
+                        <h2 class="section-heading">Anmeldung</h2>
+                        <h3 class="section-subheading text-muted">Die Anmeldung zur Clanwars 2016 ist leider schon vorbei.</h3>
+                    </div>
+                </div>
+            </div>
+            <?php
+        }
+        ?>
     </section>
+    <?php
+        if(new DateTime() < new DateTime("2016-10-28 00:00:00")) {
+    ?>
     <div class="modal fade" id="clanModal" tabindex="-1" role="dialog" aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content" role="document">
@@ -172,4 +197,7 @@
             </div>
         </div>
     </div>
+    <?php
+    }
+    ?>
 </div>
