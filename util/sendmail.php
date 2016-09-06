@@ -1,6 +1,6 @@
 <?php
-require_once("../config/config.php");
-require_once("../vendor/autoload.php");
+require_once dirname(dirname(__FILE__)) . "/config/config.php";
+require_once dirname(dirname(__FILE__)) . "/vendor/autoload.php";
 
 class SendMail {
     private $mail;

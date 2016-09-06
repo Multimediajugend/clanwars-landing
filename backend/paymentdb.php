@@ -1,5 +1,6 @@
 <?php
 require_once dirname(dirname(__FILE__)) . "/config/config.php";
+require_once dirname(__FILE__) . "/mail.php";
 require_once dirname(__FILE__) . "/guestdb.php";
 
 class PaymentDB
@@ -80,7 +81,8 @@ class PaymentDB
                             $details->ClanID);
         }
 
-        //TODO: send mail to user and to CONTACT_MAIL
+        $mail = new Mail();
+        $mail->sendRegistrationMail($persons);
 
         return true;
     }

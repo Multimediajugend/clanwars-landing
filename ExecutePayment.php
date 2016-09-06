@@ -22,7 +22,7 @@ if(isset($_GET['success'])) {
             $paypal->paymentSuccess($paymentId, $payerId, $token);
 
             //TODO: redirect to thankyou-page
-            redirect();
+            redirect('#Danke');
 
             exit(0);
         } else {
