@@ -47,8 +47,7 @@ class PaymentDB
             return false;
         }
 
-        $query = "INSERT INTO payments (Token, Persons, ClanID, CreationTime) VALUES (:token, :persons, :clanid, NOW())";
-
+        $query = "INSERT INTO payments (Token, Persons, ClanID, CreationTime) VALUES (:token, :persons, :clanid, CURRENT_TIME)";
         $stmt = $this->db->prepare($query);
         $stmt->execute([':token' => $token, ':persons' => json_encode($persons), ':clanid' => $clanid]);
 
@@ -62,7 +61,7 @@ class PaymentDB
             return false;
         }
 
-        $query = "UPDATE payments SET SuccessTime = NOW(), SuccessPayment = :payment WHERE Token = :token";
+        $query = "UPDATE payments SET SuccessTime = CURRENT_TIME, SuccessPayment = :payment WHERE Token = :token";
 
         $stmt = $this->db->prepare($query);
         $stmt->execute([':payment' => $payment, ':token' => $token]);
