@@ -1,4 +1,8 @@
 <?php
+require_once dirname(dirname(__FILE__)) . "/config/config.php";
+require_once dirname(dirname(__FILE__)) . "/backend/clandb.php";
+require_once dirname(dirname(__FILE__)) . "/vendor/autoload.php";
+require_once dirname(__FILE__) . "/paymentdb.php";
 
 use PayPal\Api\Amount;
 use PayPal\Api\Item;
@@ -14,7 +18,7 @@ use PayPal\Rest\ApiContext;
 define("SINGLE_TICKET", 25.84);
 define("GROUP_TICKET", 20.74);
 
-class PayPal
+class PayPalDB
 {
     private $logger;
     private $apiContext;
@@ -32,7 +36,7 @@ class PayPal
     }
 
     public function getApproval($persons, $clan) {
-        $_clan = new Clan();
+        $_clan = new ClanDB();
         $clanname = null;
 
         $price = SINGLE_TICKET;

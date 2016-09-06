@@ -1,10 +1,9 @@
 <?php
-require_once('../config/config.php');
-require_once('clan.php');
+require_once dirname(dirname(__FILE__)) . "/backend/clandb.php";
 
 $method = filter_input(INPUT_GET, 'method');
 
-$clan = new Clan();
+$clan = new ClanDB();
 
 switch($method) {
     case 'list':

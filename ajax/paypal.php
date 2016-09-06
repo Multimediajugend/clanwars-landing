@@ -1,14 +1,9 @@
 <?php
-require_once('../config/config.php');
-require_once('../backend/paypal.php');
-require_once('../backend/paymentdb.php');
-require_once('../backend/clan.php');
-require_once('../vendor/autoload.php');
-
+require_once dirname(dirname(__FILE__)) . "/backend/paypaldb.php";
 
 $method = filter_input(INPUT_GET, 'method');
 
-$paypal = new PayPal();
+$paypal = new PayPalDB();
 $result = (object) ['status' => 'error', 'message' => '', 'url' => '', 'paymentid' => ''];
 
 switch($method) {

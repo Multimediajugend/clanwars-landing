@@ -164,7 +164,7 @@ clanwarsApp.controller('ContactCtrl', ['$scope', '$timeout', '$http', function($
 
         $http({
             method: 'POST',
-            url: '/backend/mail.php?method=contact',
+            url: '/ajax/mail.php?method=contact',
             data: {
                 name: $scope.name,
                 mail: $scope.mail,
@@ -270,7 +270,7 @@ clanwarsApp.controller('RegisterCtrl', ['$rootScope', '$scope', '$timeout', '$ht
                 $scope.modalInfo = 'Prüfe, ob Name bereits existiert';
                 $http({
                     method: 'POST',
-                    url: '/backend/clans.php?method=checkName',
+                    url: '/ajax/clan.php?method=checkName',
                     data : {
                         clanName: $scope.modalClan.name
                     }
@@ -289,7 +289,7 @@ clanwarsApp.controller('RegisterCtrl', ['$rootScope', '$scope', '$timeout', '$ht
 
             $http({
                 method: 'POST',
-                url: '/backend/clans.php?method=checkPW',
+                url: '/ajax/clan.php?method=checkPW',
                 data: {
                     clanId: $scope.modalClan.id,
                     clanPassword: $scope.modalClan.password
@@ -334,7 +334,6 @@ clanwarsApp.controller('RegisterCtrl', ['$rootScope', '$scope', '$timeout', '$ht
                 }
             }).then(function(response) {
                 $scope.paypal.link = '';
-                console.log(response);
                 if(response.status == 200) {
                     if(response.data.status == 'ok') {
                         $scope.paypal.link = response.data.url;
@@ -352,10 +351,6 @@ clanwarsApp.controller('RegisterCtrl', ['$rootScope', '$scope', '$timeout', '$ht
     $scope.goBack = function() {
         $scope.isRegister = true;
         $scope.paypal.link = '';
-
-        console.log('remove payment with id:');
-        console.log($scope.paypal.paymentid);
-
         if($scope.paypal.paymentid != '') {
             $http({
                 method: 'POST',
@@ -363,8 +358,6 @@ clanwarsApp.controller('RegisterCtrl', ['$rootScope', '$scope', '$timeout', '$ht
                 data: {
                     paymentid: $scope.paypal.paymentid
                 }
-            }).then(function(response) {
-                console.log(response);
             });
         }
         document.getElementById('Anmeldung').scrollIntoView();
@@ -373,7 +366,7 @@ clanwarsApp.controller('RegisterCtrl', ['$rootScope', '$scope', '$timeout', '$ht
     $scope.loadClans = function() {
         $scope.resetModalClan();
          
-        $http.get("/backend/clans.php?method=list").then(
+        $http.get("/ajax/clan.php?method=list").then(
             function(response) {
                 if(response.status == 200) {
                     $scope.clans = response.data;
