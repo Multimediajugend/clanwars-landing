@@ -1,54 +1,32 @@
 <?php
-require './bootstrap.php';
-
-use PayPal\Api\Amount;
-use PayPal\Api\Details;
-use PayPal\Api\ExecutePayment;
-use PayPal\Api\Payment;
-use PayPal\Api\PaymentExecution;
-use PayPal\Api\Transaction;
-
-$logger = new Katzgrau\KLogger\Logger('./logs');
+require_once('./config/config.php');
+require_once('./backend/paypal.php');
+require_once('./backend/paymentdb.php');
+require_once('./backend/clan.php');
+require_once('./vendor/autoload.php');
 
 if(isset($_GET['success']) && $_GET['success'] == 'true') {
-    $paymentId = $_GET['paymentId'];
-    $payment = Payment::get($paymentId, $apiContext);
+    if(isset($_GET['paymentId']) && isset($_GET['PayerID']))
+    {
+        $paymentId = $_GET['paymentId'];
+        $execution->setPayerId($_GET['PayerID']);
 
-    $execution = new PaymentExecution();
-    $execution->setPayerId($_GET['PayerID']);
+        $paypal = new PayPal();
 
-    $transaction = new Transaction();
-    $amount = new Amount();
-    $details = new Details();
-
-    $details->setShipping(0);
-
-    $amount->setCurrency('EUR')
-        ->setDetails($details)
-        ->setTotal(25);
-    
-    $transaction->setAmount($amount);
-
-    try {
-        $result = $payment->execute($execution, $apiContext);
-
-        echo "Executed Payment";
-
-        try {
-            $payment = Payment::get($paymentId, $apiContext);
-        } catch (Exception $ex) {
-            echo "Get Payment:" . $ex->getMessage();
-            exit(1);
+        if($paypal->paymentSuccess($paymentId, $payerId)) {
+            // TODO: sent mail to guest and info
+        } else {
+            // TODO: sent mail to guest and info
         }
-    } catch (Exception $ex) {
-        echo "Executed Payment: " . $ex->getMessage();
+
+        // TODO: redirect to main-page
+        exit(0);
+    } else {
+        echo "Missing Parameters..";
         exit(1);
     }
-
-    echo "Get Payment: " . $payment;
-
-    return $payment;
 } else {
+    // TODO: redirect to main-page
     echo "User Cancelled the Approval";
     exit;
 }
