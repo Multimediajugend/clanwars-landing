@@ -1,5 +1,6 @@
 <?php
 require_once dirname(dirname(__FILE__)) . "/config/config.php";
+require_once dirname(__FILE__) . "/guestdb.php";
 
 class PaymentDB
 {
@@ -15,7 +16,7 @@ class PaymentDB
     }
 
     public function listPayments() {
-        $query = "SELECT Token, Persons, Clan, CreationTime, SuccessTime FROM payments ORDER BY CreationTime DESC";
+        $query = "SELECT Token, Persons, ClanID, CreationTime, SuccessTime FROM payments ORDER BY CreationTime DESC";
         $stmt = $this->db->prepare($query);
 
         $stmt->execute();
@@ -23,7 +24,7 @@ class PaymentDB
     }
 
     public function getDetails($token) {
-        $query = "SELECT Persons, Clan FROM payments WHERE Token = :token";
+        $query = "SELECT Persons, ClanID FROM payments WHERE Token = :token";
         $stmt = $this->db->prepare($query);
         $stmt->execute([':token' => $token]);
 
@@ -40,15 +41,15 @@ class PaymentDB
         return($result->count != 0);
     }
 
-    public function addPayment($token, $persons, $clan) {
+    public function addPayment($token, $persons, $clanid) {
         if($this->tokenExists($token)) {
             return false;
         }
 
-        $query = "INSERT INTO payments (Token, Persons, Clan, CreationTime) VALUES (:token, :persons, :clan, NOW())";
+        $query = "INSERT INTO payments (Token, Persons, ClanID, CreationTime) VALUES (:token, :persons, :clanid, NOW())";
 
         $stmt = $this->db->prepare($query);
-        $stmt->execute([':token' => $token, ':persons' => json_encode($persons), ':clan' => json_encode($clan)]);
+        $stmt->execute([':token' => $token, ':persons' => json_encode($persons), ':clanid' => $clanid]);
 
         $stmt->fetch();
 
@@ -66,6 +67,20 @@ class PaymentDB
         $stmt->execute([':payment' => $payment, ':token' => $token]);
 
         $stmt->fetch();
+
+        $guestdb = new GuestDB();
+        $details = $this->getDetails($token);
+        $persons = json_decode($details->Persons);
+        foreach($persons as $key => $person) {
+            $guestdb->addGuest($person->firstname,
+                            $person->lastname,
+                            $person->email,
+                            $person->birthday,
+                            $token,
+                            $details->ClanID);
+        }
+
+        //TODO: send mail to user and to CONTACT_MAIL
 
         return true;
     }

@@ -11,20 +11,19 @@ if(isset($_GET['success'])) {
     }
 
     if($_GET['success'] == 'true') {
-        if(isset($_GET['paymentId']) && isset($_GET['PayerID']))
+        if(isset($_GET['paymentId']) && isset($_GET['PayerID']) && isset($_GET['token']))
         {
             $paymentId = $_GET['paymentId'];
-            $execution->setPayerId($_GET['PayerID']);
+            $payerId = $_GET['PayerID'];
+            $token = $_GET['token'];
 
             $paypal = new PayPalDB();
 
-            if($paypal->paymentSuccess($paymentId, $payerId)) {
-                // TODO: sent mail to guest and info
-            } else {
-                // TODO: sent mail to guest and info
-            }
+            $paypal->paymentSuccess($paymentId, $payerId, $token);
 
-            // TODO: redirect to main-page
+            //TODO: redirect to thankyou-page
+            redirect();
+
             exit(0);
         } else {
             echo "Missing Parameters..";

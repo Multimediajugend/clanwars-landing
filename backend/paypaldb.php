@@ -10,6 +10,7 @@ use PayPal\Api\ItemList;
 use PayPal\Api\Details;
 use PayPal\Api\Payer;
 use PayPal\Api\Payment;
+use PayPal\Api\PaymentExecution;
 use PayPal\Api\RedirectUrls;
 use PayPal\Api\Transaction;
 use PayPal\Auth\OAuthTokenCredential;
@@ -37,7 +38,7 @@ class PayPalDB
 
     public function getApproval($persons, $clan) {
         $_clan = new ClanDB();
-        $clanname = null;
+        $clanid = null;
 
         $price = SINGLE_TICKET;
 
@@ -48,7 +49,7 @@ class PayPalDB
                     return null;
                 }
                 $_clan->addClan($clan->name, $clan->password);
-                $clanname = $clan->name;
+                $clanid = $_clan->getId($clan->name);
                 $price = GROUP_TICKET;
             } else if($clan != null && $clan->id > 0) {
                 // check Password
@@ -56,7 +57,7 @@ class PayPalDB
                     return null;
                 }
                 $price = GROUP_TICKET;
-                $clanname = $clan->name;
+                $clanid = $_clan->getId($clan->name);
             }
         }
         
@@ -115,7 +116,7 @@ class PayPalDB
         }
         $token = $tmp[count($tmp)-1];
 
-        $this->paymentdb->addPayment($token, $persons, $clanname);
+        $this->paymentdb->addPayment($token, $persons, $clanid);
 
         return (object) ['url' => $approvalUrl, 'token' => $token];
     }

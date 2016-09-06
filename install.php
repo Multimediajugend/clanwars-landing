@@ -58,7 +58,7 @@ if($force) {
     $createPayment = true;
 }
 if($createPayment) {
-    $query = "CREATE TABLE payments (Token varchar(255) NOT NULL, Persons text NOT NULL, Clan varchar(255) NOT NULL, CreationTime datetime NOT NULL, SuccessTime datetime NOT NULL, SuccessPayment text NOT NULL, PRIMARY KEY(Token)) ENGINE=InnoDB DEFAULT CHARSET=latin1;";
+    $query = "CREATE TABLE payments (Token varchar(255) NOT NULL, Persons text NOT NULL, ClanID int(11), CreationTime datetime NOT NULL, SuccessTime datetime NOT NULL, SuccessPayment text NOT NULL, PRIMARY KEY(Token)) ENGINE=InnoDB DEFAULT CHARSET=latin1;";
     $stmt = $db->prepare($query);
     $stmt->execute();
     echo "Payments-Tabelle erstellt.<br>";
@@ -82,7 +82,7 @@ if($force) {
     $createGuests = true;
 }
 if($createGuests) {
-    $query = "CREATE TABLE guests (ID int(11) NOT NULL AUTO_INCREMENT, Firstname varchar(255) NOT NULL, Lastname varchar(255) NOT NULL, Mail varchar(255) NOT NULL, Birthday date NOT NULL, ClanID int(11), PRIMARY KEY (ID), UNIQUE(Mail)) ENGINE=InnoDB DEFAULT CHARSET=latin1;";
+    $query = "CREATE TABLE guests (ID int(11) NOT NULL AUTO_INCREMENT, Firstname varchar(255) NOT NULL, Lastname varchar(255) NOT NULL, Mail varchar(255) NOT NULL, Birthday date NOT NULL, PayPalToken varchar(255) NOT NULL, ClanID int(11), PRIMARY KEY (ID)) ENGINE=InnoDB DEFAULT CHARSET=latin1;";
     $stmt = $db->prepare($query);
     $stmt->execute();
     echo "Guests-Tabelle erstellt.<br>";

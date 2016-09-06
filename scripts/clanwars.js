@@ -334,6 +334,7 @@ clanwarsApp.controller('RegisterCtrl', ['$rootScope', '$scope', '$timeout', '$ht
                 }
             }).then(function(response) {
                 $scope.paypal.link = '';
+                console.log(response);
                 if(response.status == 200) {
                     if(response.data.status == 'ok') {
                         $scope.paypal.link = response.data.url;

@@ -22,6 +22,19 @@ class ClanDB
         return $stmt->fetchAll();
     }
 
+    public function getID($clanName) {
+        $query = "SELECT ID AS id FROM clans WHERE Name = :name";
+        $stmt = $this->db->prepare($query);
+
+        $stmt->execute([':name' => $clanName]);
+        $result = $stmt->fetch();
+
+        if(!$result) {
+            return null;
+        }
+        return $result->id;
+    }
+
     public function clanExists($clanName) {
         $query = "SELECT COUNT(*) AS count FROM clans WHERE Name = :name";
         $stmt = $this->db->prepare($query);

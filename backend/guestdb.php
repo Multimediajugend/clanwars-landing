@@ -30,15 +30,16 @@ class GuestDB
         return ($result->count != 0);
     }
 
-    public function addGuest($firstname, $lastname, $mail, $birthday, $paymentId, $clanId) {
-        $query = "INSERT INTO guests (Firstname, Lastname, Mail, Birthday, PaymentID, ClanID) VALUES (:firstname, :lastname, :mail, :birthday, :paymentid, :clanid)";
+    public function addGuest($firstname, $lastname, $mail, $birthday, $token, $clanId) {
+        $query = "INSERT INTO guests (Firstname, Lastname, Mail, Birthday, PayPalToken, ClanID) VALUES (:firstname, :lastname, :mail, :birthday, :token, :clanid)";
+        $tmpBDay = DateTime::createFromFormat('d.m.Y', $birthday);
 
         $stmt = $this->db->prepare($query);
         $stmt->execute([':firstname' => $firstname,
                         ':lastname' => $lastname,
                         ':mail' => $mail,
-                        ':birthday' => $birthday,
-                        ':paymentid' => $paymentId,
+                        ':birthday' => $tmpBDay->format('Y-m-d'),
+                        ':token' => $token,
                         ':clanid' => $clanId]);
 
         $stmt->fetch();
