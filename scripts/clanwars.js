@@ -14,7 +14,6 @@ var createDatePicker = function() {
             field: eleGroup[i],
             format: 'DD.MM.YYYY',
             firstDay: 1,
-            minDate: new Date(1900, 01, 01),
             maxDate: new Date(2000, 09, 28),
             defaultDate: new Date(1989, 12, 01),
             i18n: {
@@ -336,6 +335,7 @@ clanwarsApp.controller('RegisterCtrl', ['$rootScope', '$scope', '$timeout', '$ht
                 }
             }).then(function(response) {
                 $scope.paypallink = '';
+                console.log(response);
                 if(response.status == 200) {
                     if(response.data.status == 'ok') {
                         $scope.paypallink = response.data.message;
