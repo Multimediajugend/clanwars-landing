@@ -4,7 +4,7 @@ require_once dirname(dirname(__FILE__)) . "/backend/paypaldb.php";
 $method = filter_input(INPUT_GET, 'method');
 
 $paypal = new PayPalDB();
-$result = (object) ['status' => 'error', 'message' => '', 'url' => '', 'paymentid' => ''];
+$result = (object) ['status' => 'error', 'message' => '', 'url' => '', 'paymentid' => '', 'token' => ''];
 
 switch($method) {
     case 'prepare':
@@ -25,7 +25,7 @@ switch($method) {
 
         $result->status = 'ok';
         $result->url = $app->url;
-        $result->paymentid = $app->id;
+        $result->token = $app->token;
 
         echo json_encode($result);
 
@@ -33,10 +33,9 @@ switch($method) {
         break;
     case 'cancel':
         $payload = json_decode(file_get_contents('php://input'));
-        if(isset($payload) && isset($payload->paymentid)) {
-            $paymentid = filter_var($payload->paymentid);
-            echo "paymentID: " . $paymentid;
-            $paypal->cancelPayment($paymentid);
+        if(isset($payload) && isset($payload->token)) {
+            $token = filter_var($payload->token);
+            $paypal->cancelPayment($token);
         }
         echo "cancelled";
         exit(0);

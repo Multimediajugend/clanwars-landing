@@ -233,7 +233,7 @@ clanwarsApp.controller('RegisterCtrl', ['$rootScope', '$scope', '$timeout', '$ht
     $scope.clan = angular.copy($scope.noClan);
     $scope.modalClan = angular.copy($scope.noClan);
     $scope.clans = [];
-    $scope.paypal = {link: '', error: '', paymentid: ''};
+    $scope.paypal = {link: '', error: '', token: ''};
     
     $scope.resetModalClan = function() {
         $scope.modalClan = angular.copy($scope.noClan);
@@ -337,7 +337,7 @@ clanwarsApp.controller('RegisterCtrl', ['$rootScope', '$scope', '$timeout', '$ht
                 if(response.status == 200) {
                     if(response.data.status == 'ok') {
                         $scope.paypal.link = response.data.url;
-                        $scope.paypal.paymentid = response.data.paymentid;
+                        $scope.paypal.token = response.data.token;
                     } else {
                         $scope.paypal.error = response.data.message;
                     }
@@ -351,12 +351,12 @@ clanwarsApp.controller('RegisterCtrl', ['$rootScope', '$scope', '$timeout', '$ht
     $scope.goBack = function() {
         $scope.isRegister = true;
         $scope.paypal.link = '';
-        if($scope.paypal.paymentid != '') {
+        if($scope.paypal.token != '') {
             $http({
                 method: 'POST',
                 url: '/ajax/paypal.php?method=cancel',
                 data: {
-                    paymentid: $scope.paypal.paymentid
+                    token: $scope.paypal.token
                 }
             });
         }

@@ -108,14 +108,19 @@ class PayPalDB
         }
 
         $approvalUrl = $payment->getApprovalLink();
-        $paymentId = $payment->getId();
+        $tmp = explode('=', $approvalUrl);
+        if(count($tmp) == 0)
+        {
+            return false;
+        }
+        $token = $tmp[count($tmp)-1];
 
-        $this->paymentdb->addPayment($paymentId, $persons, $clanname);
+        $this->paymentdb->addPayment($token, $persons, $clanname);
 
-        return (object) ['id' => $paymentId, 'url' => $approvalUrl];
+        return (object) ['url' => $approvalUrl, 'token' => $token];
     }
 
-    public function paymentSuccess($paymentId, $payerId) {
+    public function paymentSuccess($paymentId, $payerId, $token) {
         $payment = Payment::get($paymentId, $this->apiContext);
 
         $execution = new PaymentExecution();
@@ -124,7 +129,7 @@ class PayPalDB
         try {
             $result = $payment->execute($execution, $this->apiContext);
 
-            $this->paymentdb->paymentSucces($paymentId, $result);
+            $this->paymentdb->paymentSucces($token, $result);
         } catch (Exception $ex) {
             $this->logger->error('Exception on execute Payment: ' - $ex->getMessage());
             return false;
@@ -133,8 +138,8 @@ class PayPalDB
         return true;
     }
 
-    public function cancelPayment($paymentId) {
-        $this->paymentdb->deletePayment($paymentId);
+    public function cancelPayment($token) {
+        $this->paymentdb->deletePayment($token);
     }
 
     private function getApiContext($clientId, $clientSecret)

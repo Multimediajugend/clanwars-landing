@@ -15,69 +15,69 @@ class PaymentDB
     }
 
     public function listPayments() {
-        $query = "SELECT PaymentID, Persons, Clan, CreationTime, SuccessTime FROM payments ORDER BY CreationTime DESC";
+        $query = "SELECT Token, Persons, Clan, CreationTime, SuccessTime FROM payments ORDER BY CreationTime DESC";
         $stmt = $this->db->prepare($query);
 
         $stmt->execute();
         return $stmt->fetchAll();
     }
 
-    public function getDetails($paymentId) {
-        $query = "SELECT Persons, Clan FROM payments WHERE PaymentID = :paymentid";
+    public function getDetails($token) {
+        $query = "SELECT Persons, Clan FROM payments WHERE Token = :token";
         $stmt = $this->db->prepare($query);
-        $stmt->execute([':paymentid' => $paymentId]);
+        $stmt->execute([':token' => $token]);
 
         return $stmt->fetch();
     }
 
-    public function paymentIdExists($paymentId) {
-        $query = "SELECT COUNT(*) AS count FROM payments WHERE PaymentID = :paymentid";
+    public function tokenExists($token) {
+        $query = "SELECT COUNT(*) AS count FROM payments WHERE Token = :token";
         $stmt = $this->db->prepare($query);
-        $stmt->execute([':paymentid' => $paymentId]);
+        $stmt->execute([':token' => $token]);
 
         $result = $stmt->fetch();
 
         return($result->count != 0);
     }
 
-    public function addPayment($paymentId, $persons, $clan) {
-        if($this->paymentIdExists($paymentId)) {
+    public function addPayment($token, $persons, $clan) {
+        if($this->tokenExists($token)) {
             return false;
         }
 
-        $query = "INSERT INTO payments (PaymentID, Persons, Clan, CreationTime) VALUES (:paymentid, :persons, :clan, NOW())";
+        $query = "INSERT INTO payments (Token, Persons, Clan, CreationTime) VALUES (:token, :persons, :clan, NOW())";
 
         $stmt = $this->db->prepare($query);
-        $stmt->execute([':paymentid' => $paymentId, ':persons' => json_encode($persons), ':clan' => json_encode($clan)]);
+        $stmt->execute([':token' => $token, ':persons' => json_encode($persons), ':clan' => json_encode($clan)]);
 
         $stmt->fetch();
 
         return true;
     }
 
-    public function paymentSucces($paymentId, $payment) {
-        if(!$this->paymentIdExists($paymentId)) {
+    public function paymentSucces($token, $payment) {
+        if(!$this->tokenExists($token)) {
             return false;
         }
 
-        $query = "UPDATE payments SET SuccessTime = NOW(), SuccessPayment = :payment WHERE PaymentID = :paymentid";
+        $query = "UPDATE payments SET SuccessTime = NOW(), SuccessPayment = :payment WHERE Token = :token";
 
         $stmt = $this->db->prepare($query);
-        $stmt->execute([':payment' => $payment, ':paymentid' => $paymentId]);
+        $stmt->execute([':payment' => $payment, ':token' => $token]);
 
         $stmt->fetch();
 
         return true;
     }
 
-    public function deletePayment($paymentId) {
-        if(!$this->paymentIdExists($paymentId)) {
+    public function deletePayment($token) {
+        if(!$this->tokenExists($token)) {
             return false;
         }
 
-        $query = "DELETE FROM payments WHERE PaymentID = :paymentid";
+        $query = "DELETE FROM payments WHERE Token = :token";
         $stmt = $this->db->prepare($query);
-        $stmt->execute([':paymentid' => $paymentId]);
+        $stmt->execute([':token' => $token]);
 
         $stmt->fetch();
 
