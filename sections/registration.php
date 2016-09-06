@@ -107,16 +107,16 @@
                         Bitte beachte die <a href="#" data-toggle="modal" data-target="#agbModal">AGB</a> der Clanwars 2016.
                     </div>
                     <br /><br />
-                    <div class="col-lg-12" ng-show="paypalerror.trim().length!=0">
+                    <div class="col-lg-12" ng-show="paypal.error.trim().length!=0">
                         <div class="alert alert-danger">
-                            {{paypalerror}}
+                            {{paypal.error}}
                         </div>
                     </div>
                     <div class="col-lg-12">
-                        <button class="btn btn-lg btn-default" ng-click="goBack()" type="button"><span class="fa fa-arrow-left"></span> Zurück</button>
-                        <a class="btn btn-lg btn-primary" style="width:235px;" type="button" ng-disabled="paypallink.length==0" href="{{paypallink}}">
-                            <span ng-show="paypallink.length!=0"><span class="fa fa-paypal"></span> Weiter zu PayPal</span>
-                            <span ng-show="paypallink.length==0"><span class="fa fa-spin fa-spinner"></span> Bearbeite Daten</span>
+                        <button class="btn btn-lg btn-default" ng-click="goBack()" ng-disabled="paypal.link.length==0" type="button"><span class="fa fa-arrow-left"></span> Zurück</button>
+                        <a class="btn btn-lg btn-primary" style="width:235px;" type="button" ng-disabled="paypal.link.length==0" href="{{paypal.link}}">
+                            <span ng-show="paypal.link.length!=0"><span class="fa fa-paypal"></span> Weiter zu PayPal</span>
+                            <span ng-show="paypal.link.length==0"><span class="fa fa-spin fa-spinner"></span> Bearbeite Daten</span>
                         </a>
                     </div>
                     <br /><br /><br /><br /><br />

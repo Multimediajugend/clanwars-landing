@@ -18,6 +18,7 @@ class PayPal
 {
     private $logger;
     private $apiContext;
+    private $paymentdb;
 
     public function __construct() {
         $this->logger = new Katzgrau\KLogger\Logger('./logs');
@@ -25,11 +26,14 @@ class PayPal
         $clientId = PAYPAL_CLIENT_ID;
         $clientSecret = PAYPAL_CLIENT_SECRET;
 
+        $this->paymentdb = new PaymentDB();
+
         $this->getApiContext($clientId, $clientSecret);
     }
 
-    public function getApprovalUrl($persons, $clan) {
+    public function getApproval($persons, $clan) {
         $_clan = new Clan();
+        $clanname = null;
 
         $price = SINGLE_TICKET;
 
@@ -40,6 +44,7 @@ class PayPal
                     return null;
                 }
                 $_clan->addClan($clan->name, $clan->password);
+                $clanname = $clan->name;
                 $price = GROUP_TICKET;
             } else if($clan != null && $clan->id > 0) {
                 // check Password
@@ -47,6 +52,7 @@ class PayPal
                     return null;
                 }
                 $price = GROUP_TICKET;
+                $clanname = $clan->name;
             }
         }
         
@@ -98,8 +104,33 @@ class PayPal
         }
 
         $approvalUrl = $payment->getApprovalLink();
+        $paymentId = $payment->getId();
 
-        return $approvalUrl;
+        $this->paymentdb->addPayment($paymentId, $persons, $clanname);
+
+        return (object) ['id' => $paymentId, 'url' => $approvalUrl];
+    }
+
+    public function paymentSuccess($paymentId, $payerId) {
+        $payment = Payment::get($paymentId, $this->apiContext);
+
+        $execution = new PaymentExecution();
+        $execution->setPayerId($payerId);
+
+        try {
+            $result = $payment->execute($execution, $this->apiContext);
+
+            $this->paymentdb->paymentSucces($paymentId, $result);
+        } catch (Exception $ex) {
+            $this->logger->error('Exception on execute Payment: ' - $ex->getMessage());
+            return false;
+        }
+
+        return true;
+    }
+
+    public function cancelPayment($paymentId) {
+        $this->paymentdb->deletePayment($paymentId);
     }
 
     private function getApiContext($clientId, $clientSecret)

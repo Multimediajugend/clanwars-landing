@@ -20,6 +20,14 @@ class PaymentDB
         return $stmt->fetchAll();
     }
 
+    public function getDetails($paymentId) {
+        $query = "SELECT Persons, Clan FROM payments WHERE PaymentID = :paymentid";
+        $stmt = $this->db->prepare($query);
+        $stmt->execute([':paymentid' => $paymentId]);
+
+        return $stmt->fetch();
+    }
+
     public function paymentIdExists($paymentId) {
         $query = "SELECT COUNT(*) AS count FROM payments WHERE PaymentID = :paymentid";
         $stmt = $this->db->prepare($query);
@@ -35,7 +43,7 @@ class PaymentDB
             return false;
         }
 
-        $query = "INSERT INTO payments (PaymentID, Persons, Clan, CreationTime, SuccessTime) VALUES (:paymentid, :persons, :clan, CURDATE(), NULL)";
+        $query = "INSERT INTO payments (PaymentID, Persons, Clan, CreationTime) VALUES (:paymentid, :persons, :clan, NOW())";
 
         $stmt = $this->db->prepare($query);
         $stmt->execute([':paymentid' => $paymentId, ':persons' => json_encode($persons), ':clan' => json_encode($clan)]);
@@ -45,15 +53,15 @@ class PaymentDB
         return true;
     }
 
-    public function paymentSucces($paymentId) {
+    public function paymentSucces($paymentId, $payment) {
         if(!$this->paymentIdExists($paymentId)) {
             return false;
         }
 
-        $query = "UPDATE payments SET SuccessTime = CURDATE()";
+        $query = "UPDATE payments SET SuccessTime = NOW(), SuccessPayment = :payment WHERE PaymentID = :paymentid";
 
         $stmt = $this->db->prepare($query);
-        $stmt->execute();
+        $stmt->execute([':payment' => $payment, ':paymentid' => $paymentId]);
 
         $stmt->fetch();
 
@@ -66,8 +74,7 @@ class PaymentDB
         }
 
         $query = "DELETE FROM payments WHERE PaymentID = :paymentid";
-        
-        $stmt = $thi->db->prepare($query);
+        $stmt = $this->db->prepare($query);
         $stmt->execute([':paymentid' => $paymentId]);
 
         $stmt->fetch();

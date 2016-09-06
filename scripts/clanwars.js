@@ -233,8 +233,7 @@ clanwarsApp.controller('RegisterCtrl', ['$rootScope', '$scope', '$timeout', '$ht
     $scope.clan = angular.copy($scope.noClan);
     $scope.modalClan = angular.copy($scope.noClan);
     $scope.clans = [];
-    $scope.paypallink = '';
-    $scope.paypalerror = '';
+    $scope.paypal = {link: '', error: '', paymentid: ''};
     
     $scope.resetModalClan = function() {
         $scope.modalClan = angular.copy($scope.noClan);
@@ -334,16 +333,17 @@ clanwarsApp.controller('RegisterCtrl', ['$rootScope', '$scope', '$timeout', '$ht
                     clan: JSON.stringify($scope.clan)
                 }
             }).then(function(response) {
-                $scope.paypallink = '';
+                $scope.paypal.link = '';
                 console.log(response);
                 if(response.status == 200) {
                     if(response.data.status == 'ok') {
-                        $scope.paypallink = response.data.message;
+                        $scope.paypal.link = response.data.url;
+                        $scope.paypal.paymentid = response.data.paymentid;
                     } else {
-                        $scope.paypalerror = response.data.message;
+                        $scope.paypal.error = response.data.message;
                     }
                 } else {
-                    $scope.paypalerror('Es scheint ein Problem mit dem Server zu geben, bitte versuche es später noch einmal.');
+                    $scope.paypal.error('Es scheint ein Problem mit dem Server zu geben, bitte versuche es später noch einmal.');
                 }
             });
 
@@ -351,6 +351,22 @@ clanwarsApp.controller('RegisterCtrl', ['$rootScope', '$scope', '$timeout', '$ht
     
     $scope.goBack = function() {
         $scope.isRegister = true;
+        $scope.paypal.link = '';
+
+        console.log('remove payment with id:');
+        console.log($scope.paypal.paymentid);
+
+        if($scope.paypal.paymentid != '') {
+            $http({
+                method: 'POST',
+                url: '/ajax/paypal.php?method=cancel',
+                data: {
+                    paymentid: $scope.paypal.paymentid
+                }
+            }).then(function(response) {
+                console.log(response);
+            });
+        }
         document.getElementById('Anmeldung').scrollIntoView();
     }
 
