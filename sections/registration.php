@@ -11,12 +11,14 @@
                         <h3 class="section-subheading text-muted">Bitte gib hier deine Daten an, wenn du dich zur Clanwars anmelden möchtest.</h3>
                     </div>
                 </div>
-                <div class="row">
-                    <div class="col-lg-12 text-center">
-                        <button type="button" class="btn btn-lg btn-facebook" ng-click="fbLogin();"><span class="fa fa-facebook-square"></span> Mit Facebook anmelden</button><br>
-                    </div>
-                </div>
-                <br />
+                <?php
+                // <div class="row">
+                //     <div class="col-lg-12 text-center">
+                //         <button type="button" class="btn btn-lg btn-facebook" ng-click="fbLogin();"><span class="fa fa-facebook-square"></span> Mit Facebook anmelden</button><br>
+                //     </div>
+                // </div>
+                // <br />
+                ?>
                 <div class="row">
                     <div class="col-md-6 form-group" ng-class="{ 'has-error' : register.firstname.$invalid && !register.firstname.$pristine && register.firstname.$touched }">
                         <label for="firstname">Vorname *</label>
