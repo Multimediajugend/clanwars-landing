@@ -54,6 +54,12 @@ $(function() {
     if(hash.toLowerCase() == 'impressum') {
         $('#impressumModal').modal('show');
     }
+
+    // Show Thanks-Modal, if needed
+    if(window.location.href.substring(window.location.href.indexOf('#')+1) == 'Danke') {
+        console.log('Danke');
+        $('#thanksModal').modal('show');
+    } 
 });
 
 

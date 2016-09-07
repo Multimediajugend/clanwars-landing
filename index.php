@@ -157,6 +157,7 @@ require_once('./config/config.php');
                         <li><a href="#" data-toggle="modal" data-target="#impressumModal">Impressum</a></li>
                         <li><a href="#" data-toggle="modal" data-target="#agbModal">AGB</a></li>
                         <li><a href="#" data-toggle="modal" data-target="#contactModal" data-backdrop="static" data-keyboard="false">Kontakt</a></li>
+                        <li><a href="#" data-toggle="modal" data-target="#thanksModal" data-backdrop="static" data-keyboard="false">Danke</a></li>
                     </ul>
                 </div>
             </div>
@@ -171,6 +172,9 @@ require_once('./config/config.php');
     
     <!-- Kontakt Modal -->
     <?php include("./modals/contact.php"); ?>
+
+    <!-- Danke Modal -->
+    <?php include("./modals/thanks.php"); ?>
     
     <!-- jQuery -->
     <script src="scripts/jquery-2.2.1.min.js"></script>
