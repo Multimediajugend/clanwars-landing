@@ -1,13 +1,13 @@
 <?php
-require_once("../config/config.php");
-require_once("../vendor/autoload.php");
+require_once dirname(dirname(__FILE__)) . "/config/config.php";
+require_once dirname(dirname(__FILE__)) . "/vendor/autoload.php";
 
 class SendMail {
     private $mail;
     private $logger;
 
     public function __construct() {
-        $this->logger = new Katzgrau\KLogger\Logger('../logs');
+        $this->logger = new Katzgrau\KLogger\Logger(dirname(dirname(__FILE__)) . '/logs');
 
         $this->mail = new PHPMailer;
         $this->mail->SMTPDebug = 0;
@@ -40,6 +40,7 @@ class SendMail {
 
             if(!$this->mail->send()) {
                 $this->logger->error('Send mail failed! ' . $this->mail->ErrorInfo);
+                return false;
             } else {
                 $this->logger->info('Message with subject "' . $Subject . '" has been sent to: ' . $Name . '(' . $Address . ')');
             }

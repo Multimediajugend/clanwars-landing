@@ -1,3 +1,34 @@
+var picker = [];
+
+var createDatePicker = function() {
+    var eleGroup = document.querySelectorAll('.date-picker');
+
+    for(var i=0; i<picker.length; i++) {
+        picker[i].destroy();
+    }
+    
+    for(var i=0; i<eleGroup.length; i++) {
+        var x = eleGroup[i];
+        
+        picker[i] = new Pikaday({
+            field: eleGroup[i],
+            format: 'DD.MM.YYYY',
+            firstDay: 1,
+            maxDate: new Date(2000, 09, 28),
+            defaultDate: new Date(1989, 12, 01),
+            i18n: {
+                previousMonth : 'Vorheriger Monat',
+                nextMonth     : 'Nächster Monat',
+                months        : ['Januar','Februar','März','April','Mai','Juni','Juli','August','September','Oktober','November','Dezember'],
+                weekdays      : ['Sonntag','Montag','Dienstag','Mittwoch','Donnerstag','Freitag','Samstag'],
+                weekdaysShort : ['So','Mo','Di','Mi','Do','Fr','Sa']
+            }
+        });
+    }
+}
+
+createDatePicker();
+
 $(function() {
     // jQuery for page scrolling feature - requires jQuery Easing plugin
     $('a.page-scroll').bind('click', function(event) {
@@ -23,6 +54,15 @@ $(function() {
     if(hash.toLowerCase() == 'impressum') {
         $('#impressumModal').modal('show');
     }
+
+    // Show Thanks-Modal, if needed
+    if(window.location.href.substring(window.location.href.indexOf('#')+1) == 'Danke') {
+        console.log('Danke');
+        $('#thanksModal').modal('show');
+    }
+    $('#thanksModal').on('hidden.bs.modal', function () {
+        window.location.href = '/';        
+    });
 });
 
 
@@ -90,8 +130,6 @@ clanwarsApp.controller('ContactCtrl', ['$scope', '$timeout', '$http', function($
         var persons = arg.persons;
         var clan = arg.clan;
 
-        console.log(clan);
-
         $scope.name = persons[0].firstname + ' ' + persons[0].lastname;
         $scope.mail = persons[0].email;
 
@@ -102,8 +140,8 @@ clanwarsApp.controller('ContactCtrl', ['$scope', '$timeout', '$http', function($
         for(var i=0; i<persons.length; i++) {
             message += "[Person" + (i+1) + "] Vorname: " + persons[i].firstname + " - Nachname: " + persons[i].lastname + " - E-Mail: " + persons[i].email + " - Geburtstag: " + persons[i].birthday + "\r\n";
         }
-        if(clan.ID > 0) {
-            message += "Clan: " + clan.Name + "\r\n";
+        if(clan.id > 0) {
+            message += "Clan: " + clan.name + "\r\n";
         }
         $scope.message = message;
     });
@@ -135,7 +173,7 @@ clanwarsApp.controller('ContactCtrl', ['$scope', '$timeout', '$http', function($
 
         $http({
             method: 'POST',
-            url: '/backend/mail.php?method=contact',
+            url: '/ajax/mail.php?method=contact',
             data: {
                 name: $scope.name,
                 mail: $scope.mail,
@@ -195,36 +233,31 @@ clanwarsApp.controller('ContactCtrl', ['$scope', '$timeout', '$http', function($
 
 }]);
 
-clanwarsApp.controller('RegisterCtrl', ['$rootScope', '$scope', '$http', function($rootScope, $scope, $http) {
-    $scope.persons = [{'id' : 0, 'birthday': null, 'birthdayPopup': { opened: false}}];
+clanwarsApp.controller('RegisterCtrl', ['$rootScope', '$scope', '$timeout', '$http', function($rootScope, $scope, $timeout, $http) {
+    $scope.singleTicket = 25.84;
+    $scope.groupTicket = 20.74;
+    $scope.persons = [{'id' : 0, 'birthday': null}];
     $scope.isRegister = true;
-    $scope.noClan = {ID: 0, Name: 'Kein Clan'};
+    $scope.noClan = {id: 0, name: 'Kein Clan', password: ''};
     $scope.clan = angular.copy($scope.noClan);
-    $scope.clanPassword;
     $scope.modalClan = angular.copy($scope.noClan);
     $scope.clans = [];
+    $scope.paypal = {link: '', error: '', token: '', mailwarnings: []};
     
-    $scope.dateFormat = 'dd.MM.yyyy';
-            
-    $scope.dateOptions = {
-        showWeeks: false,
-        datepickerMode: 'year',
-        maxDate: new Date(2000, 10, 28),
-        yearRange: "c-50:c-10"
+    $scope.resetModalClan = function() {
+        $scope.modalClan = angular.copy($scope.noClan);
     }
 
-    $scope.birthdayOpen = function(idx) {
-        console.log('open popup ' + idx);
-        $scope.persons[idx].birthdayPopup.opened = true;
-    }
-    
     $scope.addClan = function() {
-        $scope.modalClan.ID = -1;
-        $scope.modalClan.Name = '';
+        $scope.modalClan.id = -1;
+        $scope.modalClan.name = '';
+        $scope.modalClan.password = '';
     }
     
     $scope.selectClan = function(clan) {
-        $scope.modalClan = angular.copy(clan);
+        $scope.modalClan.id = clan.id;
+        $scope.modalClan.name = clan.name;
+        $scope.modalClan.password = '';
     }
     
     $scope.test = function() {
@@ -236,28 +269,28 @@ clanwarsApp.controller('RegisterCtrl', ['$rootScope', '$scope', '$http', functio
     }
     
     $scope.checkClan = function() {
-        if($scope.modalClan.ID == 0) {
+        if($scope.modalClan.id == 0) {
             $scope.clan = angular.copy($scope.noClan);
             $('#clanModal').modal('toggle');
-        } else if($scope.modalClan.ID < 0) {
-            if($scope.clanPassword === undefined || $scope.clanPassword.length <= 0) {
+        } else if($scope.modalClan.id < 0) {
+            if($scope.modalClan.password === undefined || $scope.modalClan.password.length <= 0) {
                 $scope.modalInfo = 'Bitte ein Passwort eingeben';
             } else {
                 $scope.modalInfo = 'Prüfe, ob Name bereits existiert';
                 $http({
                     method: 'POST',
-                    url: '/backend/clans.php?method=checkName',
+                    url: '/ajax/clan.php?method=checkName',
                     data : {
-                        clanName: $scope.modalClan.Name
+                        clanName: $scope.modalClan.name
                     }
                 }).then(function(response) {
-                if(response.data == 'true') {
-                    $scope.clan = angular.copy($scope.modalClan);
-                    $scope.modalInfo = '';
-                    $('#clanModal').modal('toggle');
-                } else {
-                    $scope.modalInfo = 'Der Name existiert bereits';
-                }
+                    if(response.data == 'true') {
+                        $scope.clan = angular.copy($scope.modalClan);
+                        $scope.modalInfo = '';
+                        $('#clanModal').modal('toggle');
+                    } else {
+                        $scope.modalInfo = 'Der Name existiert bereits';
+                    }
                 });
             }
         } else {
@@ -265,18 +298,20 @@ clanwarsApp.controller('RegisterCtrl', ['$rootScope', '$scope', '$http', functio
 
             $http({
                 method: 'POST',
-                url: '/backend/clans.php?method=checkPW',
+                url: '/ajax/clan.php?method=checkPW',
                 data: {
-                    clanId: $scope.modalClan.ID,
-                    clanPassword: $scope.clanPassword
+                    clanId: $scope.modalClan.id,
+                    clanPassword: $scope.modalClan.password
                 }
             }).then(function(response) {
                 if(response.data == 'true') {
                     $scope.clan = angular.copy($scope.modalClan);
                     $scope.modalInfo = '';
+                    $scope.resetModalClan();
                     $('#clanModal').modal('toggle');
                 } else {
                     $scope.modalInfo = 'Das Passwort ist nicht korrekt';
+                    $scope.clan = angular.copy($scope.noClan);
                 }
             });
         }
@@ -284,7 +319,10 @@ clanwarsApp.controller('RegisterCtrl', ['$rootScope', '$scope', '$http', functio
     
     $scope.addPerson = function() {
         var newPersonNo = $scope.persons.length;
-        $scope.persons.push({'id': newPersonNo, 'birthday': null, 'birthdayPopup': { opened: false}});
+        $scope.persons.push({'id': newPersonNo, 'birthday': null});
+        $timeout(function() {
+            createDatePicker();
+        }, 1);
     };
     
     $scope.removePerson = function() {
@@ -295,19 +333,57 @@ clanwarsApp.controller('RegisterCtrl', ['$rootScope', '$scope', '$http', functio
     $scope.validate = function() {
         $scope.isRegister = false;
         document.getElementById('Anmeldung').scrollIntoView();
+
+        $http({
+                method: 'POST',
+                url: '/ajax/paypal.php?method=prepare',
+                data: {
+                    persons: JSON.stringify($scope.persons),
+                    clan: JSON.stringify($scope.clan)
+                }
+            }).then(function(response) {
+                $scope.paypal.link = '';
+                if(response.status == 200 && response.hasOwnProperty('data') && response.data.hasOwnProperty('url')) {
+                    if(response.data.status == 'ok') {
+                        $scope.paypal.link = response.data.url;
+                        $scope.paypal.token = response.data.token;
+                        $scope.paypal.mailwarnings = response.data.mailwarnings;
+                    } else {
+                        $scope.paypal.error = response.data.message;
+                    }
+                } else {
+                    $scope.paypal.error = 'Es scheint ein Problem mit dem Server zu geben, bitte versuche es später noch einmal.';
+                }
+            });
+
     }
     
     $scope.goBack = function() {
         $scope.isRegister = true;
+        $scope.paypal.link = '';
+        $scope.paypal.mailwarnings = [];
+        $scope.paypal.error = '';
+        if($scope.paypal.token != '') {
+            $http({
+                method: 'POST',
+                url: '/ajax/paypal.php?method=cancel',
+                data: {
+                    token: $scope.paypal.token
+                }
+            });
+        }
         document.getElementById('Anmeldung').scrollIntoView();
     }
 
     $scope.loadClans = function() {
-        $http.get("/backend/clans.php?method=list").then(
+        $scope.resetModalClan();
+         
+        $http.get("/ajax/clan.php?method=list").then(
             function(response) {
-                if(response.status == 200 && !response.data.startsWith('error')) {
+                if(response.status == 200) {
                     $scope.clans = response.data;
                 }
+
             }
         );
     }

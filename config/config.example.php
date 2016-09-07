@@ -1,7 +1,8 @@
 <?php
 // Your personal Facebook App-ID, used for login
 define("FB_APPID", "--YourAppID--");
-
+// Maximum number of Guests
+define("MAX_GUESTS", 70);
 // Your database-settings:
 define("DATABASE_HOST", "localhost"); 
 define("DATABASE_USER", "username"); 
@@ -17,3 +18,11 @@ define("MAIL_FROM_NAME", "Domain Name");
 define("CONTACT_MAIL", "info@comain.com");
 define("CONTACT_FROM", "no_reply@domain.com");
 define("CONTACT_FROM_NAME", "Domain Name");
+//PayPal
+define("PAYPAL_CLIENT_ID", "YourPayPalClientID");
+define("PAYPAL_CLIENT_SECRET", "YourPayPalClientSecret");
+define("PAYPAL_RETURN_URL", "http://www.domain.de/RegisterSuccess.php");
+define("PAYPAL_CANCEL_URL", "http://www.domain.de/RegisterCancel.php");
+// Security
+define("HASH_COST", 10);
+define("OVERVIEW_HASH", '');  // Add here an Hash, that will be checked on the overview-page

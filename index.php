@@ -17,6 +17,8 @@ require_once('./config/config.php');
     <link rel="shortcut icon" href="img/favicon.ico" type="image/x-icon" />
     <!-- Bootstrap Core CSS -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
+    <!-- Pikaday CSS -->
+    <link href="css/pikaday.css" rel="stylesheet">
     <!-- Custom CSS -->
     <link href="css/clanwars.css" rel="stylesheet">
     <!-- Custom Fonts -->
@@ -155,6 +157,7 @@ require_once('./config/config.php');
                         <li><a href="#" data-toggle="modal" data-target="#impressumModal">Impressum</a></li>
                         <li><a href="#" data-toggle="modal" data-target="#agbModal">AGB</a></li>
                         <li><a href="#" data-toggle="modal" data-target="#contactModal" data-backdrop="static" data-keyboard="false">Kontakt</a></li>
+                        <li><a href="#" data-toggle="modal" data-target="#thanksModal" data-backdrop="static" data-keyboard="false">Danke</a></li>
                     </ul>
                 </div>
             </div>
@@ -169,11 +172,17 @@ require_once('./config/config.php');
     
     <!-- Kontakt Modal -->
     <?php include("./modals/contact.php"); ?>
+
+    <!-- Danke Modal -->
+    <?php include("./modals/thanks.php"); ?>
     
     <!-- jQuery -->
     <script src="scripts/jquery-2.2.1.min.js"></script>
     <!-- Bootstrap Core Javascript -->
     <script src="scripts/bootstrap.min.js"></script>
+    <!-- Pikaday -->
+    <script src="scripts/moment.min.js"></script>
+    <script src="scripts/pikaday.js"></script>
     <!-- UI Bootstrap -->
     <script src="scripts/ui-bootstrap-custom-1.3.2.js"></script>    
     <script src="scripts/ui-bootstrap-custom-tpls-1.3.2.js"></script>    
