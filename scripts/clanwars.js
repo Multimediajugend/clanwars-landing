@@ -59,7 +59,10 @@ $(function() {
     if(window.location.href.substring(window.location.href.indexOf('#')+1) == 'Danke') {
         console.log('Danke');
         $('#thanksModal').modal('show');
-    } 
+    }
+    $('#thanksModal').on('hidden.bs.modal', function () {
+        window.location.href = '/';        
+    });
 });
 
 
@@ -239,7 +242,7 @@ clanwarsApp.controller('RegisterCtrl', ['$rootScope', '$scope', '$timeout', '$ht
     $scope.clan = angular.copy($scope.noClan);
     $scope.modalClan = angular.copy($scope.noClan);
     $scope.clans = [];
-    $scope.paypal = {link: '', error: '', token: ''};
+    $scope.paypal = {link: '', error: '', token: '', mailwarning: 'Für die E-Mail <i>martinmeyer@outlook.com</i> liegt bereits eine Registrierung vor.'};
     
     $scope.resetModalClan = function() {
         $scope.modalClan = angular.copy($scope.noClan);
