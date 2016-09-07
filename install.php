@@ -58,7 +58,7 @@ if($force) {
     $createPayment = true;
 }
 if($createPayment) {
-    $query = "CREATE TABLE payments (Token varchar(255) NOT NULL, Persons text NOT NULL, ClanID int(11), CreationTime datetime NOT NULL, SuccessTime datetime NOT NULL, SuccessPayment text NOT NULL, PRIMARY KEY(Token)) ENGINE=InnoDB DEFAULT CHARSET=latin1;";
+    $query = "CREATE TABLE payments (Token varchar(255) NOT NULL, Persons text NOT NULL, ClanID int(11), CreationTime datetime NOT NULL, SuccessTime datetime, SuccessPayment text, PRIMARY KEY(Token)) ENGINE=InnoDB DEFAULT CHARSET=latin1;";
     $stmt = $db->prepare($query);
     $stmt->execute();
     echo "Payments-Tabelle erstellt.<br>";

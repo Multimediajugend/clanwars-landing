@@ -80,7 +80,7 @@ class ClanDB
 
         $hash = password_hash($password, PASSWORD_BCRYPT, ['cost' => HASH_COST]);
 
-        $query = "INSERT INTO clans (Name, Hash, CreationTime) VALUES (:name, :hash, CURDATE())";
+        $query = "INSERT INTO clans (Name, Hash, CreationTime) VALUES (:name, :hash, CURRENT_TIME)";
         
         $stmt = $this->db->prepare($query);
         $stmt->execute([':name' => $clanName, ':hash' => $hash]);
