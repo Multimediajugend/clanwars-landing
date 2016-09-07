@@ -1,4 +1,5 @@
 <?php
+require_once dirname(dirname(__FILE__)) . "/config/config.php";
 class GuestDB
 {
     private $db;
@@ -13,7 +14,7 @@ class GuestDB
     }
 
     public function listGuests() {
-        $query = "SELECT ID, Firstname, Lastname, Mail, Birthday, PaymentID, ClanID FROM guests ORDER BY Lastname";
+        $query = "SELECT ID, Firstname, Lastname, Mail, Birthday, PayPalToken, ClanID FROM guests ORDER BY Lastname";
         $stmt = $this->db->prepare($query);
 
         $stmt->execute();

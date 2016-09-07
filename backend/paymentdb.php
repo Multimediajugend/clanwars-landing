@@ -17,7 +17,7 @@ class PaymentDB
     }
 
     public function listPayments() {
-        $query = "SELECT Token, Persons, ClanID, CreationTime, SuccessTime FROM payments ORDER BY CreationTime DESC";
+        $query = "SELECT Token, Persons, ClanID, CreationTime, SuccessTime, SuccessPayment FROM payments ORDER BY CreationTime DESC";
         $stmt = $this->db->prepare($query);
 
         $stmt->execute();

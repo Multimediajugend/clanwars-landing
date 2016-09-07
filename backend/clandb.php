@@ -15,7 +15,7 @@ class ClanDB
     }
 
     public function listClans() {
-        $query = "SELECT ID AS id, Name AS name FROM clans ORDER BY Name";
+        $query = "SELECT ID AS id, Name AS name, CreationTime AS creationtime FROM clans ORDER BY Name";
         $stmt = $this->db->prepare($query);
         
         $stmt->execute();
