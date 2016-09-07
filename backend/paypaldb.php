@@ -3,6 +3,7 @@ require_once dirname(dirname(__FILE__)) . "/config/config.php";
 require_once dirname(dirname(__FILE__)) . "/backend/clandb.php";
 require_once dirname(dirname(__FILE__)) . "/vendor/autoload.php";
 require_once dirname(__FILE__) . "/paymentdb.php";
+require_once dirname(__FILE__) . "/guestdb.php";
 
 use PayPal\Api\Amount;
 use PayPal\Api\Item;
@@ -38,7 +39,9 @@ class PayPalDB
 
     public function getApproval($persons, $clan) {
         $_clan = new ClanDB();
+        $_guest = new GuestDB();
         $clanid = null;
+        $mailwarnings = array();
 
         $price = SINGLE_TICKET;
 
@@ -69,6 +72,10 @@ class PayPalDB
 
         for($i = 0; $i < count($persons); $i++)
         {
+            if($_guest->mailExists($persons[$i]->email)) {
+                $mailwarnings[] = $persons[$i]->email;
+            }
+
             $item = new Item();
             $item->setName($persons[$i]->firstname . ' ' . $persons[$i]->lastname)
                 ->setCurrency('EUR')
@@ -118,7 +125,7 @@ class PayPalDB
 
         $this->paymentdb->addPayment($token, $persons, $clanid);
 
-        return (object) ['url' => $approvalUrl, 'token' => $token];
+        return (object) ['url' => $approvalUrl, 'token' => $token, 'mailwarnings' => $mailwarnings];
     }
 
     public function paymentSuccess($paymentId, $payerId, $token) {

@@ -242,7 +242,7 @@ clanwarsApp.controller('RegisterCtrl', ['$rootScope', '$scope', '$timeout', '$ht
     $scope.clan = angular.copy($scope.noClan);
     $scope.modalClan = angular.copy($scope.noClan);
     $scope.clans = [];
-    $scope.paypal = {link: '', error: '', token: '', mailwarning: 'Für die E-Mail <i>martinmeyer@outlook.com</i> liegt bereits eine Registrierung vor.'};
+    $scope.paypal = {link: '', error: '', token: '', mailwarnings: []};
     
     $scope.resetModalClan = function() {
         $scope.modalClan = angular.copy($scope.noClan);
@@ -343,15 +343,16 @@ clanwarsApp.controller('RegisterCtrl', ['$rootScope', '$scope', '$timeout', '$ht
                 }
             }).then(function(response) {
                 $scope.paypal.link = '';
-                if(response.status == 200) {
+                if(response.status == 200 && response.hasOwnProperty('data') && response.data.hasOwnProperty('url')) {
                     if(response.data.status == 'ok') {
                         $scope.paypal.link = response.data.url;
                         $scope.paypal.token = response.data.token;
+                        $scope.paypal.mailwarnings = response.data.mailwarnings;
                     } else {
                         $scope.paypal.error = response.data.message;
                     }
                 } else {
-                    $scope.paypal.error('Es scheint ein Problem mit dem Server zu geben, bitte versuche es später noch einmal.');
+                    $scope.paypal.error = 'Es scheint ein Problem mit dem Server zu geben, bitte versuche es später noch einmal.';
                 }
             });
 
@@ -360,6 +361,8 @@ clanwarsApp.controller('RegisterCtrl', ['$rootScope', '$scope', '$timeout', '$ht
     $scope.goBack = function() {
         $scope.isRegister = true;
         $scope.paypal.link = '';
+        $scope.paypal.mailwarnings = [];
+        $scope.paypal.error = '';
         if($scope.paypal.token != '') {
             $http({
                 method: 'POST',

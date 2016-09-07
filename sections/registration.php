@@ -57,7 +57,7 @@
                         </div>
                         <div class="col-md-3 col-xs-6 form-group" ng-class="{ 'has-error' : personForm.birthday.$invalid && !personForm.birthday.$pristine && personForm.birthday.$touched }">
                             <label for="personbirthday">Geburtsdatum</label>
-                            <input type="text" class="form-control date-picker" ng-model="person.birthday" required>
+                            <input type="text" class="form-control date-picker" ng-model="person.birthday" placeholder="01.01.1990" required>
                         </div>
                     </div>
                 </fieldset>
@@ -112,6 +112,11 @@
                     <div class="col-lg-12" ng-show="paypal.error.trim().length!=0">
                         <div class="alert alert-danger">
                             {{paypal.error}}
+                        </div>
+                    </div>
+                    <div class="col-lg-12" ng-show="paypal.mailwarnings.length>0">
+                        <div class="alert alert-warning">
+                            Achtung, für die E-Mail<span ng-show="paypal.mailwarnings.length>1">s</span> <i ng-repeat="warning in paypal.mailwarnings"><label ng-show="$index>0">,&nbsp;</label>{{warning}}</i> liegt bereits eine Registrierung vor.<br>
                         </div>
                     </div>
                     <div class="col-lg-12">

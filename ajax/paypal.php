@@ -26,6 +26,7 @@ switch($method) {
         $result->status = 'ok';
         $result->url = $app->url;
         $result->token = $app->token;
+        $result->mailwarnings = $app->mailwarnings;
 
         echo json_encode($result);
 
