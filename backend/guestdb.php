@@ -13,6 +13,15 @@ class GuestDB
         $this->db->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_OBJ);
     }
 
+    public function getGuestNumber() {
+        $query = "SELECT COUNT(*) AS count FROM guests";
+        $stmt = $this->db->prepare($query);
+        $stmt->execute();
+        $result = $stmt->fetch();
+
+        return $result->count;
+    }
+
     public function listGuests() {
         $query = "SELECT ID, Firstname, Lastname, Mail, Birthday, PayPalToken, ClanID FROM guests ORDER BY Lastname";
         $stmt = $this->db->prepare($query);

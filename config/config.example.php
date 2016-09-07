@@ -1,7 +1,8 @@
 <?php
 // Your personal Facebook App-ID, used for login
 define("FB_APPID", "--YourAppID--");
-
+// Maximum number of Guests
+define("MAX_GUESTS", 70);
 // Your database-settings:
 define("DATABASE_HOST", "localhost"); 
 define("DATABASE_USER", "username"); 
