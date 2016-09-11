@@ -12,7 +12,7 @@
                 Wenn du keine E-Mail erhalten hast, oder noch Fragen zu deiner Registrierung oder der Clanwars 2016 offen sind, dann schreibe uns entweder direkt auf
                 <a href="https://www.facebook.com/multimediajugend/" class="btn btn-xs btn-facebook"><span class="fa fa-facebook"></span> Facebook</a>
                 an, oder nutze unser Kontaktformular.<br>
-                Wir freuen uns, dich/euch auf der Clanwars 2016 begrüßen zu drüfen.<br> 
+                Wir freuen uns, dich/euch auf der Clanwars 2016 begrüßen zu dürfen.<br> 
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-default" data-dismiss="modal">Zurück</button>
