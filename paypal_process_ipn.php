@@ -1,7 +1,7 @@
 <?php
 require_once dirname(__FILE__) . "/backend/mail.php";
-require_once dirname(dirname(__FILE__)) . "/config/config.php";
-require_once dirname(dirname(__FILE__)) . "/vendor/autoload.php";
+require_once dirname(__FILE__) . "/config/config.php";
+require_once dirname(__FILE__) . "/vendor/autoload.php";
 
 // read the data send by PayPal
 $logger = new Katzgrau\KLogger\Logger(dirname(dirname(__FILE__)) . '/logs/IPN');
