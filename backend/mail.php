@@ -90,4 +90,15 @@ class Mail
         $adminMail->SetFrom($this->from, $this->fromName);
         $adminMail->Send($this->to, $this->fromName, $adminSubject, $adminBody);
     }
+
+    public function sendIPNMail($status, $message) {
+        $adminSubject = "Clanwars 2016 - PayPal IPN " . $status;
+
+        $body = "<h2>PayPal IPN</h2>";
+        $body .= $message;
+
+        $adminMail = new Sendmail();
+        $adminMail->SetFrom($this->from, $this->fromName);
+        $adminMail->Send($this->to, $this->fromName, $adminSubject, $body);
+    }
 }
