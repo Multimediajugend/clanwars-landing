@@ -1,6 +1,10 @@
 <?php
 require_once dirname(__FILE__) . "/backend/mail.php";
+require_once dirname(dirname(__FILE__)) . "/config/config.php";
+require_once dirname(dirname(__FILE__)) . "/vendor/autoload.php";
+
 // read the data send by PayPal
+$logger = new Katzgrau\KLogger\Logger(dirname(dirname(__FILE__)) . '/logs/IPN');
 $req = 'cmd=_notify-validate';
 foreach ($_POST as $key => $value) {
 	$value = urlencode(stripslashes($value));
@@ -19,7 +23,11 @@ if (!$fp) {
 		$res = fgets ($fp, 1024);
 
         $_mail = new Mail();
-        $_mail->sendIPNMail($res, var_dump_ret($_POST));
+        if (strcmp ($res, "VERIFIED") == 0 || strcmp ($res, "INVALID") == 0) {
+            $_mail->sendIPNMail($res, var_dump_ret($_POST));
+        }
+
+        $logger->info('PayPal IP - ' . $res . ': ' . json_encode($_POST));
 	}
 	fclose ($fp);
 }
