@@ -157,7 +157,6 @@ require_once('./config/config.php');
                         <li><a href="#" data-toggle="modal" data-target="#impressumModal">Impressum</a></li>
                         <li><a href="#" data-toggle="modal" data-target="#agbModal">AGB</a></li>
                         <li><a href="#" data-toggle="modal" data-target="#contactModal" data-backdrop="static" data-keyboard="false">Kontakt</a></li>
-                        <li><a href="#" data-toggle="modal" data-target="#thanksModal" data-backdrop="static" data-keyboard="false">Danke</a></li>
                     </ul>
                 </div>
             </div>
