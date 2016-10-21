@@ -126,6 +126,9 @@ require_once('./config/config.php');
     <!-- Map Section -->
     <?php include "./sections/map.php" ?>
     
+    <!-- Sponsors Section -->
+    <?php include "./sections/sponsors.php" ?>
+    
     <!-- Registration Section -->
     <?php include "./sections/registration.php" ?>
     
@@ -150,7 +153,7 @@ require_once('./config/config.php');
                         }
                     ?>
                     <span class="copyright small">&copy; Multimediale Jugendarbeit Sachsen e.V. <?php echo $footerDate ?></span><br />
-                    <a href="https://www.speicherzentrum.de/"><img src="img/speicherzentrum.jpg"></a>                    
+                    <a href="https://www.speicherzentrum.de/"><img src="img/speicherzentrum.jpg"></a>
                 </div>
                 <div class="col-md-3">
                     <ul class="quicklinks">
