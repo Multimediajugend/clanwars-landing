@@ -49,6 +49,7 @@ if(isset($_POST['password']) && password_verify($_POST['password'], OVERVIEW_HAS
                     <th>Vorname</th>
                     <th>E-Mail</th>
                     <th>Geburtstag</th>
+                    <th>Bezahldatum</th>
                     <th>Clan</th>
                     <th>PayPalToken</th>
                 </tr>
@@ -59,6 +60,7 @@ if(isset($_POST['password']) && password_verify($_POST['password'], OVERVIEW_HAS
                     <td>{{guest.Firstname}}</td>
                     <td>{{guest.Mail}}</td>
                     <td>{{guest.Birthday}}</td>
+                    <td>{{getPayDate(guest.PayPalToken)}}</td>
                     <td>{{getClan(guest.ClanID)}}</td>
                     <td>{{guest.PayPalToken}}</td>
                 </tr>
@@ -190,6 +192,19 @@ if(isset($_POST['password']) && password_verify($_POST['password'], OVERVIEW_HAS
                          return $scope.clans[i].name;
                      }
                 }
+            }
+
+            $scope.getPayDate = function(Token) {
+                if(!Token.startsWith('EC')) {
+                    return '--';
+                }
+
+                for(var i=0; i<$scope.payments.length; i++) {
+                    if($scope.payments[i].Token == Token) {
+                        return $scope.payments[i].SuccessTime;
+                    }
+                }
+                return '??';           
             }
 
             $scope.getClanMember = function(ClanID) {
