@@ -431,3 +431,7 @@ footer ul.quicklinks {
 .red {
     color: #C00000;
 }
+
+.img-responsive {
+    margin: 0 auto;
+}

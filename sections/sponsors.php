@@ -8,19 +8,19 @@
         <div class="row">
             <div class="col-lg-12 text-center" style="margin-top:30px;">
                 <a href="http://www.fractal-design.com/">
-                    <img src="img/sponsors/markensturm/define_s_flat.jpg">
+                    <img src="img/sponsors/markensturm/define_s_flat.jpg" class="img-responsive" />
                 </a>
             </div>
         </div>
         <div class="row">
             <div class="col-sm-6 text-center" style="margin-top:30px;">
                 <a href="http://www.braustolz.de/">
-                    <img src="img/sponsors/braustolz.png">
+                    <img src="img/sponsors/braustolz.png" class="img-responsive" />
                 </a>
             </div>
             <div class="col-sm-6 text-center" style="margin-top:30px;">
                 <a href="http://www.bad-brambacher.de/">
-                    <img src="img/sponsors/badbrambacher.png">
+                    <img src="img/sponsors/badbrambacher.png" class="img-responsive" />
                 </a>
             </div>
         </div>

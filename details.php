@@ -18,7 +18,7 @@ require_once('./config/config.php');
     <!-- Bootstrap Core CSS -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
     <!-- Custom CSS -->
-    <link href="css/clanwars.css" rel="stylesheet">
+    <link href="css/clanwars.css?v=20161024_1330" rel="stylesheet">
     <!-- Custom Fonts -->
     <link href="css/font-awesome.min.css" rel="stylesheet" type="text/css">
     <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css">
@@ -111,7 +111,7 @@ require_once('./config/config.php');
                                 <div class="panel-body">
                                     <p class="text-center"><img src="/img/usk16.png" /></p>
                                     <p class="text-center">
-                                        <strong>Wir, als Veranstalter, müssen sicherstellen, dass Teilnehmer unter 18 Jahre keinen Zugang zu jugendgefährdenden Medien erhalten. Das beduetet, dass Spiele, sowie Medien zu den Spielen, die keine Jugendfreigabe (USK 18) erhalten haben, auf unserer Veranstaltung verboten sind.</strong> 
+                                        <strong>Wir, als Veranstalter, müssen sicherstellen, dass Teilnehmer unter 18 Jahre keinen Zugang zu jugendgefährdenden Medien erhalten. Das bedeutet, dass Spiele, sowie Medien zu den Spielen, die keine Jugendfreigabe (USK 18) erhalten haben, auf unserer Veranstaltung verboten sind.</strong> 
                                     </p>
                                     <p>
                                         <h5>Ich bin unter 18 Jahre alt.</h5>
@@ -135,6 +135,9 @@ require_once('./config/config.php');
                             </div>
                             <div id="collapseOne" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
                                 <div class="panel-body">
+                                    <p>
+                                        Hier ein paar ausgewählte Spiele, davon dürft ihr die <span class="green"><strong>grün</strong></span> markierten Spiele spielen, die <span class="red"><strong>rot</strong></span> markierten hingegen nicht:
+                                    </p>
                                     <ul>
                                         <li><strong>Counter Strike</strong>: <span class="green">1.6</span>, <span class="red">Condition Zero</span>, <span class="green">Source</span>, <span class="green">Global Offensive</span> </li>
                                         <li><strong>Battlefield</strong>: <span class="green">1942</span>, <span class="green">Vietnam</span>, <span class="green">BF 2</span>, <span class="green">2142</span>, <span class="red">BF 3</span>, <span class="red">Hardline</span>, <span class="green">Battlefield 1</span></li>
@@ -142,9 +145,9 @@ require_once('./config/config.php');
                                         <li><strong>MOBA</strong>: <span class="green">LoL</span>, <span class="green">DotA 2</span></li>
                                         <li><strong>Sonstige</strong>: <span class="green">TrackMania</span>, <span class="green">FlatOut 2 (dt. Version)</span>, <span class="green">Blobby Volley</span>, <span class="green">Diablo III</span></li>
                                     </ul>
-                                    <span class="text-muted">
+                                    <p class="text-muted">
                                         Wenn du dir nicht sicher bist, welche Altersfreigabe welches Spiel hat, kannst du auf der Webseite der <a href="http://www.usk.de/titelsuche">USK</a> selbst nachschauen.
-                                    </span>
+                                    </p>
                                 </div>
                             </div>
                         </div>
@@ -265,6 +268,13 @@ require_once('./config/config.php');
                             </tr>
                             <tr>
                                 <td>
+                                    <strong>Mineralwasser - 0,5 l</strong><br>
+                                    <small>medium & spritzig</small>
+                                </td>
+                                <td>0,25 €</td>
+                            </tr>
+                            <tr>
+                                <td>
                                     <strong>Kaffe & Tee</strong><br>
                                     <small>Pfefferminz-, Kräuter- und Früchtetee</small>
                                 </td>
@@ -283,14 +293,21 @@ require_once('./config/config.php');
                             <tr>
                                 <td>
                                     <strong>Clanwars Baguette</strong><br>
-                                    <small>Belegt mit Käse, Schinken, Gurke und Tomate - auch überbacken</small>
+                                    <small>Belegt mit Käse, Schinken, Salat, Gurke und Tomate - auch überbacken</small>
                                 </td>
-                                <td>2,70 €</td>
+                                <td>2,50 €</td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <strong>Muffin</strong><br>
+                                    <small>natürlich selbst gebacken.</small>
+                                </td>
+                                <td>1,50 €</td>
                             </tr>
                             <tr>
                                 <td>
                                     <strong>Mittagessen Samstag</strong><br>
-                                    <small>Nudeln mit Tomatensoße, Wurst und Käse</small>
+                                    <small>Nudeln mit Hackfleischsoße und Käse</small>
                                 </td>
                                 <td>2,50 €</td>
                             </tr>
@@ -312,12 +329,36 @@ require_once('./config/config.php');
     </section>
     <section id="Turnierpreise">
         <div class="row">
-            <div class="col-md-6 col-md-push-3 text-center">
+            <div class="col-md-8 col-md-push-2 col-lg-6 col-lg-push-3 text-center">
                 <h2 class="section-heading">Turnierpreise</h2>
                 <h3 class="section-subheading text-muted">Was kann ich bei den Turnieren gewinnen?</h3>
-                <p>
-                    Coming soon.
-                </p>
+                <h4>Sponsored by Fractal Design</h4>
+                <div class="row">
+                    <div class="col-md-6">
+                        <h5>1x Fractal Design Define S Window Black</h5>
+                        <img id="fractaldesign01" src="/img/sponsors/fractaldesign/define_s_1.jpg" class="img-responsive" />
+                        <p class="text-muted">
+                            Das Define S Gehäuse ist mit einer Vielzahl von intelligenten Features ausgestattet und zeichnet sich durch ein großzügiges Raumangebot sowie ein außerordentlich leises Betriebsgeräusch aus. Auch beim Design gibt es keine Kompromisse, so kommt das Define S ebenfalls im eleganten, für die Define Serie typischen, skandinavischen Design.<br>
+                            <a href="http://www.fractal-design.com/home/product/cases/define-series/define-s">Mehr Infos bekommt ihr hier</a>
+                        </p>
+                    </div>
+                    <div class="col-md-6">
+                        <h5>2x Fractal Design Dynamic GP-14 Black/White</h5>
+                        <img id="fractaldesign02" src="/img/sponsors/fractaldesign/dynamic_1.jpg" class="img-responsive" />
+                        <p class="text-muted">
+                            Designt mit führenden technologischen Erkenntnissen, bieten die Dynamic Series Lüfter aerodynamische Elemente, ähnlich dem Design einer Tragfläche mit herausragenden geräuschreduzierenden Elementen zu einem fantastischen Preis-Leistungs-Verhältnis.<br>
+                            <a href="http://www.fractal-design.com/home/product/casefans/dynamic-series">Mehr Infos bekommt ihr hier</a>
+                        </p>
+                    </div>
+                </div>
+                <h4>Weitere Preise</h4>
+                <div class="row">
+                    <div class="col-md-6 col-md-push-3">
+                        <p>
+                            <strong>Natürlich gibt es noch andere Preise, lasst euch einfach überraschen.</strong>
+                        </p>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
@@ -370,7 +411,25 @@ require_once('./config/config.php');
     <script src="scripts/ui-bootstrap-custom-tpls-1.3.2.js"></script>    
    
     <!-- Custom JavaScript -->
-    <script src="scripts/clanwars.js"></script>
+    <script>
+        $(function() {
+            $('#fractaldesign01')
+                .mouseover(function() {
+                    $(this).attr('src', 'http://local.hsf-clanwars.de/img/sponsors/fractaldesign/define_s_2.jpg');
+                })
+                .mouseout(function() {
+                    $(this).attr('src', 'http://local.hsf-clanwars.de/img/sponsors/fractaldesign/define_s_1.jpg');
+                });
+
+            $('#fractaldesign02')
+                .mouseover(function() {
+                    $(this).attr('src', 'http://local.hsf-clanwars.de/img/sponsors/fractaldesign/dynamic_2.jpg');
+                })
+                .mouseout(function() {
+                    $(this).attr('src', 'http://local.hsf-clanwars.de/img/sponsors/fractaldesign/dynamic_1.jpg');
+                });
+        });
+    </script>
 </body>
 </html>
     
