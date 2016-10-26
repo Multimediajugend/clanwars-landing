@@ -88,7 +88,7 @@ require_once('./config/config.php');
             </div>
         </div>
     </header>
-    <section id="Details">
+    <section id="Faq">
         <div class="container">
             <div class="row">
                 <div class="col-lg-12 text-center">
@@ -100,14 +100,14 @@ require_once('./config/config.php');
                 <div class="col-md-10 col-md-push-1">
                     <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
                         <div class="panel panel-default">
-                            <div class="panel-heading" role="tab" id="headingZero">
+                            <div class="panel-heading" role="tab" id="frageEins">
                                 <h4 class="panel-title">
-                                    <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseZero">
+                                    <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseOne">
                                         Was bedeutet LAN-Party ab 16?
                                     </a>
                                 </h4>
                             </div>
-                            <div id="collapseZero" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingZero">
+                            <div id="collapseOne" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="frageEins">
                                 <div class="panel-body">
                                     <p class="text-center"><img src="/img/usk16.png" /></p>
                                     <p class="text-center">
@@ -126,14 +126,14 @@ require_once('./config/config.php');
                             </div>
                         </div>
                         <div class="panel panel-default">
-                            <div class="panel-heading" role="tab" id="headingOne">
+                            <div class="panel-heading" role="tab" id="frageZwei">
                                 <h4 class="panel-title">
-                                    <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseOne">
+                                    <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo">
                                         Welche Spiele darf ich also Spielen?
                                     </a>
                                 </h4>
                             </div>
-                            <div id="collapseOne" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
+                            <div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="frageZwei">
                                 <div class="panel-body">
                                     <p>
                                         Hier ein paar ausgewählte Spiele, davon dürft ihr die <span class="green"><strong>grün</strong></span> markierten Spiele spielen, die <span class="red"><strong>rot</strong></span> markierten hingegen nicht:
@@ -152,14 +152,14 @@ require_once('./config/config.php');
                             </div>
                         </div>
                         <div class="panel panel-default">
-                            <div class="panel-heading" role="tab" id="headingTwo">
+                            <div class="panel-heading" role="tab" id="frageDrei">
                                 <h4 class="panel-title">
-                                    <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo">
+                                    <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseThree">
                                         Was muss ich alles mitbringen?
                                     </a>
                                 </h4>
                             </div>
-                            <div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
+                            <div id="collapseThree" class="panel-collapse collapse" role="tabpanel" aria-labelledby="frageDrei">
                                 <div class="panel-body">
                                     <ul>
                                         <li>Euren Personalausweis/Führerschein</li>
@@ -177,28 +177,28 @@ require_once('./config/config.php');
                             </div>
                         </div>
                         <div class="panel panel-default">
-                            <div class="panel-heading" role="tab" id="headingThree">
+                            <div class="panel-heading" role="tab" id="frageVier">
                                 <h4 class="panel-title">
-                                    <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseThree">
+                                    <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseFour">
                                         Gibt es Schlafmöglichkeiten?
                                     </a>
                                 </h4>
                             </div>
-                            <div id="collapseThree" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThree">
+                            <div id="collapseFour" class="panel-collapse collapse" role="tabpanel" aria-labelledby="frageVier">
                                 <div class="panel-body">
                                     Ja, es steht ein Schlafbereich zur Verfügung. Wenn ihr lieber in der Nähe eures PC's sein wollt, habt ihr auch da genügend Platz.
                                 </div>
                             </div>
                         </div>
                         <div class="panel panel-default">
-                            <div class="panel-heading" role="tab" id="headingFour">
+                            <div class="panel-heading" role="tab" id="frageFuenf">
                                 <h4 class="panel-title">
-                                    <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseFour">
+                                    <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseFive">
                                         Gibt es Duschmöglichkeiten?
                                     </a>
                                 </h4>
                             </div>
-                            <div id="collapseFour" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingFour">
+                            <div id="collapseFive" class="panel-collapse collapse" role="tabpanel" aria-labelledby="frageFuenf">
                                 <div class="panel-body">
                                     Nein, leider stehen keine Duschmöglichkeiten bereit.
                                 </div>
@@ -254,10 +254,17 @@ require_once('./config/config.php');
                             </tr>
                             <tr>
                                 <td>
-                                    <strong>Erdinger o.ä. - 0,5 l</strong><br>
+                                    <strong>Schöfferhofer o.ä. - 0,5 l</strong><br>
                                     <small>Hefeweizen & alkoholfreies Weizen</small>
                                 </td>
                                 <td>1,50 €</td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <strong>Schöfferhofer Grapefruit - 0,5 l</strong><br>
+                                    <small>Weizenbiermixgetränkt mit Grapefruitgeschmack</small>
+                                </td>
+                                <td>1,25 €</td>
                             </tr>
                             <tr>
                                 <td>
@@ -268,6 +275,13 @@ require_once('./config/config.php');
                             </tr>
                             <tr>
                                 <td>
+                                    <strong>Red Bull - 0,25 l</strong><br>
+                                    <small>Energy Drink</small>
+                                </td>
+                                <td>1,25 €</td>
+                            </tr>
+                            <tr>
+                                <td>
                                     <strong>Mineralwasser - 0,5 l</strong><br>
                                     <small>medium & spritzig</small>
                                 </td>
@@ -275,7 +289,7 @@ require_once('./config/config.php');
                             </tr>
                             <tr>
                                 <td>
-                                    <strong>Kaffe & Tee</strong><br>
+                                    <strong>Kaffee & Tee</strong><br>
                                     <small>Pfefferminz-, Kräuter- und Früchtetee</small>
                                 </td>
                                 <td>0,00 €</td>
