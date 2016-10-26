@@ -24,6 +24,8 @@
                                 Aus diesem Grund solltest Du den Ausweis unbedingt dabei haben.
                                 Ohne Ausweis können wir Dir leider keinen Zutritt zur Veranstaltung gewähren.
                                 Das gilt für alle Teilnehmer und auch für eventuelle Besucher, die sich die Veranstaltung ansehen möchten.</li>
+                            <li>Teilnehmer die zu Beginn der Veranstaltung das Alter von 18 Jahren noch nicht erreicht haben, müssen die Veranstaltung bis 24 Uhr verlassen.
+                                Eine Ausnahme gilt, wenn bei Einlass eine ausgefüllte Erziehungsbeauftragung ("Muttizettel") abgegeben wurde, und der Teilnehmer in Begleitung des Erziehungsbeauftragten erscheint.</li>
                             <li>Jeder Teilnehmer hat den nötigen, bekannt gegebenen Teilnahmebeitrag geleistet und dieser ist auch eingegangen.
                                 Sollte es nach Eingang der Bezahlung zu nicht vorhersehbaren Problemen kommen, welche die Teilnahme zur Veranstaltung unmöglich machen,
                                 entscheidet je nach Begründung der Veranstalter, ob 100%, 50% oder 0% vom bezahlten Eintrittspreis zurück erstattet werden.</li>
@@ -57,6 +59,8 @@
                                 Dies gilt auch für Wasserkocher, Toaster, Mikrowellen oder ähnliche elektronische Geräte.</li>
                             <li>Dem Teilnehmer ist das mutwillige Stören oder Manipulieren der Veranstaltung untersagt.
                                 Dies gilt im Besonderen für den Betrieb des Computernetzwerks.</li>
+                            <li>Beträgt das Mindestalter für die Veranstaltung 16 Jahre, dürfen jugendgefährdende Spiele und Medien nur in einem räumlich getrenntem Ü18-Bereich konsumiert werden.
+                                Steht kein Ü18-Bereich zur Verfügung, ist zur Einhaltung des Jugendschutzes, das Konsumieren von jugendgefährdenden Spielen und Medien allen Teilnehmern untersagt.</li>
                             <li>Jeder Teilnehmer ist für den Schutz und die Sicherheit seines Eigentums selbst verantwortlich.</li>
                             <li>Für Wertsachen die während der Veranstaltung entwendet werden bzw. verschwinden, wird keine Haftung vom Veranstalter übernommen.</li>
                             <li>Der Veranstalter verpflichtet sich zur Verfügungsstellung und dem Betrieb des Computernetzwerkes und auch von Sitzplätzen inkl. Netzwerkanschluss, Strom etc. als Gegenleistung für den Teilnahmebeitrag.
