@@ -5,7 +5,7 @@ $guest = new GuestDB();
 $guestCnt = $guest->getGuestNumber();
 ?>
 <div ng-controller="RegisterCtrl">
-    <section id="Anmeldung">
+    <section id="Anmeldung" class="ng-cloak">
         <?php
         if($guestCnt >= MAX_GUESTS) {
         ?>
@@ -20,7 +20,7 @@ $guestCnt = $guest->getGuestNumber();
             </div>
         <?php
         } else {
-            if(new DateTime() < new DateTime("2016-10-28 00:00:00")) {
+            if(new DateTime() < new DateTime(REGISTER_ENDDATE)) {
             ?>
             <form name="register" id="registerForm" action="" method="post" novalidate>
                 <div ng-show="isRegister" class="container">

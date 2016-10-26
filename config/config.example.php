@@ -26,3 +26,6 @@ define("PAYPAL_CANCEL_URL", "http://www.domain.de/RegisterCancel.php");
 // Security
 define("HASH_COST", 10);
 define("OVERVIEW_HASH", '');  // Add here an Hash, that will be checked on the overview-page
+define("KERIO_TOKEN", "");
+// Enddate for registration
+define("REGISTER_ENDDATE", "2016-10-28 00:00:00");
