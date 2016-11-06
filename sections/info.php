@@ -3,11 +3,11 @@
         <div class="row">
             <div class="col-lg-12 text-center">
                 <h2 class="section-heading"><?php echo EVENT_NAME ?></h2>
-                <h3>Die <?php echo EVENT_NAME ?> startet am <?php echo (new Datetime(EVENT_STARTDATE))->format(DATETIMEFORMAT) ?>
+                <h3 class="section-subheading text-muted">Die wichtigsten Infos auf einen Blick.</h3>
+                <h3>Die <?php echo EVENT_NAME ?> beginnt am <?php echo (new Datetime(EVENT_STARTDATE))->format(DATETIMEFORMAT) ?>
                 <div class="clock-wrapper">
                     <div id="event-start-clock" class="clock"></div>
                 </div>
-                <h3 class="section-subheading text-muted">Die wichtigsten Infos auf einen Blick.</h3>
             </div>
         </div>
         <div class="row text-center">
