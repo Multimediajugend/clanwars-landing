@@ -221,6 +221,16 @@ header .intro-text .intro-heading {
     }
 }
 
+.clock-wrapper {
+    text-align: center;
+    margin-top: 15px;
+}
+
+.clock-wrapper .clock {
+    display: inline-block;
+    width: auto;
+}
+
 /*-- Sections --*/
 section {
     padding: 50px 0

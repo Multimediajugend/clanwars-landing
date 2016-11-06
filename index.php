@@ -41,25 +41,6 @@ require_once('./config/config.php');
     <![endif]-->
 </head>
 <body ng-app="clanwarsApp" id="page-top">
-    <script>
-        // Facebook Init
-        window.fbAsyncInit = function() {
-            console.log('call FB.init');
-            FB.init({
-                appId      : '<?php echo FB_APPID; ?>',
-                xfbml      : true,
-                version    : 'v2.5'
-            });
-        };
-
-        (function(d, s, id){
-            var js, fjs = d.getElementsByTagName(s)[0];
-            if (d.getElementById(id)) {return;}
-            js = d.createElement(s); js.id = id;
-            js.src = "//connect.facebook.net/en_US/sdk.js";
-            fjs.parentNode.insertBefore(js, fjs);
-        }(document, 'script', 'facebook-jssdk'));
-    </script>
     <!-- Navigation -->
     <nav class="navbar navbar-default navbar-fixed-top navbar-shrink">
         <div class="container">
@@ -196,6 +177,35 @@ require_once('./config/config.php');
     <script src="scripts/classie.js"></script>
     <!-- Flipclock Javascript -->
     <script src="scripts/flipclock.min.js"></script>
+    <!-- Set Timespans for flipclock -->
+    <?php
+        $eventStartTimestamp = (new Datetime(EVENT_STARTDATE))->getTimestamp();
+        $currentTimestamp = (new Datetime())->getTimestamp();
+        $eventStartDiff = $eventStartTimestamp - $currentTimestamp;
+    ?>
+    <script>
+        var checkTimespan = function(timespan) {
+            if(timespan === undefined || timespan < 0) {
+                return 0;
+            }
+            return timespan;
+        }
+        $(function() {
+            var eventStarttimespan = checkTimespan(<?php echo $eventStartDiff ?>);
+
+            if(eventStarttimespan === undefined || eventStarttimespan < 0) {
+                var eventStarttimespan = 0;
+            }
+
+            var eventStartclock = $('#event-start-clock').FlipClock(eventStarttimespan, {
+                language: 'german',
+                clockFace: 'DailyCounter',
+                countdown: true,
+                showSeconds: eventStarttimespan < 3600*24   // show seconds only on the last day
+            });
+        });
+    </script>
+
     <!-- Custom JavaScript -->
     <script src="scripts/clanwars.js"></script>
 </body>

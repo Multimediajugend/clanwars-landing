@@ -65,24 +65,6 @@ $(function() {
     });
 });
 
-
-// function fb_login() {
-//     FB.login(function(response){
-//         if (response.authResponse) {
-//             console.log('Welcome!  Fetching your information.... ');
-// 
-//             FB.api('/me',  {fields: 'id,first_name,middle_name,last_name,email,age_range,birthday'}, function(response) {
-//                 console.log(response);
-//             });
-//             
-//         } else {
-//             console.log('User cancelled login or did not fully authorize.');
-//         }
-//     });
-//     // Später hinzufügen
-//     //}, {scope: 'user_birthday'});
-// }
-
 var reloadCaptcha = function() {
     document.getElementById('contactCaptchaImage').src = '/securimage/securimage_show.php?' + Math.random();
     return false;
@@ -386,28 +368,6 @@ clanwarsApp.controller('RegisterCtrl', ['$rootScope', '$scope', '$timeout', '$ht
 
             }
         );
-    }
-    
-    $scope.fbLogin = function() {
-        FB.login(function(response){
-            if (response.authResponse) {
-                console.log('Welcome!  Fetching your information.... ');
-
-                FB.api('/me',  {fields: 'id,first_name,middle_name,last_name,email,age_range,birthday'}, function(response) {
-                    console.log(response);
-                    $scope.persons[0].firstname = response.first_name;
-                    $scope.persons[0].lastname = response.last_name;
-                    $scope.persons[0].email = response.email;
-                    console.log("Persons:");
-                    console.log($scope.persons[0]);
-                });
-                
-            } else {
-                console.log('User cancelled login or did not fully authorize.');
-            }
-        });
-        // Später hinzufügen
-        //}, {scope: 'user_birthday'});
     }
     
     $scope.loadClans();
