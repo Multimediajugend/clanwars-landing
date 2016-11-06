@@ -179,9 +179,16 @@ require_once('./config/config.php');
     <script src="scripts/flipclock.min.js"></script>
     <!-- Set Timespans for flipclock -->
     <?php
-        $eventStartTimestamp = (new Datetime(EVENT_STARTDATE))->getTimestamp();
         $currentTimestamp = (new Datetime())->getTimestamp();
+
+        $eventStartTimestamp = (new Datetime(EVENT_STARTDATE))->getTimestamp();
         $eventStartDiff = $eventStartTimestamp - $currentTimestamp;
+
+        $registerStartTimestamp = (new Datetime(REGISTER_STARTDATE))->getTimestamp();
+        $registerStartDiff = $registerStartTimestamp - $currentTimestamp;
+
+        $registerEndTimestamp = (new Datetime(REGISTER_ENDDATE))->getTimestamp();
+        $registerEndDiff = $registerEndTimestamp - $currentTimestamp;
     ?>
     <script>
         var checkTimespan = function(timespan) {
@@ -191,17 +198,29 @@ require_once('./config/config.php');
             return timespan;
         }
         $(function() {
-            var eventStarttimespan = checkTimespan(<?php echo $eventStartDiff ?>);
+            var eventStartTimespan = checkTimespan(<?php echo $eventStartDiff ?>);
+            var registerStartTimestamp = checkTimespan(<?php echo $registerStartDiff ?>);
+            var registerEndTimestamp = checkTimespan(<?php echo $registerEndDiff ?>);
 
-            if(eventStarttimespan === undefined || eventStarttimespan < 0) {
-                var eventStarttimespan = 0;
-            }
-
-            var eventStartclock = $('#event-start-clock').FlipClock(eventStarttimespan, {
+            var eventStartclock = $('#event-start-clock').FlipClock(eventStartTimespan, {
                 language: 'german',
                 clockFace: 'DailyCounter',
                 countdown: true,
-                showSeconds: eventStarttimespan < 3600*24   // show seconds only on the last day
+                showSeconds: eventStartTimespan < 3600*24   // show seconds only on the last day
+            });
+
+            var eventStartclock = $('#register-start-clock').FlipClock(registerStartTimestamp, {
+                language: 'german',
+                clockFace: 'DailyCounter',
+                countdown: true,
+                showSeconds: registerStartTimestamp < 3600*24   // show seconds only on the last day
+            });
+
+            var eventStartclock = $('#register-end-clock').FlipClock(registerEndTimestamp, {
+                language: 'german',
+                clockFace: 'DailyCounter',
+                countdown: true,
+                showSeconds: registerEndTimestamp < 3600*24   // show seconds only on the last day
             });
         });
     </script>

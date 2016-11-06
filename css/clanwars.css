@@ -341,7 +341,9 @@ section#Anmeldung fieldset legend {
     color: #ddd;
 }
 
-
+section#Anmeldung .flip-clock-label {
+    color: #fff;
+}
 
 /*-- AGB --*/
 .agb ol.paragraphs {
