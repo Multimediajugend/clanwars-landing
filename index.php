@@ -110,7 +110,7 @@ require_once('./config/config.php');
     <?php include "./sections/map.php" ?>
     
     <!-- Sponsors Section -->
-    <?php include "./sections/sponsors.php" ?>
+    <?php /*include "./sections/sponsors.php"*/ ?>
     
     <!-- Registration Section -->
     <?php include "./sections/registration.php" ?>
