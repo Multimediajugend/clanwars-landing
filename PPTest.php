@@ -16,17 +16,17 @@ $payer = new Payer();
 $payer->setPaymentMethod("paypal");
 
 $single = new Item();
-$single->setName("Clanwars 2016 Einzelkarte")
+$single->setName(EVENT_NAME . " Einzelkarte")
     ->setCurrency("EUR")
     ->setQuantity(1)
-    ->setSku("cw2016_single")
+    ->setSku(EVENT_ID . "_single")
     ->setPrice(25);
 
 $group = new Item();
-$group->setName("Clanwars 2016 Gruppenkarte")
+$group->setName(EVENT_NAME . " Gruppenkarte")
     ->setCurrency("EUR")
     ->setQuantity(0)
-    ->setSku("cw2016_group")
+    ->setSku(EVENT_ID . "_group")
     ->setPrice(20);
 
 $itemList = new ItemList();

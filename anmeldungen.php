@@ -17,7 +17,7 @@ if(isset($_POST['password']) && password_verify($_POST['password'], OVERVIEW_HAS
 <html lang="de">
 <head>
     <meta charset="utf-8">
-    <title>Clanwars 2016 - Übersicht</title>
+    <title><?php echo EVENT_NAME ?> - Übersicht</title>
     <!-- FavIcon -->
     <link rel="shortcut icon" href="img/favicon.ico" type="image/x-icon" />
     <!-- Bootstrap Core CSS -->
@@ -29,7 +29,7 @@ if(isset($_POST['password']) && password_verify($_POST['password'], OVERVIEW_HAS
     <script src="scripts/angular-animate.min.js"></script>
 </head>
 <body id="page-top" class="container">
-    <h1>Clanwars 2016 Übersicht</h1>
+    <h1><?php echo EVENT_NAME ?> Übersicht</h1>
     <?php
     if(!$loggedIn) {
     ?>

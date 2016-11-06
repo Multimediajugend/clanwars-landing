@@ -11,7 +11,7 @@ require_once('./config/config.php');
     <meta name="description" content="lan party">
     <meta name="author" content="Multimediale Jugendarbeit Sachsen e.V.">
     
-    <title>Clanwars 2016</title>
+    <title><?php echo EVENT_NAME ?></title>
     
     <!-- FavIcon -->
     <link rel="shortcut icon" href="img/favicon.ico" type="image/x-icon" />
@@ -65,7 +65,7 @@ require_once('./config/config.php');
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand page-scroll" href="#page-top">Clanwars 2016</a>
+                <a class="navbar-brand page-scroll" href="#page-top"><?php echo EVENT_NAME ?></a>
             </div>
             <div class="collapse navbar-collapse" id="navbar-collapse">
                 <ul class="nav navbar-nav navbar-right">
@@ -112,7 +112,7 @@ require_once('./config/config.php');
     <div class="container">
         <div class="row">
             <div class="col-lg-12 text-center">
-                <h2 class="section-heading">Clanwars 2016</h2>
+                <h2 class="section-heading"><?php echo EVENT_NAME ?></h2>
                 <h3 class="section-subheading text-muted">Save the date: 28.10. bis 30.10.2016</h3>
             </div>
         </div>
@@ -124,7 +124,7 @@ require_once('./config/config.php');
                 </span>
                 <h4 class="info-heading">Bitte habt noch ein bisschen Geduld.</h4>
                 <p class="text-muted">
-                    Nicht mehr lang, dann beginnt hier der Vorverkauf für die Clanwars 2016.<br >
+                    Nicht mehr lang, dann beginnt hier der Vorverkauf für die <?php echo EVENT_NAME ?>.<br >
                     Folgt unserer Seite auf <a href="https://www.facebook.com/multimediajugend/" class="btn btn-xs btn-facebook"><i class="fa fa-facebook"></i> Facebook</a> und Ihr erhaltet sofort Informationen, wenn es losgeht.
                 </p>
             </div>

@@ -3,7 +3,7 @@
         <div class="row">
             <div class="col-xs-12 text-center">
                 <h2 class="section-heading">Anfahrt</h2>
-                <h3 class="section-subheading text-muted">Hier findet die Clanwars statt.</h3>
+                <h3 class="section-subheading text-muted">Hier findet die <?php echo EVENT_NAME ?> statt.</h3>
             </div>
         </div>
         <div class="row text-center">

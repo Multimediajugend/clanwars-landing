@@ -25,6 +25,7 @@ define("OVERVIEW_HASH", '');  // Add here an Hash, that will be checked on the o
 define("KERIO_TOKEN", "");
 // Dates for the event
 define("EVENT_NAME", "Eventname");
+define("EVENT_ID", "EvtId");
 define("MAX_GUESTS", 100);
 define("DATEFORMAT", "d.m.Y");
 define("DATETIMEFORMAT", "d.m.Y - H:i");

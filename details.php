@@ -11,7 +11,7 @@ require_once('./config/config.php');
     <meta name="description" content="lan party">
     <meta name="author" content="Multimediale Jugendarbeit Sachsen e.V.">
     
-    <title>Clanwars 2016</title>
+    <title><?php echo EVENT_NAME ?></title>
     
     <!-- FavIcon -->
     <link rel="shortcut icon" href="img/favicon.ico" type="image/x-icon" />
@@ -46,7 +46,7 @@ require_once('./config/config.php');
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand page-scroll" href="#page-top">Clanwars 2016</a>
+                <a class="navbar-brand page-scroll" href="#page-top"><?php echo EVENT_NAME ?></a>
             </div>
             <div class="collapse navbar-collapse" id="navbar-collapse">
                 <ul class="nav navbar-nav navbar-right">
@@ -92,7 +92,7 @@ require_once('./config/config.php');
         <div class="container">
             <div class="row">
                 <div class="col-lg-12 text-center">
-                    <h2 class="section-heading">Clanwars 2016</h2>
+                    <h2 class="section-heading"><?php echo EVENT_NAME ?></h2>
                     <h3 class="section-subheading text-muted">Die wichtigsten Fragen und Antworten:</h3>
                 </div>
             </div>
@@ -218,7 +218,7 @@ require_once('./config/config.php');
             <div class="row">
                 <div class="col-md-8 col-md-push-2">
                     <h2 class="section-heading text-center">Catering</h2>
-                    <h3 class="section-subheading text-muted text-center">Hier findet ihr die Cateringpreise für die Clanwars 2016.</h3>
+                    <h3 class="section-subheading text-muted text-center">Hier findet ihr die Cateringpreise für die <?php echo EVENT_NAME ?>.</h3>
                     <div class="red text-center">Das sind die vorläufigen Preise, die tatsächlichen Preise können von diesen abweichen</div>
                     <table class="table table-striped table-hover table-condensed">
                         <thead>

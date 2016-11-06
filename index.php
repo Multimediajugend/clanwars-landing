@@ -11,7 +11,7 @@ require_once('./config/config.php');
     <meta name="description" content="lan party">
     <meta name="author" content="Multimediale Jugendarbeit Sachsen e.V.">
     
-    <title>Clanwars 2016</title>
+    <title><?php echo EVENT_NAME ?></title>
     
     <!-- FavIcon -->
     <link rel="shortcut icon" href="img/favicon.ico" type="image/x-icon" />
@@ -67,7 +67,7 @@ require_once('./config/config.php');
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand page-scroll" href="#page-top">Clanwars 2016</a>
+                <a class="navbar-brand page-scroll" href="#page-top"><?php echo EVENT_NAME ?></a>
             </div>
             <div class="collapse navbar-collapse" id="navbar-collapse">
                 <ul class="nav navbar-nav navbar-right">

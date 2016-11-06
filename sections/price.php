@@ -3,7 +3,7 @@
         <div class="row">
             <div class="col-lg-12 text-center">
                 <h2 class="section-heading">Eintrittspreise</h2>
-                <h3 class="section-subheading text-muted">Das kostet der Eintritt zur Clanwars 2016.</h3>
+                <h3 class="section-subheading text-muted">Das kostet der Eintritt zur <?php echo EVENT_NAME ?>.</h3>
             </div>
         </div>
         <div class="row text-center">
@@ -29,7 +29,7 @@
                     <i class="fa fa-child fa-stack-1x fa-inverse fa-muted"></i>
                 </span>
                 <h4 class="service-heading">Besucher</h4>
-                <p class="text-muted">Besucher der Clanwars zahlen:<br><i class="fa fa-circle" style="font-size:0.7em;"></i> Abendkasse 5€</p>
+                <p class="text-muted">Besucher der <?php echo EVENT_NAME ?> zahlen:<br><i class="fa fa-circle" style="font-size:0.7em;"></i> Abendkasse 5€</p>
             </div>
         </div>
         <br /><br />

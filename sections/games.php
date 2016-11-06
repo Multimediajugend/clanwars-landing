@@ -3,7 +3,7 @@
         <div class="row">
             <div class="col-lg-12 text-center">
                 <h2 class="section-heading">Spiele</h2>
-                <h3 class="section-subheading text-muted">Welche Spiele werden auf der Clanwars gespielt?</h3>
+                <h3 class="section-subheading text-muted">Welche Spiele werden auf der <?php echo EVENT_NAME ?> gespielt?</h3>
             </div>
         </div>
         <div class="row">
