@@ -20,7 +20,7 @@ require_once('./config/config.php');
     <!-- Pikaday CSS -->
     <link href="css/pikaday.css" rel="stylesheet">
     <!-- Custom CSS -->
-    <link href="css/clanwars.css?v=20161024_1330" rel="stylesheet">
+    <link href="css/clanwars.css?v=20161106_1720" rel="stylesheet">
     <!-- Custom Fonts -->
     <link href="css/font-awesome.min.css" rel="stylesheet" type="text/css">
     <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css">

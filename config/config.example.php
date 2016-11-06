@@ -1,8 +1,4 @@
 <?php
-// Your personal Facebook App-ID, used for login
-define("FB_APPID", "--YourAppID--");
-// Maximum number of Guests
-define("MAX_GUESTS", 70);
 // Your database-settings:
 define("DATABASE_HOST", "localhost"); 
 define("DATABASE_USER", "username"); 
@@ -27,5 +23,12 @@ define("PAYPAL_CANCEL_URL", "http://www.domain.de/RegisterCancel.php");
 define("HASH_COST", 10);
 define("OVERVIEW_HASH", '');  // Add here an Hash, that will be checked on the overview-page
 define("KERIO_TOKEN", "");
-// Enddate for registration
+// Dates for the event
+define("EVENT_NAME", "Eventname");
+define("MAX_GUESTS", 100);
+define("DATEFORMAT", "d.m.Y");
+define("DATETIMEFORMAT", "d.m.Y - H:i");
+define("REGISTER_STARTDATE", "2016-10-28 00:00:00");
 define("REGISTER_ENDDATE", "2016-10-28 00:00:00");
+define("EVENT_STARTDATE", "2016-10-28 00:00:00");
+define("EVENT_ENDDATE", "2016-10-28 00:00:00");

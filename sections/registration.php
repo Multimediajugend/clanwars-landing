@@ -7,20 +7,47 @@ $guestCnt = $guest->getGuestNumber();
 <div ng-controller="RegisterCtrl">
     <section id="Anmeldung" class="ng-cloak">
         <?php
-        if($guestCnt >= MAX_GUESTS) {
-        ?>
+        if(new DateTime() < new DateTime(REGISTER_STARTDATE)) {
+            // Before registration
+            ?>
             <div class="container">
                 <div class="row">
                     <div class="col-lg-12 text-center">
                         <h2 class="section-heading">Anmeldung</h2>
                         <br>
-                        <h1>Die Clanwars 2016 ist ausgebucht.</h1>
+                        <h1>Die Anmeldung zur <?php echo EVENT_NAME ?> beginnt am <?php echo (new Datetime(REGISTER_STARTDATE))->format(DATETIMEFORMAT) ?>.</h1>
                     </div>
                 </div>
             </div>
-        <?php
+            <?php
+        } else if (new DateTime() > new DateTime(REGISTER_ENDDATE)) {
+            // After registration time
+            ?>
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-12 text-center">
+                        <h2 class="section-heading">Anmeldung</h2>
+                        <br>
+                        <h1>Die Anmeldung zur <?php echo EVENT_NAME ?> ist leider schon vorbei.</h1>
+                    </div>
+                </div>
+            </div>
+            <?php
+        } else if($guestCnt >= MAX_GUESTS) {
+            // limit for guests reached
+            ?>
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-12 text-center">
+                        <h2 class="section-heading">Anmeldung</h2>
+                        <br>
+                        <h1>Die <?php echo EVENT_NAME ?> ist ausgebucht.</h1>
+                    </div>
+                </div>
+            </div>
+            <?php
         } else {
-            if(new DateTime() < new DateTime(REGISTER_ENDDATE)) {
+            // Registration-section
             ?>
             <form name="register" id="registerForm" action="" method="post" novalidate>
                 <div ng-show="isRegister" class="container">
@@ -30,14 +57,6 @@ $guestCnt = $guest->getGuestNumber();
                             <h3 class="section-subheading text-muted">Bitte gib hier deine Daten an, wenn du dich zur Clanwars anmelden möchtest.</h3>
                         </div>
                     </div>
-                    <?php
-                    // <div class="row">
-                    //     <div class="col-lg-12 text-center">
-                    //         <button type="button" class="btn btn-lg btn-facebook" ng-click="fbLogin();"><span class="fa fa-facebook-square"></span> Mit Facebook anmelden</button><br>
-                    //     </div>
-                    // </div>
-                    // <br />
-                    ?>
                     <div class="row">
                         <div class="col-md-6 form-group" ng-class="{ 'has-error' : register.firstname.$invalid && !register.firstname.$pristine && register.firstname.$touched }">
                             <label for="firstname">Vorname *</label>
@@ -125,7 +144,7 @@ $guestCnt = $guest->getGuestNumber();
                     </table>
                     <div class="row text-center">
                         <div class="col-lg-12">
-                            Bitte beachte die <a href="#" data-toggle="modal" data-target="#agbModal">AGB</a> der Clanwars 2016.
+                            Bitte beachte die <a href="#" data-toggle="modal" data-target="#agbModal">AGB</a> der <?php echo EVENT_NAME ?>.
                         </div>
                         <br /><br />
                         <div class="col-lg-12" ng-show="paypal.error.trim().length!=0">
@@ -150,29 +169,17 @@ $guestCnt = $guest->getGuestNumber();
                             Du hast keinen PayPal-Account?<br />
                             Dann schreibe uns direkt über das
                             <a href="#" data-toggle="modal" ng-click="showContact()" data-target="#contactModal" data-backdrop="static" data-keyboard="false">Kontaktformular</a>
-                            an und wir finden einen Weg, wie du <span ng-hide="persons.length>1">dich</span><span ng-hide="persons.length<=1">euch</span> zur Clanwars 2016 anmelden kannst.<br>                        
+                            an und wir finden einen Weg, wie du <span ng-hide="persons.length>1">dich</span><span ng-hide="persons.length<=1">euch</span> zur <?php echo EVENT_NAME ?> anmelden kannst.<br>                        
                         </div>
                     </div>
                 </div>
             </form>
             <?php
-            } else {
-                ?>
-                <div class="container">
-                    <div class="row">
-                        <div class="col-lg-12 text-center">
-                            <h2 class="section-heading">Anmeldung</h2>
-                            <h3 class="section-subheading text-muted">Die Anmeldung zur Clanwars 2016 ist leider schon vorbei.</h3>
-                        </div>
-                    </div>
-                </div>
-                <?php
-            }
         }
         ?>
     </section>
     <?php
-        if($guestCnt < MAX_GUESTS && new DateTime() < new DateTime("2016-10-28 00:00:00")) {
+        if($guestCnt < MAX_GUESTS && new DateTime() > new DateTime(REGISTER_STARTDATE) && new DateTime < new DateTime(REGISTER_ENDDATE)) {
     ?>
     <div class="modal fade" id="clanModal" tabindex="-1" role="dialog" aria-hidden="true">
         <div class="modal-dialog" role="document">
