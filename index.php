@@ -27,6 +27,8 @@ require_once('./config/config.php');
     <link href='https://fonts.googleapis.com/css?family=Kaushan+Script' rel='stylesheet' type='text/css'>
     <link href='https://fonts.googleapis.com/css?family=Droid+Serif:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
     <link href='https://fonts.googleapis.com/css?family=Roboto+Slab:400,100,300,700' rel='stylesheet' type='text/css'>
+    <!-- Flipclock -->
+    <link href="css/flipclock.css" rel="stylesheet">
     <!-- Angular.js -->
     <script src="scripts/angular.min.js"></script>
     <script src="scripts/angular-animate.min.js"></script>
@@ -192,6 +194,8 @@ require_once('./config/config.php');
     <!-- Plugin JavaScript -->
     <script src="http://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.3/jquery.easing.min.js"></script>
     <script src="scripts/classie.js"></script>
+    <!-- Flipclock Javascript -->
+    <script src="scripts/flipclock.min.js"></script>
     <!-- Custom JavaScript -->
     <script src="scripts/clanwars.js"></script>
 </body>
