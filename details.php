@@ -100,6 +100,22 @@ require_once('./config/config.php');
                 <div class="col-md-10 col-md-push-1">
                     <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
                         <div class="panel panel-default">
+                            <div class="panel-heading" role="tab" id="frageNull">
+                                <h4 class="panel-title">
+                                    <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseOne">
+                                        Von wann bis wann geht die LAN?
+                                    </a>
+                                </h4>
+                            </div>
+                            <div id="collapseOne" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="frageNull">
+                                <div class="panel-body">
+                                    <p>
+                                        Die <?php echo EVENT_NAME ?> geht vom <?php echo (new Datetime(EVENT_STARTDATE))->format(DATETIMEFORMAT) ?> bis zum <?php echo (new Datetime(EVENT_ENDDATE))->format(DATETIMEFORMAT) ?> 
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="panel panel-default">
                             <div class="panel-heading" role="tab" id="frageEins">
                                 <h4 class="panel-title">
                                     <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseOne">
@@ -107,7 +123,7 @@ require_once('./config/config.php');
                                     </a>
                                 </h4>
                             </div>
-                            <div id="collapseOne" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="frageEins">
+                            <div id="collapseOne" class="panel-collapse collapse" role="tabpanel" aria-labelledby="frageEins">
                                 <div class="panel-body">
                                     <p class="text-center"><img src="/img/usk16.png" /></p>
                                     <p class="text-center">
@@ -219,6 +235,9 @@ require_once('./config/config.php');
                 <div class="col-md-8 col-md-push-2">
                     <h2 class="section-heading text-center">Catering</h2>
                     <h3 class="section-subheading text-muted text-center">Hier findet ihr die Cateringpreise für die <?php echo EVENT_NAME ?>.</h3>
+                    <div class="red text-center">Die Catering-Preise für die <?php echo EVENT_NAME ?> stehen noch nicht fest.</div>
+                    <?php
+                    /*
                     <div class="red text-center">Das sind die vorläufigen Preise, die tatsächlichen Preise können von diesen abweichen</div>
                     <table class="table table-striped table-hover table-condensed">
                         <thead>
@@ -337,10 +356,14 @@ require_once('./config/config.php');
                     <div class="text-center">
                         <strong>Freitag- und Samstagabend werden wir Pizza bestellen.</strong>
                     </div>
+                    */
+                    ?>
                 </div>
             </div>
         </div>
     </section>
+    <?php
+    /*
     <section id="Turnierpreise">
         <div class="row">
             <div class="col-md-8 col-md-push-2 col-lg-6 col-lg-push-3 text-center">
@@ -376,6 +399,8 @@ require_once('./config/config.php');
             </div>
         </div>
     </section>
+    */
+    ?>
     <!-- Footer -->
     <footer>
         <div class="container">

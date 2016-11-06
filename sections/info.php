@@ -73,7 +73,7 @@
             </div>
         </div>
         <div class="row text-center">
-            <a class="page-scroll btn btn-lg btn-primary info-register" href="#Anmeldung">Direkt zur Anmeldung</a>
+            <a class="page-scroll btn btn-lg btn-primary info-register" href="details.php">Mehr Informationen</a>
         </div>
     </div>
 </section>
