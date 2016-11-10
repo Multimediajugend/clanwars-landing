@@ -28,7 +28,7 @@
                 </span>
                 <h4 class="info-heading">Community</h4>
                 <p class="text-muted">
-                    Kein Bock auf Turniere? Dann trefft alte Freunde und schließt bei unseren Side-Events neue Bekanntschaften.<br />Der Spaß steht im Mittelpunkt!
+                    Kein Bock auf Turniere? Dann trefft alte Freunde und schließt neue Bekanntschaften.<br />Der Spaß steht im Mittelpunkt!
                 </p>
             </div>
             <div class="col-md-4">
