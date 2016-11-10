@@ -83,7 +83,8 @@ a.active {
     color: #FA4920
 }
 .navbar-default .navbar-collapse {
-    border-color: rgba(255, 255, 255, .02)
+    border-color: rgba(255, 255, 255, .02);
+    background-color: #222;
 }
 .navbar-default .navbar-toggle {
     background-color: #FA7C20;
@@ -122,6 +123,18 @@ a.active {
     pointer-events: none;
     cursor: default;
     text-decoration: line-through;
+}
+/* Small devices */
+@media (max-width: 768px) { 
+    .clock-wrapper {
+        zoom: 0.85;
+    }
+}
+/* Small devices */
+@media (max-width: 550px) { 
+    .clock-wrapper {
+        zoom: 0.65;
+    }
 }
 @media (min-width: 768px) {
     .navbar-default {
@@ -341,8 +354,14 @@ section#Anmeldung fieldset legend {
     color: #ddd;
 }
 
+section#Anmeldung .clock-wrapper {
+    margin-top: 50px;
+}
 section#Anmeldung .flip-clock-label {
-    color: #fff;
+    color: #ddd;
+}
+section#Anmeldung .flip-clock-wrapper .inn {
+    color: #FA7C20;
 }
 
 /*-- AGB --*/
