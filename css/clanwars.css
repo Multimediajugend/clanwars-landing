@@ -363,6 +363,9 @@ section#Anmeldung .flip-clock-label {
 section#Anmeldung .flip-clock-wrapper .inn {
     color: #FA7C20;
 }
+section#Anmeldung .flip-clock-wrapper .flip-clock-dot {
+    background-color: #FA7C20;
+}
 
 /*-- AGB --*/
 .agb ol.paragraphs {
