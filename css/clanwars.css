@@ -133,7 +133,7 @@ a.active {
 /* Small devices */
 @media (max-width: 550px) { 
     .clock-wrapper {
-        zoom: 0.65;
+        zoom: 0.6;
     }
 }
 @media (min-width: 768px) {
