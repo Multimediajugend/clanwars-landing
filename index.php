@@ -29,6 +29,11 @@ require_once('./config/config.php');
     <link href='https://fonts.googleapis.com/css?family=Roboto+Slab:400,100,300,700' rel='stylesheet' type='text/css'>
     <!-- Flipclock -->
     <link href="css/flipclock.css" rel="stylesheet">
+    <!-- Facebook-Related -->
+    <meta property="og:title" content="<?php echo EVENT_NAME ?>"/>
+    <meta property="og:description" content="<?php echo EVENT_NAME ?> - Die Community-LAN-Party in Sachsen. Kommt vorbei! Wann? <?php echo (new Datetime(EVENT_STARTDATE))->format(DATEFORMAT) ?> - <?php echo (new Datetime(EVENT_ENDDATE))->format(DATEFORMAT) ?>" />
+    <meta property="og:type" content="website"/>
+    <meta property="og:image" content="http://www.hsf-clanwars.de/img/header-bg.jpg">
     <!-- Angular.js -->
     <script src="scripts/angular.min.js"></script>
     <script src="scripts/angular-animate.min.js"></script>
