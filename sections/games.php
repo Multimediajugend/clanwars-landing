@@ -29,6 +29,8 @@
                     <p class="text-muted">Der Taktikshooter aus dem Hause Valve</p>
                 </div>
             </div>
+            <?php
+            /*
             <div class="col-lg-4 col-md-6 spiele-item">
                 <div class="spiele-image">
                     <a href="http://maniaplanet.com/de/trackmania" target="_blank">
@@ -38,6 +40,19 @@
                 <div class="spiele-caption">
                     <h4>Trackmania</h4>
                     <p class="text-muted">"Design it. Build it. Race it!"</p>
+                </div>
+            </div>
+            */
+            ?>
+            <div class="col-lg-4 col-md-6 spiele-item">
+                <div class="spiele-image">
+                    <a href="https://www.rocketleaguegame.com/" target="_blank">
+                        <img src="img/games/rocket.jpg" class="img-responsive" alt="">
+                    </a>
+                </div>
+                <div class="spiele-caption">
+                    <h4>Rocket League</h4>
+                    <p class="text-muted">Fußball mit Turbo-betriebenen Autos</p>
                 </div>
             </div>
             <div class="col-lg-4 col-md-6 spiele-item">
