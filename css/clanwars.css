@@ -19,6 +19,9 @@ h6 {
 .bg-darkest-gray {
     background-color: #222
 }
+.highlight-text {
+    color: #FA7C20;
+}
 
 /*-- Buttons --*/
 .btn {
@@ -361,10 +364,10 @@ section#Anmeldung .flip-clock-label {
     color: #ddd;
 }
 section#Anmeldung .flip-clock-wrapper .inn {
-    color: #FA7C20;
+    color: #ddd;
 }
 section#Anmeldung .flip-clock-wrapper .flip-clock-dot {
-    background-color: #FA7C20;
+    background-color: #ddd;
 }
 
 /*-- AGB --*/

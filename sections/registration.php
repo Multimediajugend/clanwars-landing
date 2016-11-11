@@ -15,7 +15,7 @@ $guestCnt = $guest->getGuestNumber();
                     <div class="col-lg-12 text-center">
                         <h2 class="section-heading">Anmeldung</h2>
                         <br>
-                        <h1>Die Anmeldung zur <?php echo EVENT_NAME ?> beginnt am <?php echo (new Datetime(REGISTER_STARTDATE))->format(DATETIMEFORMAT) ?></h1>
+                        <h1 class="highlight-text">Die Anmeldung zur <?php echo EVENT_NAME ?> beginnt am <?php echo (new Datetime(REGISTER_STARTDATE))->format(DATETIMEFORMAT) ?></h1>
                         <div class="clock-wrapper">
                             <div id="register-start-clock" class="clock"></div>
                         </div>
@@ -59,9 +59,13 @@ $guestCnt = $guest->getGuestNumber();
                             <h2 class="section-heading">Anmeldung</h2>
                             <br>
                             <h1>Die Anmeldung zur <?php echo EVENT_NAME ?> ist noch bis <?php echo (new Datetime(REGISTER_STARTDATE))->format(DATETIMEFORMAT) ?> möglich.</h1>
+                            <?
+                            /*
                             <div class="clock-wrapper">
                                 <div id="register-end-clock" class="clock"></div>
                             </div>
+                            */
+                            ?>
                             <h3 class="section-subheading text-muted">Bitte gib unten deine Daten an, wenn du dich zur <?php echo EVENT_NAME ?> anmelden möchtest.</h3>
                         </div>
                     </div>

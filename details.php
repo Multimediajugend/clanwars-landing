@@ -18,7 +18,7 @@ require_once('./config/config.php');
     <!-- Bootstrap Core CSS -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
     <!-- Custom CSS -->
-    <link href="css/clanwars.css?v=20161110_1015" rel="stylesheet">
+    <link href="css/clanwars.css?v=20161111_1145" rel="stylesheet">
     <!-- Custom Fonts -->
     <link href="css/font-awesome.min.css" rel="stylesheet" type="text/css">
     <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css">
