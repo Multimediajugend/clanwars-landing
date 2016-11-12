@@ -118,7 +118,7 @@ require_once('./config/config.php');
         <div class="row">
             <div class="col-lg-12 text-center">
                 <h2 class="section-heading"><?php echo EVENT_NAME ?></h2>
-                <h3 class="section-subheading text-muted">Save the date: 28.10. bis 30.10.2016</h3>
+                <h3 class="section-subheading text-muted">Save the date: <?php echo (new Datetime(EVENT_STARTDATE))->format(DATEFORMAT) ?> bis <?php echo (new Datetime(EVENT_ENDDATE))->format(DATEFORMAT) ?></h3>
             </div>
         </div>
         <div class="row text-center">
