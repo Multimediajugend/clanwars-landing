@@ -3,10 +3,10 @@
         <div class="modal-content" role="document">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal"><span class="fa fa-close"></span></button>
-                <h4 class="modal-title">AGB der Clanwars 2016 im Kulturforum Stadtpark Frankenberg</h4>
+                <h4 class="modal-title">AGB der <?php echo EVENT_NAME ?> im Kulturforum Stadtpark Frankenberg</h4>
             </div>
             <div class="modal-body agb">
-                <h4>Die Veranstaltung findet vom 28.10.2016 bis 30.10.2016 statt.</h4>
+                <h4>Die Veranstaltung findet vom <?php echo (new Datetime(EVENT_STARTDATE))->format(DATEFORMAT) ?> bis <?php echo (new Datetime(EVENT_ENDDATE))->format(DATEFORMAT) ?> statt.</h4>
                 <ol class="paragraphs">
                     <li>
                         Allgemeine Bestimmungen
