@@ -350,9 +350,6 @@ section#Anmeldung {
     background-repeat: no-repeat;
     min-height: 850px;
 }
-section#Anmeldung .section-heading {
-    color: #fff
-}
 section#Anmeldung fieldset legend {
     color: #ddd;
 }
